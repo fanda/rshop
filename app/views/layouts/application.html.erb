@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<title><%= @title %></title>
+<link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss" />
+<%= stylesheet_link_tag "application" %>
+<%= javascript_include_tag "application" %>
+<% if protect_against_forgery? %><script type='text/javascript'>
+//<![CDATA[
+window._auth_token_name = "<%= request_forgery_protection_token %>";
+window._auth_token = "<%= form_authenticity_token %>";
+//]]></script><% end %>
+
+<%= csrf_meta_tag %>
+<meta name="keywords" content="<%= h(truncate(@meta_keywords, :lenght=>200)) %>"/>
+<meta name="description" content="<%= h(truncate(strip_tags(@meta_desc), :lenght=>300)) %>"/>
+<script type="text/javascript">
+   var _gaq = _gaq || [];
+   _gaq.push(['_setAccount', 'UA-25480695-1']);
+   _gaq.push(['_trackPageview']);
+   (function() {
+     var ga = document.createElement('script'); ga.type =
+'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' :
+'http://www') + '.google-analytics.com/ga.js';
+     var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+   })();
+</script>
+</head>
+
+<body>
+<noscript><div id="nojs">
+  Máte vypnutý JavaScript nebo jej Váš prohlížeč nepodporuje. Funkčnost stránek
+  i Vaše pohodlí jsou tím omezeny.
+</div></noscript>
+<div id="outer">
+  <div id="header">
+    <div id="logo"></div>
+    <div id="login-box" class="left lpad">
+		</div>
+		<div id="right_header_menu" class="right rpad">
+      <%= render :partial => '/layouts/right_header_menu' %>
+		</div>
+  </div>
+
+  <div id="body-top" class="out"></div>
+
+  <div id="body-middle" class="clearfix">
+
+		<div id="main-col">
+			<div id="content-top"></div>
+			<div id="content-wrapper">
+        <div id="content">
+          <div id="flashes">
+            <%= display_flashes %>
+          </div>
+          <%= yield %>
+        </div><!-- content -->
+      </div>
+      <div id="content-bottom"></div>
+    </div>
+
+    <div id="side-col">
+      <div class="side-box-top"></div>
+
+      <div id="categories" class="side-box-middle">
+      <% unless @categories.blank? %>
+        <h4>Kategorie</h4>
+        <ul>
+        <% @categories.each do |category| %>
+          <%= render :partial => '/catalog/tree',
+                     :locals => {:menu => category} %>
+        <% end %>
+        </ul>
+      <% end %>
+      </div>
+
+      <div class="side-box-bottom menu">
+        <h4>Důležité stránky</h4>
+        <%= link_to 'Úvodní stránka', root_path %>
+        <a href="/platba-a-doprava">Platba a doprava</a>
+        <a href="/cart">Nákupní košík</a>
+        <a href="/kontakt">Místo pro dotazy</a>
+      </div>
+
+      <div class="side-box-middle menu">
+      </div>
+
+	  </div>
+
+  </div><!-- body-middle -->
+
+	<div id="body-bottom" class="out"></div>
+
+	<div id="footer"></div>
+
+</div><!-- outer -->
+<div style="text-align:left">
+  <%= debug @debug %>
+</div>
+</body>
+</html>

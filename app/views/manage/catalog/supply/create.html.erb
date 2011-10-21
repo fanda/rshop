@@ -1,0 +1,25 @@
+<% if @error %>
+  <div class="error"><%= @error %></div>
+<% else %>
+<h1>Dodavateli byla odeslána následující objednávka</h1>
+<br/><fieldset style="width:200px"><legend>Adresa</legend>
+  <p>
+  <%= @supplier.name %>
+  </br><%= @supplier.street %></br>
+  <%= @supplier.post_code %> <%= @supplier.place %>
+  </p>
+  <p>Email: <%= mail_to @supplier.email %>
+</fieldset>
+<table style="width:70%;text-align:center;">
+  <thead><tr><th>Název</th><th>Kusů</th></tr></thead>
+  <tbody>
+    <% @supply.entries.each_with_index do |entry,i| %>
+      <tr><td>#<%= i + 1 %></td>
+          <td><%= entry.product.title %></td>
+          <td><%= entry.quantity %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p>Objednávka byla odeslána na e-mailovou adresu <%= mail_to @supplier.email %>.</p>
+<% end %>

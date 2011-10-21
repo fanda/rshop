@@ -1,0 +1,29 @@
+<% if @products %>
+
+<h1>Vyberte zboží a zadejte počet kusů k objednávce</h1>
+<%= form_tag "/manage/catalog/supplier/#{@supplier.id}/supply" %>
+<table class="listing">
+  <thead><tr>
+    <th>Název</th><th>Popis</th>
+    <th>Skladem</th><th style="width:6em">Objednat kusů</th></tr>
+  </thead>
+  <tbody id="products">
+  <% @products.each do |p| %>
+    <tr<%= ' class=nstock' if p.amount == 0 %>>
+      <td><%= p.title %></td>
+      <td><%= p.description %></td>
+      <td><%= p.amount %></td>
+      <th>
+      <%= text_field_tag "amount[#{p.id}]", 0, :size=>3 %>
+      </th>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<h2>Očekávané datum doručení zboží</h2>
+<p><%= select_date(14.day.from_now, :order => [:day, :month, :year] )%></p>
+<p class="floatright"><%= submit_tag 'Objednat' %></p>
+</form>
+<% else %>
+<p><strong>Dodavatel zde nemá žádné zboží</strong></p>
+<% end %>

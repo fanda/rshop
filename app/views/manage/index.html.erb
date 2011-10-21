@@ -1,0 +1,20 @@
+<h1 style="color:#000"><%= @title %></h1>
+<% if @waiting_orders.any? %>
+  <p>
+  <% @waiting = @waiting_orders %>
+  <%= render :partial => 'manage/orders/table_waiting' %>
+  <strong>Objednávky k vyřízení: <%= @waiting_orders.count %></strong>
+  </p>
+<% end %>
+<% if @waiting_supplies.any? %> 
+  <p>
+  <% @waiting = @waiting_supplies %>
+  <%= render :partial => 'manage/catalog/supply/table_waiting' %>
+  <strong>Očekávané dodávky: <%= @waiting_supplies.count %></strong>
+  </p>
+<% end %>
+<p>
+<fieldset><legend>Uživatelé</legend>
+Počet nových uživatelů tento týden: <%= @weekly_new_customers.count %>
+</fieldset>
+</p>

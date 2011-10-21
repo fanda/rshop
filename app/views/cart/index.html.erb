@@ -1,0 +1,48 @@
+<div id="success"></div>
+<h1>Nákupní košík</h1>
+<% if @items.any? %>
+<table class="listing">
+  <thead>
+    <tr>
+      <th>Název</th>
+      <th>Cena<br/>s DPH</th>
+      <th>Kusů</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <td><b>Celkem</b></td>
+      <td><b id="total_price"><%= format_price(@order.sum) %></b></td>
+      <td></td>
+    </tr>
+  </tfoot>
+  <tbody id="products">
+  <% @items.each do |i| %>
+    <% product = i.product %>
+    <tr id="p_<%= product.id %>">
+      <td>
+        <%= product_link(product) %>
+      </td>
+      <td class="col100width price"><%= format_price(i.price) %></td>
+      <td class="col70width amount"><%= i.amount %>ks</td>
+
+      <th class="col40width">
+        <%= link_to image_tag('admin/hr.gif', :alt => 'remove'),
+            "/cart/remove/#{product.id}", :remote=>true, :title=>'Odstranit',
+            :method => :delete, :confirm => "Opravdu odstranit z košíku?" %>
+      </th>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<p class="help">
+  Počet kusů je měnitelný kliknutím na číslo
+</p>
+<p style="text-align:right;">
+<a href="/cart/clean" title="Vysypat košík"><img src="/images/shop/vysypatW.gif" alt="Vysypat košík" /></a>
+<a href="/cart/review" title="Odeslat objednávku"><img src="/images/shop/submit.gif" alt="Odeslat objednávku" /></a>
+</p>
+
+<% else %>
+  <p><strong>Nákupní košík je prázdný</strong></p>
+<% end %>

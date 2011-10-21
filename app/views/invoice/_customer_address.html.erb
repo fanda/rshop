@@ -1,0 +1,6 @@
+  <h2>Odběratel</h2>
+    <%= @order.invoice_address.name %><br />
+    <%= @order.invoice_address.street %><br/>
+    <%= @order.invoice_address.place %><%= ", #{@order.invoice_address.post_code}" %><br/>
+    IČO: <%= @order.invoice_address.id_number %><br/>
+    DIČ: <%= @order.invoice_address.vat_number %><br/>

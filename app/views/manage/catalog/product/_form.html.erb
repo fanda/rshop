@@ -1,0 +1,61 @@
+<%
+  if @record.id
+    title  = 'Upravit produkt'
+    url    = "/manage/catalog/product/#{@record.id}"
+    submit = 'Upravit'
+    method = :put
+    cat_id = @record.category_id
+    sup_id = @record.supplier_id
+  else
+    title  = 'Nový produkt'
+    url    = '/manage/catalog/product'
+    submit = 'Přidat produkt'
+    method = :post
+    cat_id = nil
+    sup_id = nil
+  end
+%>
+<h1><%= title %></h1>
+<div class="mform">
+<% form_for @record, :url => url, :method => method,
+                     :html => { :multipart => true } do |f| %>
+  <div id="errors"></div>
+  <%= f.label :title, 'Název *' %>
+  <%= f.text_field :title %>
+  <%= f.label :description, 'Popis' %>
+  <%= f.text_area :description, :rows => 5 %>
+  <%= f.label :wiki_url, 'Wiki stránka pro popis' %>
+  <%= f.text_field :wiki_url %>
+  <%= f.label :price, 'Cena *' %>
+  <%= f.text_field :price %>
+  <%= f.label :amount, 'Množství na skladě' %>
+  <div id="amount_help_block">
+    &gt;0 ~ Žádná zpráva<br/>    
+    <% stock_messages.each_with_index do |msg, i| %>
+      <%= (i==0 ? '&nbsp;&nbsp;0 ~ '.html_safe : "-#{i} ~ ") + msg %><br/>
+    <% end %>
+  </div>
+  <%= f.text_field :amount %>
+  <label for="product_category_id">Kategorie</label>
+  <%= f.select :category_id, Category.all.collect{|c|[c.title,c.id]}.
+     insert(0,["Bez kategorie", nil]), :selected => cat_id %>
+  <label for="product_supplier_id">Dodavatel</label>
+  <%= f.select :supplier_id, Supplier.all.collect{|s|[s.name,s.id]}.
+     insert(0,["Bez dodavatele", nil]), :selected => sup_id %>
+
+  <fieldset class="left"><legend>Obrázek</legend>
+    <%= f.label :picture, 'Ze souboru' %>
+      <%= f.file_field :picture %>
+    <%= label_tag :picture_url, 'Pomocí URL' %>
+      <%= text_field_tag :picture_url %>
+  </fieldset>
+  <% if @record.picture %>
+      <div class="pad left"><%= image_tag @record.picture(:square) %></div>
+  <% end %>
+  <br class="out"/>
+  <%= f.label :active, 'V nabídce' %>
+  <%= f.check_box :active %>
+  <br/>
+  <%= f.submit submit %>
+<% end %>
+</div>

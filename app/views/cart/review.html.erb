@@ -1,0 +1,126 @@
+<h1>Vytvoření objednávky</h1>
+<h2>Výrobky, které objednáváte</h2>
+<table class="listing">
+  <thead>
+    <tr>
+    <th>Výrobek</th>
+    <th>KS</th>
+    <th>Cena za KS</th>
+    <th>Cena<br/>s DPH</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <td colspan="3"><b>Celkem</b></td>
+      <td><b><%= format_price @order.sum %></b></td>
+    </tr>
+  </tfoot>
+  <tbody id="order_review">
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.product.title %></td>
+        <td class="col70width"><%= item.amount %></td>
+        <td class="col100width"><%= format_price item.product.price %></td>
+        <td class="col100width"><%= format_price item.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% unless current_user %>
+ <div id="cart_step1">
+  <fieldset><legend>Odorik</legend>
+    <p>
+      <label for="odorik_pin">PIN k účtu Odorik</label>
+      <%= text_field 'odorik', 'pin', :maxlength => 13, :size => 13 %>
+      <button id="cart_step1_pin">Ověřit PIN</button>  
+    </p>
+    <p>Pokud nemáte účet Odorik, velmi Vám doporučujeme jej zřídit než budete pokračovat v objednávce.<br/>
+      <a href="https://www.odorik.cz/registrace/" target="_blank"><strong style="color:darkred">Kliknutím zde získáte účet Odorik</strong></a></p>
+    <p>
+    <% unless @again %>
+      <button id="cart_step1_nopin">Nemám účet u Odorik, ale chci pokračovat</button>
+    <% end %>
+    </p>
+  </fieldset>
+ </div>
+
+
+ <div class="centr">
+    <%= image_tag 'working.gif', :class=>'dis', :id=>'working_step1' %>
+ </div>
+ <div id="success" class="dis"></div>
+<% end %>
+
+ <div id="cart_step2"<%= ' style=display:none' unless current_user or @again %>>
+
+  <% form_for @customer, :url => order_path, :method => 'post' do |f| %>
+    <%= hidden_field 'order', 'id', :value => @order.id %>         
+    <%= f.error_messages :message => 'Všechna políčka v objednávce jsou povinná' %>
+    <fieldset><legend>Kontakty</legend>
+      <p>Prosíme, vyplňte aspoň jeden následující kontaktní údaj, abychom Vás mohli
+  kontaktovat a dokončit objednávku.</p>
+
+      <div class="fdiv">
+        <%= f.label :email, 'E-mail' %>
+        <%= f.text_field :email %>
+      </div>
+
+      <div class="fdiv">
+        <%= f.label :phone, 'Telefonní číslo' %>
+        <%= f.text_field :phone %>
+        <p><strong style="color:darkgreen">
+        Nejpozději do dvou pracovních dnů Vás budeme kontaktovat na tomto
+        telefonním čísle, abychom Vám potvrdili objednávku a případně zodpověděli Vaše dotazy.</strong></p>
+      </div>
+    </fieldset>
+
+    <fieldset><legend>Adresa</legend>
+      <div class="fdiv">
+        <%= f.label :name, 'Jméno' %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="fdiv">
+        <%= f.label :surname, 'Příjmení' %>
+        <%= f.text_field :surname %>
+      </div>
+
+      <div class="fdiv">
+        <%= f.label :street, 'Ulice a č.p.' %>
+        <%= f.text_field :street %>
+      </div>
+
+      <div class="fdiv">
+        <%= f.label :place, 'Město' %>
+        <%= f.text_field :place %>, 
+        <%= f.label :post_code, 'PSČ', :style => 'width:auto' %>
+        <%= f.text_field :post_code, :size => 6, :maxlength => 6 %>
+      </div>
+    </fieldset>
+
+    <fieldset><legend></legend>
+      <div id="ia_checkbox">
+        <%= check_box_tag :show_ia_form %>
+        <%= label_tag :show_ia_form, 'Fakturační adresa je jiná než adresa
+        doručení', :style => 'width:70%' %>
+      </div>
+      <div id="ia_form" class="dis">
+        <%= render :partial => 'invoice_address_form' %>
+      </div>
+    </fieldset>
+
+    <p class="left leftpad" style="width:60%">
+      <%= label 'order_message', 'Vaše poznámka k objednávce', :class=>'omsg' %>
+      <%= text_area 'order', 'message', :cols => 40, :rows => 3 %>
+      <br/>Můžete zde například napsat, kdy není vhodná doba k tomu, abychom Vám
+      zavolali.
+    </p>
+
+    <p class="left ocrt" style="width:30%">
+      <%= f.submit "Vytvořit objednávku" %>
+    </p>
+    <div class="out"></div>
+  <% end %>
+
+ </div>

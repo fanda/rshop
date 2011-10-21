@@ -1,0 +1,22 @@
+<div id="showsupplier">
+<h1>
+  <%= @record.name %>
+</h1>
+<fieldset><legend>Kontakty</legend>
+  <p>E-mail: <%= mail_to @record.email %></p>
+<% if @record.phone %>
+  <p>Telefon: <%= @record.phone %></p>
+<% end
+   if @record.phone %>
+  <p>Web: <%= link_to @record.url, @record.url %></p>  
+<% end %>
+</fieldset>
+<fieldset><legend>Adresa</legend>
+  <p>
+  <%= @record.name %>
+  </br><%= @record.street %></br>
+  <%= @record.post_code %> <%= @record.place %>
+  </p>
+</fieldset>
+<%= render :partial => 'manage/catalog/product/table' %>
+</div>

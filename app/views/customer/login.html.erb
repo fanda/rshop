@@ -1,0 +1,14 @@
+<h1>Přihlášení zákazníka</h1>
+<div class="mform">
+<% form_tag login_path do %>
+  <p>
+    <%= label_tag :pin, 'PIN' %>
+    <%= password_field_tag :pin, nil, :style => 'width:14em', :maxlength => 13 %>
+  </p>
+  <p class="chk">
+    <%= check_box_tag :remember_me %>
+    <%= label_tag :remember_me, 'Zapamatovat si mě' %>    
+  </p>
+  <%= submit_tag "Přihlásit se" %>  
+<% end %>
+</div>

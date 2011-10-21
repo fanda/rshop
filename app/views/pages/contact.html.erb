@@ -1,0 +1,37 @@
+<h2>Rozhlédli jste se kolem a máte nějaké dotazy?</h2>
+<span>Zeptejte se nás na vše, co Vám není jasné a my Vám v krátké době
+odpovíme.</span>
+<div class="mform cform">
+<% form_tag contact_form_path, :method => 'post' do %>
+
+  <div class="fdiv">
+    <%= label_tag :name, 'Vaše jméno a příjmení' %>
+    <%= text_field_tag :name, flash[:params][:name] %>
+  </div>
+
+  <div class="fdiv">
+    <%= label_tag :email, 'Váš email' %>
+    <%= text_field_tag :email, flash[:params][:email] %>
+  </div>
+
+  <div class="fdiv">
+    <%= label_tag :phone, 'Vaše telefonní číslo' %>
+    <%= text_field_tag :phone, flash[:params][:phone] %>
+  </div>
+
+  <div id="questions">
+    <div class="fdiv">
+      <%= label_tag :question, 'Vaše otázky nebo požadavky' %>
+      <%= text_area_tag :question, flash[:params][:question], :rows => 8 %>
+    </div>
+    <h2>Rady pro naše lepší porozumění Vašim požadavkům</h2>
+    <ul>Pokuste se co nejlépe popsat následující:
+      <li>jak budete telekomunikační zařízení využívat</li>
+      <li>kolik lidí bude zařízení využívat</li>
+      <li>...</li>
+    </ul>
+  </div>
+
+  <div><%= submit_tag 'Odeslat' %></div>
+<% end %>
+</div>

@@ -1,0 +1,24 @@
+  <% @products.each do |p| %>
+    <tr<%= ' class=nstock' if p.amount == 0 %> id="product-<%=p.id%>">
+      <td><%= p.title %></td>
+      <td title="<%=p.description%>">
+        <%=p.description.gsub("\n", ' ').gsub(/^(.{80}[\w]*)(.*)/) {$2.empty? ? $1 : $1 + '...'}%>
+      </td>
+      <td><%= p.price %></td>
+      <td><%= p.amount %></td>
+      <th>
+        <%= link_to image_tag('admin/image.gif', :alt => 'image'),
+            p.picture.url(:large), :class => 'im', :rel => 'facebox' %>
+      </th>
+      <th>
+        <a href="/manage/catalog/product/<%=p.id%>/edit" rel="facebox">
+          <%= image_tag('admin/edit-icon.gif', :alt => 'edit') %>
+        </a>
+      </th>
+      <th><%= csrf_meta_tag %>
+          <%= link_to image_tag('admin/hr.gif', :alt => 'remove'),
+              "/manage/catalog/product/#{p.id}", :remote => true,
+              :method => :delete, :confirm => "Opravdu chcete smazat?" %>
+      </th>
+    </tr>
+  <% end %>

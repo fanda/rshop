@@ -1,0 +1,13 @@
+<h1>Tvorba faktury</h1>
+<div class="mform">
+<% form_for @invoice, :url => manage_order_invoices_path(@order.id), :method => :post do |f| %>
+  <div id="errors"></div>
+  <% selected = Invoice::STORNO if @items %>
+  <%= f.select :forma, options_for_select(Invoice::FORMAS.zip((0..Invoice::FORMAS.size-1).to_a), selected) %>
+  <%= render :partial => 'fields', :locals => { :f => f } %>  
+  <% if @items %>
+    <%= render :partial => 'items' %>
+  <% end %>
+  <%= f.submit 'Vytvořit' %>
+<% end %>
+</div>

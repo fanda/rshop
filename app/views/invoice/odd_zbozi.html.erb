@@ -1,0 +1,82 @@
+<h1 style="margin:auto;">Opravný daňový doklad</h1>
+<p>
+  Doklad číslo: <%= @invoice.number %><br/>
+  Datum uskutečnění zdanitelného plnění: <%= @invoice.created_at.strftime("%e. %m. %Y") %><br/>
+  Datum vystavení: <%= @invoice.created_at.strftime("%e. %m. %Y") %><br/>
+</p>
+<div style="border:#000 solid 1px;padding:1ex;width:20em;float:left">
+  <%= render :partial => 'invoice/address' %>
+</div>
+<% if @order.invoice_address %>
+  <div style="border:#000 solid 1px;padding:1ex;width:20em;float:right">
+    <%= render :partial => 'invoice/customer_address' %>
+  </div>
+<% end %>
+<div style="clear:both"></div>
+<p>
+Důvod opravy: Změna předmětu plnění z předplacené telekomunikační služby na
+prodej zboží.<br/>
+Původní předmět plnění: Zakoupení předplaceného kreditu pro služby
+elektronických komunikací<br/>
+Pro úhradu byla použita předplacená částka na zákaznickém účtu 1011111 služby Odorik.cz
+</p>
+<table cellspacing="7" cellpadding="4" style="width:100%">
+<tbody>
+<% @items.each do |item| %>
+  <tr style="text-align:center;border-top:#000 solid 1px;">
+    <td class="col140width" style="text-align:left;">
+      <%= item.product.title %>
+    </td>
+    <td><%= item.note %></td>
+    <td style="text-align:centr;">
+      <%= item.amount %>
+    </td>
+    <td style="text-align:right;">
+      <b><%= format_invoice_price(item.price) %></b>
+    </td>
+  </tr>
+<% end %>
+  <tr style="border-top:#000 solid 1px;">
+    <td style="text-align:left;"><b>Celkem</b></td>
+    <td></td>
+    <td></td>
+    <td style="text-align:right;">
+      <b><%= format_invoice_price(@invoice.sum) %></b>
+    </td>
+  </tr>
+</tbody>
+<thead>
+  <tr style="font-weight:bold;">
+    <td>Název zboží/služby</td>
+    <td></td>
+    <td style="text-align:center;">ks</td>
+    <td style="text-align:right;">cena včetně DPH</td>
+  </tr>
+</thead>
+</table>
+
+<table style="margin:auto" cellspacing="7">
+<tr style="text-align:right;">
+  <td style="margin-right:1em">Základ pro výpočet DPH 20% (cena včetně DPH)</td>
+  <td><%= format_invoice_price(@invoice.sum) %></td>
+</tr>
+<tr style="text-align:right;">
+  <td style="margin-right:1em">DPH 20%</td>
+  <td><%= format_invoice_price(dph(@invoice.sum)) %></td>
+</tr>
+<tr style="text-align:right;">
+  <td style="margin-right:1em">Použito na úhradu jiného plnění celkem</td>
+  <td><%= format_invoice_price(@invoice.sum) %></td>
+</tr>
+</table>
+
+<p style="font-size:small">
+Tento opravný daňový doklad vystavený podle §45 odst. 3 zákona 235/2004 Sb. (zákon o DPH) 
+neobsahuje číslo původního daňového dokladu, protože navyšování kreditu u
+předplacené telekomunikační služby lze provádět kumulovaně jednotlivými platbami. 
+</p>
+<p style="font-size:small">
+Tento doklad slouží současně jako záruční list. Opotřebení výrobku a jeho částí, 
+způsobené jejich běžným užíváním (např. snížení kapacity akumulátorů) nepodléhá záruce 
+a není považováno za rozpor s kupní smlouvou.
+</p>

@@ -1,0 +1,8 @@
+<%= f.label :number, 'Číslo' %>
+<%= f.text_field :number %>
+<%= f.label :created_at, 'Datum vytvoření' %>
+<% if @invoice %>
+  <%= f.text_field :created_at, :value => @invoice.created_at.strftime('%e. %m. %Y') %>
+<% else %>
+  <%= f.text_field :created_at %>
+<% end %>

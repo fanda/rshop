@@ -1,0 +1,5 @@
+<td><%= s.created_at.strftime('%d. %m. %Y') %></td>
+<td><%= s.employee.login if s.employee %></td>
+<td><%= s.id %></td>
+<td><%= s.entries.count %></td>
+<td><%= s.sum %></td>

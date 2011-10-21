@@ -1,0 +1,4 @@
+$("#p_<%= params[:id] %>").fadeOut(100);
+$("#total_price").html("<%= format_price(@order.sum) %>");
+$('#success').html("<p>Produkt byl odebrán z košíku</p>");
+$('#success p').delay(5000).fadeOut(900);

@@ -1,0 +1,14 @@
+<h1>Zboží</h1>
+<table class="listing">
+  <thead><tr>
+    <th>Název</th><th>Popis</th>
+    <th>Cena</th><th>Skladem</th></tr>
+  </thead>
+  <tfoot><tr><td colspan="4">
+        <%= will_paginate @products,  {:param_name => :pro_page, :class => 'pagination'} %>
+    </td></tr>
+  </tfoot>
+  <tbody id="products">
+    <%= render :partial => 'manage/catalog/product/list' %>
+  </tbody>
+</table>

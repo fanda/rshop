@@ -1,0 +1,15 @@
+<h1>Zákazníci</h1>
+<table class="listing">
+  <thead><tr>
+    <th>Jméno</th>
+    <th>E-mail</th>
+    <th>Telefon</th>
+    <th>Bydliště</th></tr>
+  </thead>
+  <tfoot><tr><td colspan="4"><%= will_paginate @customers, 
+    {:param_name => :cus_page, :class => 'pagination'} %></td></tr>
+  </tfoot>
+  <tbody id="customers">
+    <%= render :partial => 'manage/users/customer/list' %>
+  </tbody>
+</table>

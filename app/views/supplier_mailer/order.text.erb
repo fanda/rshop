@@ -1,0 +1,16 @@
+Dobrý den, 
+
+rádi bychom od Vás objednali zboží pro náš internetový obchod.
+
+Zboží, které chceme objednat je následující:
+<% @products_and_amounts.each do |pa| %>
+
+     <%= pa[:product].title %>, <%= pa[:amount] %> kusů
+<% end %>
+
+Prosím, pošlete nám zpět na tento e-mail fakturašní údaje. 
+
+Děkujeme.
+
+Váš roreshop.com
+

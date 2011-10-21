@@ -1,0 +1,40 @@
+<%
+  if @record.id
+    title  = 'Upravit produkt'
+    url    = "/manage/catalog/product/#{@record.id}"
+    submit = 'Upravit'
+    method = :put
+    cat_id = @record.category_id
+    sup_id = @record.supplier_id
+  else
+    title  = 'Nový produkt'
+    url    = '/manage/catalog/product'
+    submit = 'Přidat produkt'
+    method = :post
+    cat_id = nil
+    sup_id = nil
+  end
+%>
+<h1><%= title %></h1>
+<div id="errors"><%= render :partial => 'errors' %></div>
+<div class="mform" style="width:65%;margin:auto;">
+<% form_for @record, :url => url, :method => method,
+                     :html => { :multipart => true } do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :description %>
+  <%= f.text_area :description, :rows => 5 %>
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+  <%= f.label :amount %>
+  <%= f.text_field :amount %>
+  <label for="product_category_id">Category</label>
+  <%= f.select :category_id, Category.all.collect{|c|[c.title,c.id]}.
+     insert(0,["Bez kategorie", nil]), :selected => cat_id%>
+  <label for="product_supplier_id">Supplier</label>
+  <%= f.select :supplier_id, Supplier.all.collect{|s|[s.name,s.id]}.
+     insert(0,["Bez dodavatele", nil]), :selected => sup_id %>
+  <p><%= f.label :picture %><%= f.file_field :picture %></p>
+  <%= f.submit submit %>
+<% end %>
+</div>

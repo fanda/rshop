@@ -1,0 +1,34 @@
+<table class="listing">
+  <thead>
+    <tr>
+      <th>Název</th>
+      <th>Kusů</th>
+      <th>Cena za kus</th>
+      <th>Cena</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <td colspan="3"><b>Celkem</b></td>
+      <td><b><%= format_price(@order.sum) %></b></td>
+    </tr>
+  </tfoot>
+  <tbody id="objednavka">
+    <% @items.each do |item| %>
+    <tr>
+      <td class="col140width">
+        <%= item.product.title %>
+      </td>
+      <td>
+        <%= item.amount %>
+      </td>
+      <td>
+        <%= format_price(item.product.price) %>
+      </td>
+      <td>
+        <b><%= format_price(item.price) %></b>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

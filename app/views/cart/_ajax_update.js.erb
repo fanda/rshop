@@ -1,0 +1,5 @@
+$("#p_<%= @product.id %> td.price").html("<%= format_price @new_price %>");
+$("#p_<%= @product.id %> td.amount").css('border-color', '#00ff00');
+$("#total_price").html("<%= format_price(@order.sum) %>");
+$('#success').html("<p>Změna byla úspěšně provedena</p>");
+$('#success p').delay(5000).fadeOut(900);

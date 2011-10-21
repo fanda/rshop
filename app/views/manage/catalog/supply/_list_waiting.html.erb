@@ -1,0 +1,9 @@
+  <% @waiting.each do |s| %>
+    <tr><%= render :partial => 'manage/catalog/supply/list_cells', 
+                   :locals => {:s => s} %>     
+      <th>
+        <%= link_to 'Příjem zboží',
+            "/manage/catalog/supplier/#{s.supplier.id}/supply/#{s.id}/insert"%>
+      </th>
+    </tr>
+  <% end %>

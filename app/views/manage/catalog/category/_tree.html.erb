@@ -1,0 +1,20 @@
+  <tr id="category-<%=c.id%>">
+    <td><%= '-'*c.level + c.title %></td>
+    <td title="<%=c.description%>">
+    <%= c.description.gsub("\n", ' ').gsub(/^(.{50}[\w.]*)(.*)/) {$2.empty? ? $1 : $1 + '...'} %>
+    </td>
+        <th>
+          <a href="/manage/catalog/category/<%=c.id%>/edit" rel="facebox">
+            <img src="/images/admin/edit-icon.gif" alt="edit"/>
+          </a>
+        </th>
+        <th><%= csrf_meta_tag %>
+          <%= link_to image_tag('admin/hr.gif', :alt => 'remove'),
+              "/manage/catalog/category/#{c.id}", :remote => true, 
+              :method => :delete, :confirm => "Opravdu chcete smazat? Některé produkty mohou být bez kategorie" %>
+        </th>
+  </tr>
+
+  <% for child in c.children do %>
+    <%= render :partial => "/manage/catalog/category/tree", :locals => {:c => child }%>
+  <% end %>

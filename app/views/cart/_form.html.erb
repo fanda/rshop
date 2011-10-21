@@ -1,0 +1,13 @@
+<h1>Upravit počet kusů</h1>
+<div class="mform">
+<form action="/cart/update/<%=@product.id%>" method="post" name="item">
+<h2><%=@product.title%></h2>
+<p>
+  <label for="amount">Počet kusů</label>
+  <input type="number" name="amount" id="amount" size="1" value="<%= @item.amount %>" />
+</p>
+<p>
+  <input type="submit" name="change_amount" value="Ulozit">
+</p>
+</form>
+</div>

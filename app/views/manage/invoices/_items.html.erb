@@ -1,0 +1,14 @@
+<% if @invoice_items %>
+ <% @invoice_items.each do |item| %>
+  <%= check_box_tag "items[#{item.id}[include]]", 1, true %>
+  <%= label_tag "items[#{item.id}[include]]", item.product.title, :id => "i_#{item.id}", :style => 'display:inline' %>
+  <%= text_field_tag "items[#{item.id}[amount]]", item.amount, :style => 'width:2em;display:inline' %>Ks 
+  <br/>
+ <% end %>
+<% end %>
+<% (@items-(@invoice_items||[])).each do |item| %>
+  <%= check_box_tag "items[#{item.id}[include]]", 1, !@invoice_items %>
+  <%= label_tag "items[#{item.id}[include]]", item.product.title, :id => "i_#{item.id}", :style => 'display:inline' %>
+  <%= text_field_tag "items[#{item.id}[amount]]", item.amount, :style => 'width:2em;display:inline' %>Ks
+  <br/>
+<% end %>

@@ -1,0 +1,28 @@
+        <%= fields_for @invoice_address||InvoiceAddress.new do |ia| %>
+          <div class="fdiv">
+            <%= ia.label :name, 'Název (jméno)' %>
+            <%= ia.text_field :name %>
+          </div>
+
+          <div class="fdiv">
+            <%= ia.label :street, 'Ulice a č.p.' %>
+            <%= ia.text_field :street %>
+          </div>
+
+          <div class="fdiv">
+            <%= ia.label :place, 'Město' %>
+            <%= ia.text_field :place %>, 
+            <%= ia.label :post_code, 'PSČ', :style => 'width:auto' %>
+            <%= ia.text_field :post_code, :size => 6, :maxlength => 6 %>
+          </div>
+
+          <div class="fdiv">
+            <%= ia.label :id_number, 'IČ' %>
+            <%= ia.text_field :id_number %>
+          </div>
+
+          <div class="fdiv">
+            <%= ia.label :vat_number, 'DIČ' %>
+            <%= ia.text_field :vat_number %>
+          </div>
+        <% end %>

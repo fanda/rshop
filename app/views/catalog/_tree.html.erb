@@ -1,0 +1,8 @@
+<% content_tag :li do %>
+  <%= link_to menu.title, catalog_path(menu.friendly_id) %>
+  <% content_tag :ul, :class=>"minner lvl#{menu.level+1}" do %>
+   <% for child in menu.children do %>
+    <%= render :partial => "/catalog/tree", :locals => {:menu => child }%>
+   <% end %>
+  <% end unless menu.leaf? %>
+<% end %>

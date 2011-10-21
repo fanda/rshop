@@ -1,0 +1,15 @@
+<h1>Dodavatelé</h1>
+<table class="listing">
+  <thead><tr>
+    <th>Název</th>
+    <th>E-mail</th>
+    <th>Telefon</th>
+    <th>Web</th></tr>
+  </thead>
+  <tfoot><tr><td colspan="4"><%= will_paginate @suppliers, 
+    {:param_name => :sup_page, :class => 'pagination'} %></td></tr>
+  </tfoot>
+  <tbody id="suppliers">
+    <%= render :partial => 'manage/catalog/supplier/list' %>
+  </tbody>
+</table>

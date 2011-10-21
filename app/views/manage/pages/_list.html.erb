@@ -1,0 +1,16 @@
+  <% @pages.each do |p| %>
+    <tr>
+      <td><%= p.title %></td>
+      <td><%= p.url   %></td>
+      <th>
+        <a href="<%= edit_manage_page_path(p.id) %>">
+          <%= image_tag('admin/edit-icon.gif', :alt => 'edit') %>
+        </a>
+      </th>
+      <th><%= csrf_meta_tag %>
+          <%= link_to image_tag('admin/hr.gif', :alt => 'remove'),
+              manage_page_path(p.id), :remote => true,
+              :method => :delete, :confirm => "Opravdu chcete smazat?" %>
+      </th>
+    </tr>
+  <% end %>

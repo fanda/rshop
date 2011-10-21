@@ -1,0 +1,34 @@
+<%
+  if @record.id
+    title  = 'Upravit informace o dodavateli'
+    url    = "/manage/catalog/supplier/#{@record.id}"
+    submit = 'Upravit'
+    method = :put
+  else
+    title  = 'Nový dodavatel zboží'
+    url    = '/manage/catalog/supplier'
+    submit = 'Vytvořit'
+    method = :post
+  end
+%>
+<h1><%= title %></h1>
+<div class="mform">
+<% form_for @record, :url=> url, :remote => true, :method => method do |f| %>
+  <div id="errors"></div>
+  <%= f.label :name, 'Jméno firmy *' %>
+  <%= f.text_field :name %>
+  <%= f.label :email, 'E-mail *' %>
+  <%= f.text_field :email %>
+  <%= f.label :phone, 'Telefon' %>
+  <%= f.text_field :phone %>
+  <%= f.label :url, 'Webová stránka' %>
+  <%= f.text_field :url %>
+  <%= f.label :street, 'Ulice *' %>
+  <%= f.text_field :street %>
+  <%= f.label :place, 'Město *' %>
+  <%= f.text_field :place %>
+  <%= f.label :post_code, 'PSČ *' %>
+  <%= f.text_field :post_code %>
+  <%= f.submit submit %>
+<% end %>
+</div>

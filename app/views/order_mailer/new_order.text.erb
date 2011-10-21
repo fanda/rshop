@@ -1,0 +1,23 @@
+V internetovém obchodě byla vytvořena nová objednávka
+
+________
+Zákazník
+
+Jméno: <%= @customer.name %> <%= @customer.surname %>
+Email: <%= @customer.email %>
+Telefon: <%= @customer.phone %>
+Adresa: <%= @customer.street %>, <%= @customer.post_code %> <%= @customer.place %>
+
+__________
+Objednávka #<%= @order.id %>
+
+Zpráva od zákazníka:
+<%= @order.message %>
+
+Zboží:
+<% @order.items.each do |item| %>
+  <%= item.product.title %>, <%= item.amount %> kusů, <%= format_price item.price %> (<%= format_price item.product.price %> za kus)
+<% end %>
+
+Celková suma: <%= format_price @order.sum %>
+

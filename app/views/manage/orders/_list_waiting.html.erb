@@ -1,0 +1,5 @@
+  <% @waiting.each do |o| %>
+    <tr><%= render :partial => 'manage/orders/list_cells', 
+                   :locals => {:o => o} %>     
+    </tr>
+  <% end %>
