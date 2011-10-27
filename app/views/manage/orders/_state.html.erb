@@ -1,9 +1,0 @@
-<h1>Stav objednávky</h1>
-<div class="mform pad">
-<% form_for @record, :url => manage_order_status_path(@record) do |f| %>
-  <%= f.select(:state, options_for_select(Order.state_options, @record.state)) %>
-  <%= f.label :note, 'Poznámka' %> 
-  <%= f.text_area :note, :rows => 3 %>
-  <%= f.submit 'Změnit stav objednávky' %>
-<% end %>
-</div>

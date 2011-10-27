@@ -36,5 +36,7 @@ Eshop::Application.configure do
     Bullet.console = true
     Bullet.disable_browser_cache = true
   end
+  #active admin
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end
 

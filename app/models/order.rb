@@ -14,8 +14,10 @@ class Order < ActiveRecord::Base
 
   # relations
   belongs_to :customer
-  belongs_to :employee
   has_many :items, :include => :product
+  has_many :products, :through => :items,
+           :select => 'products.*, items.count, items.cost'
+
   has_many :invoices
   has_one  :invoice_address, :dependent => :destroy
   # attributes validation
@@ -41,8 +43,7 @@ class Order < ActiveRecord::Base
     includes(:customer).where(:state => state) }
 
   scope :finished_in_month, lambda {|month|
-    where("state = #{Order::FINISHED} AND created_at >= :begin AND created_at <= :end",
-          { :begin => month, :end => month.end_of_month })}
+    where("state = #{Order::FINISHED} AND created_at >= :begin AND created_at <= :end", { :begin => month, :end => month.end_of_month })}
 
 
   def self.state_options
@@ -57,7 +58,7 @@ class Order < ActiveRecord::Base
       o.items
     }
     products = all_items.flatten.inject(Hash.new(0)){ |h,item|
-      h[item.product] += item.amount; h 
+      h[item.product] += item.amount; h
     }
     products.sort_by{|k,v|-v }
   end
@@ -66,39 +67,37 @@ class Order < ActiveRecord::Base
     STATES[self.state]
   end
 
-  def products
-    self.items.collect { |i| i.product }
-  end
-
-  def remove_all
+  def remove_all_items
     self.items.delete_all
     self.update_attribute :sum, 0
   end
 
   def update_item(product, amount)
     item = product.items.in self
-    item.amount = amount
-    item.price = product.price * amount
+    item.count = amount
+    item.cost = product.price * amount
     item.save
     actualize_sum
-    return item.price
+    return item.cost
   end
 
   def add_item(product, amount=1)
    item = product.items.in self
    if item == nil
-     item = self.items.create(:amount=>amount, :price=>product.price*amount, :product=>product)
+     item = self.items.create(
+        :count=>amount, :cost=>product.price*amount, :product=>product
+     )
    else
-     item.amount += amount
-     item.price = product.price * item.amount
+     item.count += amount
+     item.cost = product.price * item.count
      item.save
    end
    actualize_sum
-   return item.price
+   return item.cost
   end
 
   def actualize_sum
-    sum = self.items.inject(0) { |sum, i| sum + i.price }
+    sum = self.items.inject(0) { |sum, i| sum + i.cost }
     self.update_attribute :sum, sum
   end
 
@@ -106,10 +105,10 @@ class Order < ActiveRecord::Base
     self.message = message||''
     self.state = WAITING
     self.save
-    self.items.each { |i|
+    self.products { |p|
       begin
-        i.product.increment! :counter
-        i.product.decrement! :amount if p.amount > 0
+        p.increment! :counter
+        p.decrement! :amount if p.amount > 0
       rescue
       next; end
      }

@@ -2,7 +2,11 @@ class Customers < ActiveRecord::Migration
   def self.up
     create_table "customers", :force => true do |t|
       # from ER design
-      t.string   "email"
+      t.database_authenticatable :null => false
+      t.recoverable
+      t.rememberable
+      t.trackable
+      #t.string   "email"
       t.string   "phone"
       t.string   "name"
       t.string   "surname"
@@ -10,10 +14,10 @@ class Customers < ActiveRecord::Migration
       t.string   "place"
       t.string   "post_code"
       # useful stuff
-      t.datetime "created_at"
-      t.datetime "updated_at"
+      t.timestamps
     end
-    add_index :customers, :email
+    add_index :customers, :email,                :unique => true
+    add_index :customers, :reset_password_token, :unique => true
   end
 
   def self.down

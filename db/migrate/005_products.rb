@@ -10,19 +10,19 @@ class Products < ActiveRecord::Migration
       t.integer  "active", :limit => 2, :default => 1
       t.datetime "created_at"
       t.datetime "updated_at"
+      t.string   "slug"
       # picture (paperclip)
       t.string   'picture_file_name'
       t.string   'picture_content_type'
       t.integer  'picture_file_size'
       t.datetime 'picture_updated_at'
       # foreign keys
-      t.integer  "item_id"
       t.integer  "category_id"
       t.integer  "supplier_id"
     end
-    add_index :products, :item_id
     add_index :products, :category_id
     add_index :products, :supplier_id
+    add_index :products, :slug, :unique => true
   end
 
   def self.down

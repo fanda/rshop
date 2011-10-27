@@ -8,12 +8,15 @@ class Product < ActiveRecord::Base
   # relations
   belongs_to :category
   belongs_to :supplier
+
+  has_many :orders, :through => :items
   has_many :items do
     def in(order)
       item = find_by_order_id order.id
     end
   end
-  has_many :entries
+
+  has_many :supplies, :through => :entries
 
   friendly_id :title, :use => :slugged #, :approximate_ascii => true
 
@@ -31,6 +34,7 @@ class Product < ActiveRecord::Base
                  :picture_size,
                  :picture_updated_at
   attr_accessor  :picture_url
+  alias_attribute :name, :title
   # attributes validation
   validates_presence_of :title, :price, :amount
   validates_numericality_of :price,  :greater_than_or_equal_to => 0
@@ -57,13 +61,7 @@ class Product < ActiveRecord::Base
   end
 
   def full_description
-    if self.wiki_url.blank?
-      self.description.html_safe
-    else
-      wc = Wikicontent.new self.wiki_url
-      self.update_attribute(:description, wc.short) unless wc.short.blank?
-      wc.full.html_safe
-    end
+    self.description.html_safe # TODO
   end
 
   def picture_from_url(url)

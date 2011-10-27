@@ -26,13 +26,17 @@ module ApplicationHelper
 
   def into_cart_link(product_id)
     link_to(
-      "Vložit do košíku #{image_tag('shop/add.gif', :alt => 'košík')}".html_safe, 
+      "Vložit do košíku #{image_tag('shop/add.gif', :alt => 'košík')}".html_safe,
       into_cart_path(product_id), :class=>'nodecor'
     )
   end
 
   def product_link(product)
-    link_to product.title, catalog_product_path(product.category, product)
+    begin
+      link_to product.title, catalog_product_path(product.category.id, product.id)
+    rescue
+      link_to product.title, product_path(product.id)
+    end
   end
 
   def stock_messages
@@ -43,5 +47,5 @@ module ApplicationHelper
       'Dostupné během několika dnů'
     ]
   end
-    
+
 end

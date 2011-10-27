@@ -1,17 +1,14 @@
 /*
+*= require facebox
 *= require_self
-*= require_tree .
 */
-
 * {padding:0;margin:0;}
-
 html, body {
   font-size: 90%;
   color: #000;
-  background: rgb(245,245,245) url('http://odorik.cz/images/bg_main.gif') 0 0 repeat-x;
+  background: rgb(245,245,245) 0 0 repeat-x;
   font-family: Arial, Verdana, Tahoma;
 }
-
 p {
   margin: 5px 0;
 }
@@ -21,7 +18,6 @@ a {
 }
 a:hover {
   text-decoration: none;
-  color: darkgreen;
   border: 0;
 }
 img {
@@ -31,26 +27,6 @@ h1, h2, h3, h4, h5, h6, ul, ol, dl, pre,
 blockquote, form, label, fieldset, address {
   margin:20px 0;
 }
-
-div.dokuwiki div.page
-{
-  _padding:12px;
-  _border: 1px red solid;
-  background: white;
-  _margin-bottom: 10px;
-  _margin-right:10px;
-}
-
-div#content div.page
-{
-  _padding:12px;
-  _border: 1px red solid;
-  background: white;
-  margin-bottom: 20px;
-  margin-top: 13px;
-  _margin-right:10px;
-}
-
 h1{
   font-size:20px;
   text-align:center;
@@ -92,20 +68,11 @@ li, dd, blockquote { margin-left: 40px; }
 .col70width{ width:70px; }
 .col40width{ width:40px; }
 
-#outer {
-  width:976px;
-  margin: 11px auto;
-  padding-bottom:12px;
-  min-height:600px;
-  background: #fff;
-  border:2px solid #999C69;
-  border-radius:15px;
-}
-#body-top {
-  background: url(/images/odorik-cz-02.png) center top no-repeat;
-  margin:0 35px;
-  padding-top:130px;
-  height:15px;
+div#content div.page
+{
+  background: white;
+  margin-bottom: 20px;
+  margin-top: 13px;
 }
 #main-nav a, #main-nav ul li {
   display:inline-block;
@@ -133,6 +100,7 @@ li, dd, blockquote { margin-left: 40px; }
   padding-top:5px;
   border: 0px dotted red;
 }
+
 
 #pimg { /* JS obrazek */
   z-index: 999999;
@@ -211,7 +179,7 @@ li, dd, blockquote { margin-left: 40px; }
 }
 
 /*
-         Product page style
+   Product page style
 */
 .prod_price, .prod_amount, .prod_cart{
   text-align:right;
@@ -227,7 +195,7 @@ hr.clean_product{
   clear:both;
 }
 /*
-         /cart/review, /cart/submit style
+    /cart/review, /cart/submit style
 */
 .omsg {
   font-size:16px;
@@ -355,4 +323,3 @@ table#product_list td{
 .chk {margin-top:1em;width:40%;}
 .chk label {display:inline;}
 
-schovhlava {display:none;}

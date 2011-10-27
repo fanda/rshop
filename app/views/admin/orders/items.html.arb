@@ -1,0 +1,7 @@
+table_for assigns[:orders].items do
+  column :product do |item|
+    item.product.title
+  end
+  column :price
+  column :amount
+end
