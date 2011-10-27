@@ -31,11 +31,24 @@ module ApplicationHelper
     )
   end
 
-  def product_link(product)
+  def product_linked_title(product)
     begin
-      link_to product.title, catalog_product_path(product.category.id, product.id)
+      link_to product.title,
+              catalog_product_path(product.category.id, product.id),
+              :class => 'product_title'
     rescue
-      link_to product.title, product_path(product.id)
+      link_to product.title, product_path(product.id), :class => 'product_title'
+    end
+  end
+
+  def product_linked_image(product)
+    begin
+      link_to image_tag(product.picture.url(:square),:alt => product.title),
+              catalog_product_path(product.category.id, product.id),
+              :class => 'product_image'
+    rescue
+      link_to image_tag(product.picture.url(:square),:alt => product.title),
+              product_path(product.id), :class => 'product_image'
     end
   end
 
