@@ -1,9 +1,9 @@
 class Supplier < ActiveRecord::Base
-  
+
   # relations
   has_many :products
   has_many :supplies, :dependent => :destroy
-
+  accepts_nested_attributes_for :supplies
   # attributes validation
   validates_presence_of :name
   validates_uniqueness_of :email, :case_sensitive => false
@@ -14,8 +14,8 @@ class Supplier < ActiveRecord::Base
   # behavior of pagination
   cattr_reader :per_page
   @@per_page = 3
-  default_scope :order => 'id DESC' 
-   
+  default_scope :order => 'id DESC'
+
   # methods for helping with validation
   def phone_filled?
     !phone.blank?

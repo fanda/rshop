@@ -1,6 +1,5 @@
-<% if current_user %>
+<% if current_customer %>
   <a href="/customer">Můj účet</a>
-   | <%= link_to 'Odhlásit', logout_path %> | 
+   | <%= link_to 'Odhlásit', logout_path %> |
 <% end %>
   <a href="/cart">Nákupní košík</a>
- | <a href="http://www.odorik.cz">Zpět na Odorik.cz</a>

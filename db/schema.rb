@@ -11,33 +11,67 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 16) do
+ActiveRecord::Schema.define(:version => 13) do
 
-  create_table "actions", :force => true do |t|
-    t.integer  "counter",    :default => 0
-    t.string   "control"
+  create_table "active_admin_comments", :force => true do |t|
+    t.integer  "resource_id",   :null => false
+    t.string   "resource_type", :null => false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.string   "namespace"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "actions", ["control"], :name => "index_actions_on_control"
-  add_index "actions", ["created_at"], :name => "index_actions_on_created_at"
+  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_active_admin_comments_on_resource_type_and_resource_id"
+
+  create_table "admin_users", :force => true do |t|
+    t.string   "name"
+    t.string   "phone"
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
+  add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "categories", :force => true do |t|
     t.string  "title"
     t.text    "description"
+    t.string  "slug"
     t.integer "position"
     t.integer "parent_id"
     t.integer "lft"
     t.integer "rgt"
-    t.string  "cached_slug"
   end
 
-  add_index "categories", ["cached_slug"], :name => "index_categories_on_cached_slug", :unique => true
   add_index "categories", ["parent_id"], :name => "index_categories_on_parent_id"
+  add_index "categories", ["slug"], :name => "index_categories_on_slug", :unique => true
 
   create_table "customers", :force => true do |t|
-    t.string   "email"
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.string   "phone"
     t.string   "name"
     t.string   "surname"
@@ -46,24 +80,10 @@ ActiveRecord::Schema.define(:version => 16) do
     t.string   "post_code"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "crypted_password"
-    t.string   "password_salt"
-    t.string   "persistence_token", :null => false
   end
 
-  add_index "customers", ["email"], :name => "index_customers_on_email"
-
-  create_table "employees", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "phone"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "crypted_password",  :null => false
-    t.string   "password_salt",     :null => false
-    t.string   "persistence_token", :null => false
-    t.string   "perishable_token",  :null => false
-  end
+  add_index "customers", ["email"], :name => "index_customers_on_email", :unique => true
+  add_index "customers", ["reset_password_token"], :name => "index_customers_on_reset_password_token", :unique => true
 
   create_table "entries", :force => true do |t|
     t.integer "quantity"
@@ -93,8 +113,8 @@ ActiveRecord::Schema.define(:version => 16) do
   add_index "invoices", ["order_id"], :name => "index_invoices_on_order_id"
 
   create_table "items", :force => true do |t|
-    t.integer "price"
-    t.integer "amount"
+    t.integer "cost"
+    t.integer "count"
     t.integer "order_id"
     t.integer "product_id"
   end
@@ -134,32 +154,18 @@ ActiveRecord::Schema.define(:version => 16) do
     t.integer  "active",               :limit => 2, :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-    t.integer  "item_id"
     t.integer  "category_id"
     t.integer  "supplier_id"
-    t.string   "cached_slug"
   end
 
-  add_index "products", ["cached_slug"], :name => "index_products_on_cached_slug"
   add_index "products", ["category_id"], :name => "index_products_on_category_id"
-  add_index "products", ["item_id"], :name => "index_products_on_item_id"
+  add_index "products", ["slug"], :name => "index_products_on_slug", :unique => true
   add_index "products", ["supplier_id"], :name => "index_products_on_supplier_id"
-
-  create_table "slugs", :force => true do |t|
-    t.string   "name"
-    t.integer  "sluggable_id"
-    t.integer  "sequence",                     :default => 1, :null => false
-    t.string   "sluggable_type", :limit => 40
-    t.string   "scope"
-    t.datetime "created_at"
-  end
-
-  add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
-  add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "suppliers", :force => true do |t|
     t.string   "name"
@@ -180,10 +186,10 @@ ActiveRecord::Schema.define(:version => 16) do
     t.datetime "updated_at"
     t.datetime "delivered_at"
     t.integer  "supplier_id"
-    t.integer  "employee_id"
+    t.integer  "admin_user_id"
   end
 
-  add_index "supplies", ["employee_id"], :name => "index_supplies_on_employee_id"
+  add_index "supplies", ["admin_user_id"], :name => "index_supplies_on_admin_user_id"
   add_index "supplies", ["supplier_id"], :name => "index_supplies_on_supplier_id"
 
 end

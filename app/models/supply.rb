@@ -1,12 +1,14 @@
 class Supply < ActiveRecord::Base
 
-  WAITING  = 1
-  PROCESS  = 2
-  
+  WAITING     = 1
+  IN_PROCESS  = 2
+  FINISHED    = 3
+
   # relations
   belongs_to :supplier
-  belongs_to :employee
-  has_many :entries
+  belongs_to :admin_user
+  has_many :products, :through => :entries,
+           :select => 'products.*, entries.quantity'
 
   # attributes validation
   validates_presence_of :sum, :state
@@ -16,14 +18,11 @@ class Supply < ActiveRecord::Base
   @@per_page = 5
   default_scope :order => 'id DESC'
 
-  scope :waiting,  
+  scope :waiting,
     where(:state => WAITING)
 
   def save
-    self.sum = 0
-    self.entries.each do |entry|
-      self.sum += entry.product.price
-    end
+    self.sum = self.products.inject(0) {|sum,p| sum + p.price * p.quantity}
     super
   end
 

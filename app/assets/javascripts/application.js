@@ -1,7 +1,9 @@
 //= require jquery
 //= require jquery_ujs
+//= require jquery.tooltip
+//= require facebox
+//= require imgpreview
 //= require_self
-//= require_tree .
 jQuery(document).ready(function($) {
   $('a[rel*=facebox]').facebox({
     loading_image : 'loading.gif',

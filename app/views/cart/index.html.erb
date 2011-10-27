@@ -1,6 +1,6 @@
 <div id="success"></div>
 <h1>Nákupní košík</h1>
-<% if @items.any? %>
+<% if @products.any? %>
 <table class="listing">
   <thead>
     <tr>
@@ -17,14 +17,13 @@
     </tr>
   </tfoot>
   <tbody id="products">
-  <% @items.each do |i| %>
-    <% product = i.product %>
+  <% @products.each do |product| %>
     <tr id="p_<%= product.id %>">
       <td>
         <%= product_link(product) %>
       </td>
-      <td class="col100width price"><%= format_price(i.price) %></td>
-      <td class="col70width amount"><%= i.amount %>ks</td>
+      <td class="col100width price"><%= format_price(product.cost) %></td>
+      <td class="col70width amount"><%= product.count %>ks</td>
 
       <th class="col40width">
         <%= link_to image_tag('admin/hr.gif', :alt => 'remove'),

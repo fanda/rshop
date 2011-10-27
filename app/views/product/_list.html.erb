@@ -6,7 +6,7 @@
     </td>
     <td>
       <h2>
-       <%=link_to product.title,catalog_product_path(product.category,product)%>
+       <%= product_link product %>
       </h2>
       <p><%= product.description.html_safe if product.description %></p>
       Cena s DPH: <strong><%= format_price(product.price) %></strong>

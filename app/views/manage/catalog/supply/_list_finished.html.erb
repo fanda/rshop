@@ -1,8 +1,0 @@
-  <% @finished.each do |s| %>
-    <tr><%= render :partial => 'list_cells', :locals => {:s => s} %>
-      <th><%= link_to image_tag('admin/zoom.png', :alt => 'show'),
-                manage_catalog_supplier_order_path(@supplier, s), 
-                :rel => 'facebox', :title => 'Podrobnosti' %>  
-      </th> 
-    </tr>
-  <% end %>

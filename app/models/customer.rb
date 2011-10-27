@@ -1,4 +1,12 @@
 class Customer < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
+
   # relations
   has_many :orders
 
@@ -8,17 +16,13 @@ class Customer < ActiveRecord::Base
   validates_format_of :email, :with => /^(|([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,}))$/i
   validates_format_of :post_code, :with => /^(|(\d{3,3}\s?\d{2,2}))$/i
   validates_format_of :phone, :with => /^[+0-9 ]{5,20}$/i, :if => :phone_filled?
-  
-  # authentication
-  acts_as_authentic do |c|
-    c.session_class = "CustomerSession".constantize 
-    c.validate_password_field       = false
-    c.validate_login_field          = false
-    c.require_password_confirmation = false
-  end
-  
+
   scope :weekly_new,
-    where('created_at > ?', 1.week.ago) 
+    where('created_at > ?', 1.week.ago)
+
+  def fullname
+    "#{self.name} #{self.surname}"
+  end
 
   def phone_filled?
     !phone.blank?

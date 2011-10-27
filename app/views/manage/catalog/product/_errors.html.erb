@@ -1,8 +1,0 @@
-<% if @record.errors.any? %>
-  <div class="error">Some fields have incorrect inputs</div>
-  <ul>
-    <% @record.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>

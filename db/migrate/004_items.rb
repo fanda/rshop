@@ -1,8 +1,8 @@
 class Items < ActiveRecord::Migration
   def self.up
     create_table "items", :force => true do |t|
-      t.integer  "price"
-      t.integer  "amount"
+      t.integer  "cost"
+      t.integer  "count"
       # foreign keys
       t.integer  "order_id"
       t.integer  "product_id"
