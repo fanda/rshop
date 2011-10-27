@@ -4,9 +4,8 @@
 */
 * {padding:0;margin:0;}
 html, body {
-  font-size: 90%;
   color: #000;
-  background: rgb(245,245,245) 0 0 repeat-x;
+  background: #fff;
   font-family: Arial, Verdana, Tahoma;
 }
 p {
@@ -22,6 +21,7 @@ a:hover {
 }
 img {
   border: 0;
+  vertical-align:middle;
 }
 h1, h2, h3, h4, h5, h6, ul, ol, dl, pre,
 blockquote, form, label, fieldset, address {
@@ -44,12 +44,6 @@ h4{
   color:#000;
 }
 fieldset { padding:10px; }
-label{
-  width:110px;
-  display:inline-block;
-  margin:0px;
-  vertical-align:top;
-}
 li, dd, blockquote { margin-left: 40px; }
 
 .right {float:right;}
@@ -68,48 +62,6 @@ li, dd, blockquote { margin-left: 40px; }
 .col70width{ width:70px; }
 .col40width{ width:40px; }
 
-div#content div.page
-{
-  background: white;
-  margin-bottom: 20px;
-  margin-top: 13px;
-}
-#main-nav a, #main-nav ul li {
-  display:inline-block;
-}
-#side-col {
-  float:left;
-  width:180px;
-  padding-left:35px;
-  padding-top:7px;
-}
-#main-col {
-  float:right;
-  padding:0 20px;
-  border-left:3px solid #f2f2f2;
-  width:690px;
-}
-#content table td{
-  padding: 0 5px;
-}
-#content table{
-  margin: 10px 0;
-}
-#login-box {
-  padding-right:80px;
-  padding-top:5px;
-  border: 0px dotted red;
-}
-
-
-#pimg { /* JS obrazek */
-  z-index: 999999;
-  display: none;
-  position: absolute;
-  background:#fff;
-  border:4px #ddd solid;
-  border-radius:5px;
-}
 /* facebox forms */
 .mform input[type="text"],.mform textarea,
 .mform input[type="file"],.mform select,
@@ -189,49 +141,9 @@ div#content div.page
 .prod_amount{
   font-size:14px;
 }
-hr.clean_product{
-  visibility:hidden;
-  margin:0;
-  clear:both;
-}
 /*
     /cart/review, /cart/submit style
 */
-.omsg {
-  font-size:16px;
-  width:auto;
-  margin:left:10px;
-}
-.ocrt {
-  padding-top:2em;
-}
-#side-col h4, .menu a,
-.side-box-middle ul, .side-box-middle li a{
-  display:block;
-  font-size:15px;
-  text-decoration:none;
-}
-#side-col h4{
-  border-bottom:#999C69 solid 1px;
-  padding-top:11px;
-}
-.side-box-middle li{
-  display:block;
-}
-.side-box-middle li a {
-  padding:3px 3px;
-}
-.minner li{
-  padding-left:10px;
-}
-.menu a {
-  padding:3px 3px;
-}
-.side-box-middle li a:hover, .menu a:hover,
-.side-box-middle li a:active, .menu a:active {
- background: #dcddcd;
- color:#000;
-}
 
 td.amount {
   padding:0;
@@ -305,21 +217,3 @@ table.listing .style4 {padding-left:35px;}
 .pagination .disabled {color:#555;}
 .pagination em {text-decoration:none;}
 .pagination a:hover {font-style:italic;}
-/*
-      Stuff and Nonsense
-*/
-#customer_submit{
-  padding:1em;
-}
-#categories ul{
-  margin:0;
-}
-#categories ul li{
-  margin:0;
-}
-table#product_list td{
-  padding-bottom:2em;
-}
-.chk {margin-top:1em;width:40%;}
-.chk label {display:inline;}
-

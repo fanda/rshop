@@ -2,7 +2,6 @@
 //= require jquery_ujs
 //= require jquery.tooltip
 //= require facebox
-//= require imgpreview
 //= require_self
 jQuery(document).ready(function($) {
   $('a[rel*=facebox]').facebox({
