@@ -20,7 +20,7 @@
   <% @products.each do |product| %>
     <tr id="p_<%= product.id %>">
       <td>
-        <%= product_link(product) %>
+        <%= product_linked_title(product) %>
       </td>
       <td class="col100width price"><%= format_price(product.cost) %></td>
       <td class="col70width amount"><%= product.count %>ks</td>

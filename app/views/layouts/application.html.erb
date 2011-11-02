@@ -45,17 +45,17 @@ s.parentNode.insertBefore(ga, s);
   <article>
     <section id="messages"><%= display_flashes %></section>
     <section id="content"><%= yield %></section>
+    <% unless @categories.blank? %>
     <section id="categories">
-      <% unless @categories.blank? %>
-        <h4>Kategorie</h4>
-        <menu>
-        <% @categories.each do |category| %>
-          <%= render :partial => '/catalog/tree',
-                     :locals => {:menu => category} %>
-        <% end %>
-        </menu>
+      <h4>Kategorie</h4>
+      <menu>
+      <% @categories.each do |category| %>
+        <%= render :partial => '/catalog/tree',
+                   :locals => {:menu => category} %>
       <% end %>
+      </menu>
     </section>
+    <% end %>
   </article>
 
 	<footer></footer>

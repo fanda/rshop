@@ -4,7 +4,6 @@ class CartController < ApplicationController
 
   helper :errors
 
-  before_filter :right_side_content
   before_filter :set_order, :except => [:submit, :odorik, :thanks]
 
   def index

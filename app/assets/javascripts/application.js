@@ -8,7 +8,6 @@ jQuery(document).ready(function($) {
     loading_image : 'loading.gif',
     close_image   : 'closelabel.gif'
   });
-  pimg();
 
   $("td.amount").click(function() {
     if ($("td.amount input").length > 0) return;
@@ -38,3 +37,4 @@ jQuery(document).ready(function($) {
     $(this).html(input);
     jQuery("input", this).focus().select();
   });
+});

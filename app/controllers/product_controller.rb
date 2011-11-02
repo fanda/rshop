@@ -5,11 +5,11 @@ class ProductController < ApplicationController
 
   def show
     @category = Category.find(params[:catalog_id])
-    @product = @category.products.find(params[:id])
-    redirect_to '/404.html' unless @category and @product
+    @product = @category.products.find(params[:id])||Product.find(params[:id])
+    redirect_to '/404.html' unless @product
     @title = @product.title
     @meta_desc = shorten(@product.description, 11)
-    #@category_products = @category.products.active(:limit=>5) - [@product]      
+    #@category_products = @category.products.active(:limit=>5) - [@product]
     @stock = @product.amount
     if @stock == 0
       suply = Supply.where(:supplier_id=>@product.supplier_id, :state=>1)
@@ -26,5 +26,5 @@ class ProductController < ApplicationController
       end
     end # end of if skladem
   end
- 
+
 end
