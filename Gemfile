@@ -16,7 +16,7 @@ gem 'nokogiri'
 gem 'cocaine'
 gem 'acts_as_list'
 gem "meta_search",    '>= 1.1.0.pre'
-
+gem 'formtastic'
 gem 'activeadmin'
 
 group :assets do
@@ -29,4 +29,7 @@ end
 
 gem 'jquery-rails'
 
-gem "bullet", :group => "development"
+group :development do
+  gem "bullet"
+  gem 'rails-dev-tweaks', '~> 0.5.1'
+end

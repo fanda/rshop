@@ -37,4 +37,7 @@ jQuery(document).ready(function($) {
     $(this).html(input);
     jQuery("input", this).focus().select();
   });
+  $('#show_ia_form').click(function () {
+    $('#ia_form').toggle(this.checked);
+  });
 });

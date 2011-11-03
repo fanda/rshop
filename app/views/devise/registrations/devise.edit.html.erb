@@ -1,0 +1,19 @@
+<h2>Upravit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, :as => resource_name, :url => customer_index_path, :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label :password %> <i>(nechte prázdné, pokud zůstane stejné)</i><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.label :current_password %> <i>(pro potvrzení změn je potřeba heslo)</i><br />
+  <%= f.password_field :current_password %></div>
+
+  <div><%= f.submit "Upravit" %></div>
+<% end %>

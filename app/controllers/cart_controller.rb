@@ -2,9 +2,7 @@
 # CartController defines actions for managing with cart and products in cart
 class CartController < ApplicationController
 
-  helper :errors
-
-  before_filter :set_order, :except => [:submit, :odorik, :thanks]
+  before_filter :set_order, :except => [:submit]
 
   def index
     @title = "Košík"
@@ -90,7 +88,8 @@ class CartController < ApplicationController
       flash[:error] = 'Není co objednávat'
       redirect_to cart_path
     end
-    @customer = current_user || Customer.new
+    @order.customer = current_user || Customer.new
+    @order.build_invoice_address
     unless @order and @products = @order.products
       @error = "Objednávka neexistuje. Kontaktujte správce."
     end
@@ -98,25 +97,47 @@ class CartController < ApplicationController
 
   # submit order
   def submit
-    render_page_not_found unless params[:customer] and params[:order]
+    render_page_not_found unless params[:order]
 
-    if @customer = current_customer or
-       @customer = Customer.find_by_email(params[:customer][:email])
-      @customer.update_attributes(params[:customer])
-    else
-      @customer = Customer.create params[:customer]
-      #OrderMailer.new_customer(@customer, @pass).deliver
-    end
     @order = Order.find(params[:order][:id])
-    if @customer and @customer.errors.blank?
+
+    unless @order.cart?
+      render :action => 'error'
+      return
+    end
+
+    customer_attributes = params[:order][:customer_attributes]
+
+    if customer = current_user
+      customer.update_attributes customer_attributes
+    elsif email = params[:order][:customer_attributes][:email]
+      if customer = Customer.find_by_email(email)
+        customer.update_attributes customer_attributes
+      else
+        password = ActiveSupport::SecureRandom.base64(6)
+        customer_attributes[:password] = password
+        customer = Customer.create customer_attributes
+        sign_in customer
+        if customer.id?
+          #OrderMailer.new_customer(customer, password).deliver
+          @new_record = true
+        end
+      end
+    end
+
+    params[:order].delete :customer_attributes
+    @order.update_attributes params[:order]
+    @order.customer = customer
+
+    if @order.customer.errors.blank? and @order.errors.blank?
       cookies.delete :cart
-      @customer.orders << @order.submit(params[:order][:message])
-      @order.create_invoice_address(params[:invoice_address]) if invoice_address_filled?
+      @order.submit
+
       #OrderMailer.new_order(@customer, @order).deliver
       #OrderMailer.review_order(@customer, @order).deliver
+
       render :action => 'thanks'
     else
-      @customer = Customer.new(params[:customer]) unless @customer
       @again = true
       @products = @order.products
       render :action => :review
@@ -124,10 +145,6 @@ class CartController < ApplicationController
   end
 
 protected
-
-  def put_new_password_into_params
-     params[:customer][:password] = @pass = rand(36**6).to_s(36)
-  end
 
   def invoice_address_filled?
     params[:invoice_address].values.each do |v|

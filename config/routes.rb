@@ -20,12 +20,17 @@ Eshop::Application.routes.draw do
     match 'cart', :to => :index, :as => 'cart'
   end
 
-  devise_for :customers do
+  devise_for :customer, :skip => [:registrations, :sessions] do
     get  "login", :to => "devise/sessions#new", :as => 'login'
     post "login", :to => "devise/sessions#create"
     get "logout", :to => "devise/sessions#destroy", :as => 'logout'
+
+    get  "register", :to => "devise/registrations#new", :as => 'register'
+    post "register", :to => "devise/registrations#create"
+    get  "customer/edit", :to => "devise/registrations#edit",:as => 'edit_customer'
+    put  "customer", :to => "devise/registrations#update"
   end
-  resources  :customer, :except => [:show, :destroy]
+  resources  :customer, :only => [:index]
   controller :customer do
     match 'customer/order/:id', :to => :order, :as => 'customer_order'
     match 'customer/bill/:id', :to => :bill, :as => 'customer_bill'

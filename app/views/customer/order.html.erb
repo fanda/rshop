@@ -1,3 +1,4 @@
+<h1><%= @title %></h1>
 <table class="listing">
   <thead>
     <tr>
@@ -14,19 +15,19 @@
     </tr>
   </tfoot>
   <tbody id="objednavka">
-    <% @items.each do |item| %>
+    <% @products.each do |product| %>
     <tr>
       <td class="col140width">
-        <%= item.product.title %>
+        <%= product.title %>
       </td>
       <td>
-        <%= item.amount %>
+        <%= product.count %>
       </td>
       <td>
-        <%= format_price(item.product.price) %>
+        <%= format_price(product.price) %>
       </td>
       <td>
-        <b><%= format_price(item.price) %></b>
+        <b><%= format_price(product.cost) %></b>
       </td>
     </tr>
     <% end %>

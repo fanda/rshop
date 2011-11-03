@@ -1,28 +1,18 @@
-        <%= fields_for @invoice_address||InvoiceAddress.new do |ia| %>
-          <div class="fdiv">
-            <%= ia.label :name, 'Název (jméno)' %>
-            <%= ia.text_field :name %>
-          </div>
+<div id="ia_checkbox">
+      <%= check_box_tag :show_ia_form %>
+      <%= label_tag :show_ia_form, 'Fakturační adresa je jiná než adresa doručení', :style => 'width:70%' %>
+    </div>
+    <div id="ia_form" class="dis">
 
-          <div class="fdiv">
-            <%= ia.label :street, 'Ulice a č.p.' %>
-            <%= ia.text_field :street %>
-          </div>
+<%= of.semantic_fields_for :invoice_address do |f| %>
+  <%= f.inputs :name => 'Fakturační adresa' do %>
+      <%= f.input :name %>
+      <%= f.input :street %>
+      <%= f.input :place %>
+      <%= f.input :post_code, :size => 6, :maxlength => 6 %>
+      <%= f.input :id_number, :label => 'IČ' %>
+      <%= f.input :vat_number, :label => 'DIČ' %>
+  <% end %>
+<% end %>
+    </div>
 
-          <div class="fdiv">
-            <%= ia.label :place, 'Město' %>
-            <%= ia.text_field :place %>, 
-            <%= ia.label :post_code, 'PSČ', :style => 'width:auto' %>
-            <%= ia.text_field :post_code, :size => 6, :maxlength => 6 %>
-          </div>
-
-          <div class="fdiv">
-            <%= ia.label :id_number, 'IČ' %>
-            <%= ia.text_field :id_number %>
-          </div>
-
-          <div class="fdiv">
-            <%= ia.label :vat_number, 'DIČ' %>
-            <%= ia.text_field :vat_number %>
-          </div>
-        <% end %>

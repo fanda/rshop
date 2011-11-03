@@ -28,7 +28,7 @@
     <% @category_products.each do |cpl| %>
       <li>
         <%= image_tag @product.picture.url(:square) %>
-        <%= product_link cpl %>
+        <%= product_linked_title cpl %>
         <%= content_tag :span,  @product.description %>
       </li>
     <% end %>

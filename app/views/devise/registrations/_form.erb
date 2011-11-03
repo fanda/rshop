@@ -1,16 +1,18 @@
 <%
-  if @customer.id
-    url    = customer_path @customer.id
+  if resource.id
+    url    = customer_index_path
     method = :put
   else
-    url    = customer_index_path
+    url    = register_path
     method = :post
   end
 %>
 <h1><%= @title %></h1>
 <div class="mform">
-  <% form_for @customer, :url => url, :method => method do |f| %>
-    <%= f.error_messages %>
+  <%= form_for resource, :url => url, :method => method do |f| %>
+    <%#= devise_error_messages %>
+
+    <fieldset><legend>Jméno a adresa</legend>
     <p>
       <%= f.label :name, 'Jméno' %>
       <%= f.text_field :name %>
@@ -39,8 +41,22 @@
       <%= f.label :post_code, 'PSČ' %>
       <%= f.text_field :post_code %>
     </p>
+    </fieldset>
+
+    <fieldset><legend>Přihlašovací údaje</legend>
+      <div><%= f.label :email %><br />
+      <%= f.email_field :email %></div>
+
+      <div><%= f.label :password %> <i>(nechte prázdné, pokud zůstane stejné)</i><br />
+      <%= f.password_field :password %></div>
+
+      <div><%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %></div>
+    </fieldset>
     <p>
+      <div><%= f.label :current_password %> <i>(pro potvrzení změn je potřeba heslo)</i><br />
+      <%= f.password_field :current_password %></div>
       <%= f.submit @customer.id ? 'Uložit' : 'Registrovat se' %>
     </p>
-  <% end %>    
+  <% end %>
 </div>

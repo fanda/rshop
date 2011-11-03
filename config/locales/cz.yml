@@ -213,9 +213,8 @@ cz:
         title: Název
         description: Popis
       customer:
-        login: Přihlašovací jméno
         name: Jméno
-        surname: Příjmení 
+        surname: Příjmení
         password: Heslo
         password_confirmation: Potvrzení hesla
         email: "E-mail"
@@ -223,12 +222,8 @@ cz:
         street: Ulice
         place: Město
         post_code: PSČ
-      employee:
-        login: Přihlašovací jméno
-        email: "E-mail"
-        phone: Telefon
       entry:
-        quantity: Množství        
+        quantity: Množství
       item:
         price: Cena
         amount: Kusů
