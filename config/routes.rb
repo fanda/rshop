@@ -6,7 +6,7 @@ Eshop::Application.routes.draw do
 
   root :to => "catalog#index"
 
-  resources :category, :as => "catalog",  :only => :show, :path => 'kategorie' do
+  resources :catalog, :only => :show, :path => 'kategorie' do
     resources :product, :only => :show, :path => 'produkt'
   end
   resources :product, :only => :show, :path => 'produkt'

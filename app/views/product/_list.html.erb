@@ -1,6 +1,6 @@
 <table id="product_list">
 <% @products.each_with_index do |product, index| %>
-  <%= content_tag('tr', :valign => 'top') do %>
+  <%= tag('tr', :valign=>'bottom') if index % 4 == 0 %>
     <td>
       <%= product_linked_image product %>
       <%= product_linked_title product %>
@@ -9,7 +9,6 @@
         <%= into_cart_link(product.friendly_id) if product.amount != 0 %>
       </div>
     </td>
-  <% end if index % 3 == 0 %>
 <% end %>
 </table>
 <%= will_paginate @products, {:param_name => @pparam, :class => 'pagination'} %>

@@ -4,13 +4,12 @@ class Order < ActiveRecord::Base
 
   CART      = 0
   WAITING   = 1
-  CALLED    = 2
   NOT_PAID  = 3
   PAID      = 4
   SENT      = 5
   FINISHED  = 6
 
-  STATES = ['Košík', 'Přijato', 'Kontaktováno', 'Nezaplaceno', 'Zaplaceno', 'Odesláno', 'Hotovo']
+  STATES = ['Košík', 'Přijato', 'Nezaplaceno', 'Zaplaceno', 'Odesláno', 'Hotovo']
 
   # relations
   belongs_to :customer
@@ -41,6 +40,18 @@ class Order < ActiveRecord::Base
 
   scope :finished,
     includes(:customer).where(:state => FINISHED)
+
+  scope :not_paid,
+    includes(:customer).where(:state => NOT_PAID)
+
+  scope :cart,
+    includes(:customer).where(:state => CART)
+
+  scope :paid,
+    includes(:customer).where(:state => PAID)
+
+  scope :sent,
+    includes(:customer).where(:state => SENT)
 
   scope :by_state, lambda {|state|
     includes(:customer).where(:state => state) }

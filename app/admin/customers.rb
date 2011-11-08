@@ -1,14 +1,15 @@
+# coding: utf-8
 ActiveAdmin.register Customer do
   menu :parent => 'Users'
 
-  filter :name
-  filter :surname
-  filter :email
-  filter :phone
-  filter :created_at
-  filter :street
-  filter :place
-  filter :post_code
+  filter :name, :label => 'Jméno'
+  filter :surname, :label => 'Příjmení'
+  filter :email, :label => 'Email'
+  filter :phone, :label => 'Telefon'
+  filter :created_at, :label => 'Datum registrace'
+  filter :street, :label => 'Ulice'
+  filter :place, :label => 'Obec'
+  filter :post_code, :label => 'PSČ'
 
   index do
     column :name

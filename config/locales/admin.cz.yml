@@ -1,0 +1,36 @@
+cz:
+  active_admin:
+    pagination:
+      empty: Žádná položka
+      one_page: Jedna strana
+      one: "1"
+    any: Cokoliv
+    dashboard: Nástěnka
+    logout: Odhlásit
+    view: Podrobnosti
+    edit: Úpravy
+    delete: Odstranění
+    new_model: Vytvořit
+    edit_model: Upravit
+    delete_model: Odstranit
+    empty: Prázdné
+    details: Podrobnosti
+    download: Stáhnout
+    clear_filters: Zrušit filtr
+    filter: Filtrovat
+    equal_to: rovno
+    greater_than: větší než
+    less_than: menší než
+    delete_confirmation: Opravdu chcete odstranit tuto položku?
+    search_field: Filtrovací pole
+    cancel: Zrušit
+    blank_slate:
+      content: Není zde žádná položka.
+      link: Vytvořte novou.
+    scopes:
+      waiting: Nové
+      finished: Dokončené
+      not_paid: Nezaplacené
+      paid: Zaplacené
+      sent: Odeslané
+      cart: Košíky
