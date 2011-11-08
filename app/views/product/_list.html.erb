@@ -1,21 +1,14 @@
 <table id="product_list">
-<% @products.each do |product| %>
-  <tr valign="top">
+<% @products.each_with_index do |product, index| %>
+  <%= tag('tr', :valign=>'bottom') if index % 4 == 0 %>
     <td>
-      <%= link_to image_tag(product.picture.url(:square), :alt => 'image', :align => 'left'), product.picture.url(:large), :class => 'im' %>
-    </td>
-    <td>
-      <h2>
-       <%= product_link product %>
-      </h2>
-      <p><%= product.description.html_safe if product.description %></p>
-      Cena s DPH: <strong><%= format_price(product.price) %></strong>
-
-      <span class="leftpad">
+      <%= product_linked_image product %>
+      <%= product_linked_title product %>
+      <div class="product_info">
+        <strong><%= format_price(product.price) %></strong>
         <%= into_cart_link(product.friendly_id) if product.amount != 0 %>
-      </span>
+      </div>
     </td>
-  </tr>
 <% end %>
 </table>
 <%= will_paginate @products, {:param_name => @pparam, :class => 'pagination'} %>

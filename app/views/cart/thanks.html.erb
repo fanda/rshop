@@ -1,6 +1,4 @@
 <h1>Děkujeme za nákup v našem internetovém obchodě</h1>
-
-<p>V krátké době se s Vámi spojíme a společně dokončíme objednávku.</p>
 <br/>
 <% if @new_record %>
   <h2>Registrován nový zákazník</h2>
@@ -8,5 +6,4 @@
   Vám právě odeslali na Vaši emailovou adresu.
   <br/>
 <% end %>
-<p>Pokračujte <a href="/">zpět do obchodu</a> nebo na stránky <a
-href="http://odorik.cz">Odorik.cz</a></p>
+<p>Pokračujte <%= link_to 'zpět do obchodu', root_url %>.</p>

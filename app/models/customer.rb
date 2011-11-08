@@ -5,13 +5,14 @@ class Customer < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me,
+                  :name, :surname, :street, :place, :post_code, :phone
 
   # relations
   has_many :orders
 
   # attributes validation
-  validates_presence_of :email, :name, :surname, :street, :place, :post_code, :phone
+  validates_presence_of :email, :name, :surname, :street, :place, :post_code
   validates_uniqueness_of :email, :case_sensitive => false
   validates_format_of :email, :with => /^(|([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,}))$/i
   validates_format_of :post_code, :with => /^(|(\d{3,3}\s?\d{2,2}))$/i

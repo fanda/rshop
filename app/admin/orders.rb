@@ -1,9 +1,16 @@
+# coding: utf-8
 ActiveAdmin.register Order do
   menu :priority => 4
 
+  scope :waiting, :default => true
+  scope :finished
+  scope :not_paid
+  scope :paid
+  scope :sent
+  scope :cart
+
   filter :sum
-  filter :state_in_words
-  filter :created_at
+  filter :created_at, :label => 'Datum objednání'
 
   # /admin/orders/:id/items
   member_action :items do
@@ -22,27 +29,25 @@ ActiveAdmin.register Order do
     end
     column :created_at
     column :state
-    column :message
+    column :message do |order|
+       order.message
+    end
     column :note
     default_actions
   end
 
   show do
     panel "Customer" do
-      table_for order.customer do |i|
-        i.column :name
-        i.column :surname
-        i.column :phone
-        i.column :email
-      end
+      div { simple_format order.customer.fullname, :class=> 'title' }
+      div { simple_format order.customer.phone }
+      div { simple_format order.customer.email }
     end if order.customer
+
     panel "Address" do
-      table_for order.customer do |i|
-        i.column :street
-        i.column :place
-        i.column :post_code
-      end
+      div { simple_format order.customer.street }
+      div { simple_format "#{order.customer.place} #{order.customer.post_code}" }
     end if order.customer
+
     panel "Products" do
       table_for order.products do |i|
         i.column('Name') do |product|
@@ -55,15 +60,14 @@ ActiveAdmin.register Order do
       end
       div order.message
     end
+
     panel "Invoice address" do
-      table_for order.invoice_address do |i|
-        i.column :name
-        i.column :street
-        i.column :place
-        i.column :post_code
-        i.column :id_number
-        i.column :vat_number
-      end
+      div { simple_format order.invoice_address.name }
+      div { simple_format order.invoice_address.street }
+      div { simple_format order.invoice_address.place + ' ' +
+                          order.invoice_address.post_code }
+      div { simple_format order.invoice_address.id_number }
+      div { simple_format order.invoice_address.vat_number }
     end if order.invoice_address
     active_admin_comments
   end

@@ -3,6 +3,9 @@ require "open-uri"
 class Product < ActiveRecord::Base
   extend FriendlyId
 
+  ACTIVE     = 1
+  NOT_ACTIVE = 0
+
   acts_as_list
 
   # relations
@@ -27,8 +30,8 @@ class Product < ActiveRecord::Base
   :default_url => "/pictures/:style_default.png",
   :default_style => :large,
   :web_root => '/pictures/', :storage => :filesystem,
-                           :styles => { :square  => "112x112>",
-                                        :large => "320x320>"}
+                           :styles => { :square  => "150x150#",
+                                        :large => "400x400>"}
   attr_protected :picture_file_name,
                  :picture_content_type,
                  :picture_size,
@@ -66,6 +69,10 @@ class Product < ActiveRecord::Base
 
   def picture_from_url(url)
     self.picture = open(url)
+  end
+
+  def active?
+    self.active == ACTIVE
   end
 
 end

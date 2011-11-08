@@ -28,67 +28,32 @@
 </table>
 
 <div>
-  <%= form_for @customer, :url => order_path, :method => 'post' do |f| %>
-    <%= hidden_field 'order', 'id', :value => @order.id %>
-    <%= f.error_messages :message => 'Všechna políčka v objednávce jsou povinná' %>
-    <fieldset><legend>Kontakty</legend>
+  <%= semantic_form_for @order, :url => order_path do |of| %>
+    <%= of.hidden_field :id, :value => @order.id %>
+
+    <%= of.error_messages %>
+
+    <%= of.semantic_fields_for :customer do |f| %>
+     <%= f.inputs :name => 'Kontakt' do %>
       <p>Prosíme, vyplňte aspoň jeden následující kontaktní údaj.</p>
+      <%= f.input :email %>
+      <%= f.input :phone %>
+     <% end %>
 
-      <div class="fdiv">
-        <%= f.label :email, 'E-mail' %>
-        <%= f.text_field :email %>
-      </div>
+     <%= f.inputs :name => 'Adresa' do %>
+      <%= f.input :name %>
+      <%= f.input :surname %>
+      <%= f.input :street %>
+      <%= f.input :place %>
+      <%= f.input :post_code, :size => 6, :maxlength => 6 %>
+     <% end %>
+    <% end %>
 
-      <div class="fdiv">
-        <%= f.label :phone, 'Telefonní číslo' %>
-        <%= f.text_field :phone %>
-      </div>
-    </fieldset>
+    <%= render :partial => 'invoice_address_form',
+               :locals => { :of => of } %>
 
-    <fieldset><legend>Adresa</legend>
-      <div class="fdiv">
-        <%= f.label :name, 'Jméno' %>
-        <%= f.text_field :name %>
-      </div>
+    <%= of.text_area :message, :value => @order.message, :cols => 40, :rows => 3 %>
 
-      <div class="fdiv">
-        <%= f.label :surname, 'Příjmení' %>
-        <%= f.text_field :surname %>
-      </div>
-
-      <div class="fdiv">
-        <%= f.label :street, 'Ulice a č.p.' %>
-        <%= f.text_field :street %>
-      </div>
-
-      <div class="fdiv">
-        <%= f.label :place, 'Město' %>
-        <%= f.text_field :place %>,
-        <%= f.label :post_code, 'PSČ', :style => 'width:auto' %>
-        <%= f.text_field :post_code, :size => 6, :maxlength => 6 %>
-      </div>
-    </fieldset>
-
-    <fieldset><legend></legend>
-      <div id="ia_checkbox">
-        <%= check_box_tag :show_ia_form %>
-        <%= label_tag :show_ia_form, 'Fakturační adresa je jiná než adresa
-        doručení', :style => 'width:70%' %>
-      </div>
-      <div id="ia_form" class="dis">
-        <%= render :partial => 'invoice_address_form' %>
-      </div>
-    </fieldset>
-
-    <p class="left leftpad" style="width:60%">
-      <%= label 'order_message', 'Vaše poznámka k objednávce', :class=>'omsg' %>
-      <%= text_area 'order', 'message', :cols => 40, :rows => 3 %>
-    </p>
-
-    <p class="left ocrt" style="width:30%">
-      <%= f.submit "Vytvořit objednávku" %>
-    </p>
-    <div class="out"></div>
+    <%= of.commit_button "Vytvořit objednávku" %>
   <% end %>
-
 </div>

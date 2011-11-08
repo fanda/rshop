@@ -8,7 +8,7 @@
   </address>
 </div>
 
- 
+
 <h2>Zboží</h2>
 <table cellspacing="7" cellpadding="4">
   <tr style="font-weight:bold; text-align:center;">
@@ -18,19 +18,19 @@
     <td>Cena</td>
   </tr>
 
-<% @items.each do |item| %>
+<% @products.each do |product| %>
   <tr style="text-align:center;">
     <td class="col140width" style="text-align:left;">
-      <%= item.product.title %>
+      <%= product.title %>
     </td>
     <td>
-      <%= item.amount %>
+      <%= product.count %>
     </td>
     <td>
-      <%= format_price(item.product.price) %>
+      <%= format_price(product.price) %>
     </td>
     <td style="text-align:right;">
-      <b><%= format_price(item.price) %></b>
+      <b><%= format_price(product.cost) %></b>
     </td>
   </tr>
 <% end %>

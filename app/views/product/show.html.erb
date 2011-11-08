@@ -1,11 +1,7 @@
-<% unless @product.wiki_url %>
-  <h1><%= @product.title %></h1>
-<% end %>
+<h1><%= @product.title %></h1>
 
 <p class="prod_descr">
-  <div class="dokuwiki">
-    <%= @product.full_description %>
-  </div>
+  <%= @product.full_description %>
 </p>
 
 <p class="prod_price">Cena s DPH: <%= format_price(@product.price) %></p>
@@ -15,24 +11,24 @@
     <strong><%= into_cart_link @product.friendly_id %></strong>
   </p>
 <% end; if @product.amount <= 0 and @product.amount != -1 %>
-  <p class="prod_amount">     
+  <p class="prod_amount">
     <%= stock_messages[@product.amount.abs] %>
   </p>
 <% end %>
 
 <hr class="clean_product" />
 
-<% if false # @category and @category_products.any? 
+<% if @category and @category_products.any?
 %>
   <h3>
-    Další výrobky v kategorii 
+    Další výrobky v kategorii
     <%= link_to @category.title, catalog_path(@category.id) %>
   </h3>
   <ul class="nolist">
     <% @category_products.each do |cpl| %>
       <li>
         <%= image_tag @product.picture.url(:square) %>
-        <%= product_link cpl %>
+        <%= product_linked_title cpl %>
         <%= content_tag :span,  @product.description %>
       </li>
     <% end %>

@@ -2,13 +2,8 @@
 # CustomerController defines customer actions
 class CustomerController < ApplicationController
 
-  before_filter :authenticate_customer!, :assign_customer, :only => [:edit,:update,:logout,:order,:bill,:index,:password]
-
-  before_filter :right_side_content
-
-#
-#   USER's
-#
+  before_filter :authenticate_customer!, :assign_customer,
+                :only => [:order,:bill,:index]
 
   # show customer page, orders, cutomer entries
   def index
@@ -17,26 +12,10 @@ class CustomerController < ApplicationController
     @orders = @customer.orders.paginate(:page=>@page)
   end
 
-  # edit customer entries
-  def edit
-    @title='Úprava informací o mně'
-    no_layout_if_xhr_request
-  end
-
-  # update customer entries
-  def update
-    if @customer.update_attributes(params[:customer])
-      flash[:success] = "Nastavení přijato"
-      redirect_to :action => 'index'
-    else
-      render :action => :edit
-    end
-  end
-
   # show bill of order
   def bill
     @order = @customer.orders.find params[:id]
-    @items = @order.items
+    @products = @order.products
     @title = "Tisk faktury č. #{@order.id}"
     render :layout => 'print'
   end
@@ -44,7 +23,7 @@ class CustomerController < ApplicationController
   # show one order
   def order
     @order = @customer.orders.find params[:id]
-    @items = @order.items
+    @products = @order.products
     @title = "Objednávka č. #{@order.id}"
     no_layout_if_xhr_request
   end
@@ -53,7 +32,7 @@ class CustomerController < ApplicationController
 protected
 
   def assign_customer
-    @customer = current_user
+    @customer = current_customer
   end
 
 end

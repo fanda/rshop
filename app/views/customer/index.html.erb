@@ -1,7 +1,7 @@
 <h1><%= @title %></h1>
 
 <p>
-  <a href="<%= edit_customer_path @customer.id %>" rel="facebox" title="Úprava údajů">Zobrazit nebo upravit osobní údaje</a> 
+  <a href="<%= edit_customer_path %>" title="Úprava údajů">Zobrazit nebo upravit osobní údaje</a>
 </p>
 <br/>
 <h2>Uskutečněné objednávky</h2>
@@ -26,7 +26,7 @@
     <% next if o.state == 0 %>
     <tr>
       <td>
-        <%= o.state_in_words %>    
+        <%= o.state_in_words %>
       </td>
       <td class="col100width">
         <%= format_price(o.sum) %>
@@ -40,7 +40,7 @@
         </a>
       </th>
       <% if o.state == 1  %>
-      <th>        
+      <th>
           <%= link_to image_tag('admin/printer.png', :alt => 'faktura' ),
               customer_bill_path(o.id), :title=>"Vytisknout fakturu" %>
       </th>

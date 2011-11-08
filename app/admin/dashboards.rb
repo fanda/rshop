@@ -4,11 +4,21 @@ ActiveAdmin::Dashboards.build do
   section "Waiting orders" do
     table_for Order.waiting do |t|
       t.column("Status") { |order| status_tag (order.state_in_words), :error }
-      t.column("Date") { |order| order.created_at.to_date }
-      t.column("Customer") { |order|
-        link_to order.customer.full_name, admin_customer_path(order.customer)
+      t.column("Date") { |order|
+        div :class => 'date' do
+          order.created_at.to_date
+        end
       }
-      t.column("Suma") { |order| order.sum }
+      t.column("Customer") { |order|
+        if order.customer
+          link_to order.customer.fullname, admin_customer_path(order.customer)
+        end
+      }
+      t.column("Cena celkem") { |order|
+        div :class => "sum" do
+          number_to_currency order.sum
+        end
+      }
       t.column("Detail") { |order|
         link_to 'View', admin_order_path(order)
       }

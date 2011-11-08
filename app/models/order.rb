@@ -4,22 +4,24 @@ class Order < ActiveRecord::Base
 
   CART      = 0
   WAITING   = 1
-  CALLED    = 2
   NOT_PAID  = 3
   PAID      = 4
   SENT      = 5
   FINISHED  = 6
 
-  STATES = ['Košík', 'Přijato', 'Kontaktováno', 'Nezaplaceno', 'Zaplaceno', 'Odesláno', 'Hotovo']
+  STATES = ['Košík', 'Přijato', 'Nezaplaceno', 'Zaplaceno', 'Odesláno', 'Hotovo']
 
   # relations
   belongs_to :customer
+  accepts_nested_attributes_for :customer
+
   has_many :items, :include => :product
   has_many :products, :through => :items,
            :select => 'products.*, items.count, items.cost'
-
   has_many :invoices
   has_one  :invoice_address, :dependent => :destroy
+  accepts_nested_attributes_for :invoice_address
+
   # attributes validation
   validates_presence_of :sum, :state
 
@@ -39,12 +41,27 @@ class Order < ActiveRecord::Base
   scope :finished,
     includes(:customer).where(:state => FINISHED)
 
+  scope :not_paid,
+    includes(:customer).where(:state => NOT_PAID)
+
+  scope :cart,
+    includes(:customer).where(:state => CART)
+
+  scope :paid,
+    includes(:customer).where(:state => PAID)
+
+  scope :sent,
+    includes(:customer).where(:state => SENT)
+
   scope :by_state, lambda {|state|
     includes(:customer).where(:state => state) }
 
   scope :finished_in_month, lambda {|month|
     where("state = #{Order::FINISHED} AND created_at >= :begin AND created_at <= :end", { :begin => month, :end => month.end_of_month })}
 
+  def cart?
+    self.state == CART
+  end
 
   def self.state_options
     options = []
@@ -101,7 +118,7 @@ class Order < ActiveRecord::Base
     self.update_attribute :sum, sum
   end
 
-  def submit(message)
+  def submit(message=nil)
     self.message = message||''
     self.state = WAITING
     self.save
@@ -110,7 +127,8 @@ class Order < ActiveRecord::Base
         p.increment! :counter
         p.decrement! :amount if p.amount > 0
       rescue
-      next; end
+        next
+      end
      }
     self
   end

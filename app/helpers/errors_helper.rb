@@ -1,7 +1,7 @@
 module ErrorsHelper
 
   # see: lib/action_view/helpers/active_model_helper.rb
-  def error_messages_for(*params)
+  def error_messages_for2(*params)
         options = params.extract_options!.symbolize_keys
 
         objects = Array.wrap(options.delete(:object) || params).map do |object|
