@@ -26,7 +26,7 @@ module ApplicationHelper
 
   def into_cart_link(product_id)
     link_to(
-      "Vložit do košíku #{image_tag('shop/add.gif', :alt => 'košík')}".html_safe,
+      "#{image_tag('shop/cart_add.png', :alt => 'do košíku')}".html_safe,
       into_cart_path(product_id), :class=>'nodecor'
     )
   end

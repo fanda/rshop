@@ -5,7 +5,7 @@ ActiveAdmin.register Category do
   filter :title
 
   index do
-    column :title
+    #column :title
 
     default_actions
   end
