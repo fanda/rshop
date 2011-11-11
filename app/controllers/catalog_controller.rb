@@ -1,8 +1,6 @@
 # coding: utf-8
 class CatalogController < ApplicationController
 
-  before_filter :right_side_content
-
   respond_to :xml
 
   def index

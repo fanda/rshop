@@ -1,36 +1,24 @@
 <h1><%= @product.title %></h1>
+<%= image_tag @product.picture.url, :class => 'left' %>
+<div class="left lpad">
+  <span id="product_price"><%= format_price(@product.price) %></span>
+  (s DPH)<br/>
+  <p><%= @product.full_description %></p>
 
-<p class="prod_descr">
-  <%= @product.full_description %>
-</p>
-
-<p class="prod_price">Cena s DPH: <%= format_price(@product.price) %></p>
-
-<% if @product.amount != 0 %>
-  <p class="prod_cart">
+  <p class="tar">
+  <% if @product.amount != 0 %>
     <strong><%= into_cart_link @product.friendly_id %></strong>
+  <% end %>
   </p>
-<% end; if @product.amount <= 0 and @product.amount != -1 %>
-  <p class="prod_amount">
-    <%= stock_messages[@product.amount.abs] %>
-  </p>
-<% end %>
+</div>
 
-<hr class="clean_product" />
-
-<% if @category and @category_products.any?
-%>
-  <h3>
+<br class="out"/>
+<% if @category and @products.any? %>
+<div id="related_products">
+  <h2>
     Další výrobky v kategorii
     <%= link_to @category.title, catalog_path(@category.id) %>
-  </h3>
-  <ul class="nolist">
-    <% @category_products.each do |cpl| %>
-      <li>
-        <%= image_tag @product.picture.url(:square) %>
-        <%= product_linked_title cpl %>
-        <%= content_tag :span,  @product.description %>
-      </li>
-    <% end %>
-  </ul>
+  </h2>
+  <%= render :partial => 'in_category_list' %>
+</div>
 <% end %>

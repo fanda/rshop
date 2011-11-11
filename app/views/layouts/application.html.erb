@@ -34,6 +34,7 @@ s.parentNode.insertBefore(ga, s);
   Máte vypnutý JavaScript nebo jej Váš prohlížeč nepodporuje. Funkčnost stránek
   i Vaše pohodlí jsou tím omezeny.
 </div></noscript>
+<div id="wrap">
   <header>
 		<div id="right_header_menu" class="right rpad">
       <%= render :partial => '/layouts/right_header_menu' %>
@@ -56,18 +57,27 @@ s.parentNode.insertBefore(ga, s);
     <section id="content"><%= yield %></section>
     <% unless @categories.blank? %>
     <section id="categories">
-      <h4>Kategorie</h4>
       <menu>
-      <% @categories.each do |category| %>
-        <%= render :partial => '/catalog/tree',
-                   :locals => {:menu => category} %>
-      <% end %>
+        <li><%= link_to 'Úvodní stránka', root_url %></li>
+        <li><%= link_to 'Kontakt', contact_form_path %></li>
+        <li><%= link_to 'Nákupní košík', cart_path %></li>
       </menu>
+      <menu>
+        <% @categories.each do |category| %>
+        <li>
+          <%= link_to category.title, catalog_path(category.friendly_id) %>
+        </li>
+        <% end %>
+      </menu>
+      <div class="out"></div>
     </section>
     <% end %>
   </article>
+</div>
 
-	<footer></footer>
+	<footer>
+    &copy; <%= Time.now.year %> <%= link_to 'Etnoshop Matahari', root_url %>
+  </footer>
 <% if Rails.env.development? %>
   <div class="out" style="text-align:left">
     <%= debug @debug %>

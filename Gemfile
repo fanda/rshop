@@ -7,7 +7,6 @@ gem 'rails', '~> 3.1.0'
 
 gem "mysql2", '~> 0.3'
 gem 'json'
-gem "will_paginate", "~> 3.0.pre2"
 gem 'paperclip'
 gem 'authlogic'
 gem 'awesome_nested_set', '~> 2.0.0'
