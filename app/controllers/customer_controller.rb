@@ -9,7 +9,7 @@ class CustomerController < ApplicationController
   def index
     @page = params[:order_page] || 1
     @title = 'Můj zákaznický účet v obchodě'
-    @orders = @customer.orders.paginate(:page=>@page)
+    @orders = @customer.orders.page(@page)
   end
 
   # show bill of order

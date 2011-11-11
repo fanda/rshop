@@ -15,8 +15,8 @@ gem 'nokogiri'
 gem 'cocaine'
 gem 'acts_as_list'
 gem "meta_search",    '>= 1.1.0.pre'
-gem 'formtastic'
-gem 'activeadmin'
+gem 'formtastic', '>= 2.0.0'
+gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
 
 group :assets do
   gem 'execjs'
