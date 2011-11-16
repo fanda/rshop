@@ -16,6 +16,8 @@ $lora: #fbb91c
 $dyel: #ff6c00
 $lyel: #ffeea6
 
+$brad: 5px
+
 @font-face
   font-family: 'asmat'
   src: url('asmat.ttf') format('truetype')
@@ -41,7 +43,7 @@ img
   border: 0
   vertical-align: middle
 h1, h2, h3, h4, h5, h6, ul, ol, dl, pre, blockquote, form, label, fieldset, address
-  margin: 20px 0
+  margin: 20px 0 0 0
 h1
   font-size: 20px
   text-align: center
@@ -167,8 +169,25 @@ table#product_list
   border-collapse: separate
   border-spacing: 20px 25px
 
-#product_price
-  font-size: 30px
+#product
+  h2, #product_price
+    font-size: 30px
+    color: $dora
+  #product_description
+    color: $lora
+
+#cart_actions
+  float: right
+  font-weight: bold
+  font-size: 18px
+  a
+    border: 1px solid $dora
+    margin: 3px
+    padding: 3px
+    border-radius: $brad
+    &:hover
+      text-decoration: none
+      border: 1px solid $lrub
 
 /* facebox forms
 .mform
@@ -176,10 +195,18 @@ table#product_list
     display: block
     width: 95%
     margin-bottom: 0.7em
+    border: solid 1px $lyel
+    border-radius: $brad
   label
     font-size: 14px
     font-weight: bold
-    color: #878787
+    color: $lora
+  input[type="submit"]
+    width: auto
+    border: solid 1px $lyel
+    border-radius: $brad
+    color: $lora
+    padding: 2px
 
 .cform
   input
@@ -188,11 +215,6 @@ table#product_list
     width: 100% !important
   textarea
     width: 70% !important
-
-#questions
-  color: #555
-  h2
-    color: #555
 
 /*
  *       CHYBY
@@ -263,23 +285,24 @@ td.amount
   margin: 0
 
 .help
-  color: #888
-  text-shadow: 1px 0 0 #333
+  color: $dyel
+  text-shadow: 1px 0 0 $lyel
+  font-weight: bold
 
 
 table.listing
   border-bottom: 1px solid #ABAE75
-  background: #C7CA88
+  background: $lyel
   width: 100%
   padding: 0
   margin: 0
-  border: 1px solid #9097A9
-  border-top-left-radius: 10px
-  border-top-right-radius: 10px
-  -moz-border-radius-topleft: 10px
-  -moz-border-radius-topright: 10px
-  -webkit-border-top-left-radius: 10px
-  -webkit-border-top-right-radius: 10px
+  border: 1px solid $lyel
+  border-top-left-radius: $brad
+  border-top-right-radius: $brad
+  -moz-border-radius-topleft: $brad
+  -moz-border-radius-topright: $brad
+  -webkit-border-top-left-radius: $brad
+  -webkit-border-top-right-radius: $brad
   th
     border-top: 0 !important
     &.full
@@ -287,23 +310,23 @@ table.listing
       border-right: 0 !important
       text-align: left
       text-transform: uppercase
-  td
-    border: 1px solid #fff
-    text-align: center
-  th
     border: 1px solid #fff
     text-align: center
     /*background:#9097A9;
-    color: #fff
+    color: $dyel
     padding: 5px
   td
-    background: #D8D8D8
-    color: #000
+    border: 1px solid #fff
+    text-align: center
+    background: #fff
+    color: $dyel
     padding: 3px 5px
+    a
+      color: $dyel
   .white td
     background: #fff
   tr:nth-child(odd) td
-    background: #ECECEC
+    background: #fff
   th:first-child, td:first-child
     border-left: 0px solid #9097A9
     text-align: left
