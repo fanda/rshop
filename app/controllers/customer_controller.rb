@@ -5,6 +5,8 @@ class CustomerController < ApplicationController
   before_filter :authenticate_customer!, :assign_customer,
                 :only => [:order,:bill,:index]
 
+  before_filter :right_side_content
+
   # show customer page, orders, cutomer entries
   def index
     @page = params[:order_page] || 1

@@ -1,6 +1,8 @@
 # coding: utf-8
 class PagesController < ApplicationController
 
+  before_filter :right_side_content
+
   def show
     @page = Page.find_by_url params[:page_url]
     if @page

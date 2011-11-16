@@ -1,24 +1,27 @@
-<h1><%= @product.title %></h1>
-<%= image_tag @product.picture.url, :class => 'left' %>
-<div class="left lpad">
-  <span id="product_price"><%= format_price(@product.price) %></span>
-  (s DPH)<br/>
-  <p><%= @product.full_description %></p>
+<div id="product">
+  <h2><%= @product.title %></h2>
+  <%= image_tag @product.picture.url, :class => 'left' %>
+  <div class="left lpad">
+    <span id="product_price"><%= format_price(@product.price) %></span>
+    (s DPH)<br/>
+    <p id="product_description"><%= @product.full_description %></p>
 
-  <p class="tar">
-  <% if @product.amount != 0 %>
-    <strong><%= into_cart_link @product.friendly_id %></strong>
-  <% end %>
-  </p>
+    <p class="tar">
+      <% if @product.amount != 0 %>
+        <%= into_cart_image(@product.friendly_id) %>
+        <strong><%= into_cart_link @product.friendly_id %></strong>
+      <% end %>
+    </p>
+  </div>
 </div>
 
 <br class="out"/>
 <% if @category and @products.any? %>
 <div id="related_products">
-  <h2>
+  <h3>
     Další výrobky v kategorii
     <%= link_to @category.title, catalog_path(@category.id) %>
-  </h2>
+  </h3>
   <%= render :partial => 'in_category_list' %>
 </div>
 <% end %>

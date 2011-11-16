@@ -6,7 +6,10 @@
       <%= product_linked_title product %>
       <div class="product_info">
         <strong><%= format_price(product.price) %></strong>
-        <%= into_cart_link(product.friendly_id) if product.amount != 0 %>
+        <% if product.amount != 0 %>
+          <%= into_cart_image(product.friendly_id) %>
+          <%= into_cart_link(product.friendly_id) %>
+        <% end %>
       </div>
     </td>
 <% end %>

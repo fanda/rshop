@@ -4,6 +4,8 @@ class CartController < ApplicationController
 
   before_filter :set_order, :except => [:submit]
 
+  before_filter :right_side_content
+
   def index
     @title = "Košík"
     @products = @order.products
