@@ -16,15 +16,16 @@ gem 'cocaine'
 gem 'acts_as_list'
 gem "meta_search",    '>= 1.1.0.pre'
 gem 'formtastic', '>= 2.0.0'
-gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
+gem 'sass-rails', "~> 3.1.0"
 
 group :assets do
   gem 'execjs'
   gem 'therubyracer'
-  gem 'sass-rails', "  ~> 3.1.0"
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
 end
+
+gem 'activeadmin' #, :git => 'git://github.com/gregbell/active_admin.git'
 
 gem 'jquery-rails'
 

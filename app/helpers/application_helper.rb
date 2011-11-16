@@ -24,11 +24,15 @@ module ApplicationHelper
     price_with_dph * 0.1667
   end
 
-  def into_cart_link(product_id)
+  def into_cart_image(product_id)
     link_to(
       "#{image_tag('shop/cart_add.png', :alt => 'do košíku')}".html_safe,
       into_cart_path(product_id), :class=>'nodecor'
     )
+  end
+
+  def into_cart_link(product_id)
+    link_to('Koupit', into_cart_path(product_id), :class=>'nodecor')
   end
 
   def product_linked_title(product)
