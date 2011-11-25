@@ -1,15 +1,17 @@
+# coding: utf-8
 ActiveAdmin::Dashboards.build do
+  #menu :label => 'Nástěnka'
 
 
-  section "Waiting orders" do
+  section "Nevyřízené objednávky" do
     table_for Order.waiting do |t|
       t.column("Status") { |order| status_tag (order.state_in_words), :error }
-      t.column("Date") { |order|
+      t.column("Datum") { |order|
         div :class => 'date' do
           order.created_at.to_date
         end
       }
-      t.column("Customer") { |order|
+      t.column("Zákazník") { |order|
         if order.customer
           link_to order.customer.fullname, admin_customer_path(order.customer)
         end
@@ -24,6 +26,25 @@ ActiveAdmin::Dashboards.build do
       }
     end
   end
+
+  section "Kategorie" do
+    ul do
+      Category.all.collect do |c|
+        li link_to(c.title, admin_category_path(c))
+      end
+    end
+    div do
+      link_to('Nová kategorie', new_admin_category_path)
+    end
+  end
+
+  #section "Recent Posts" do
+  #     ul do
+  #       Post.recent(5).collect do |post|
+  #         li link_to(post.title, admin_post_path(post))
+  #       end
+  #     end
+  #   end
 
 
   # Define your dashboard sections here. Each block will be

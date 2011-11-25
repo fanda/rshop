@@ -6,7 +6,7 @@ Eshop::Application.configure do
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local       = true #false
   config.action_controller.perform_caching = true
 
   # Specifies the header that your server uses for sending files
@@ -40,11 +40,15 @@ Eshop::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  config.assets.precompile += %w[active_admin.css active_admin.js]
+
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.default_url_options = { :host => 'ethnoshop.eu' }
 
   # Enable threaded mode
   # config.threadsafe!

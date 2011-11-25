@@ -1,11 +1,12 @@
+# coding: utf-8
 ActiveAdmin.register Page do
-  menu :priority => 7
+  menu :priority => 7, :label => 'Stránky'
 
   filter :title
   filter :created_at
 
   index do
-    column 'Title' do |page|
+    column :title do |page|
       link_to page.title, "/#{page.url}"
     end
 
@@ -23,8 +24,8 @@ ActiveAdmin.register Page do
   show do
     panel 'Details' do
       attributes_table_for page do
-        row('Title') { link_to page.title, "/#{page.url}" }
-        row('Body') { page.body }
+        row('Titulek') { link_to page.title, "/#{page.url}" }
+        row('Tělo stránky') { page.body }
       end
     end
     active_admin_comments

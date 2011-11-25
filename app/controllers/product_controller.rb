@@ -1,15 +1,19 @@
 # coding: utf-8
 class ProductController < ApplicationController
 
-  before_filter :right_side_content
-
   def show
-    @category = Category.find(params[:catalog_id])
-    @product = @category.products.find(params[:id])||Product.find(params[:id])
+    if params[:catalog_id]
+      @category = Category.find(params[:catalog_id])
+      @products = @category.products.active(:limit=>4) - [@product]
+      scope = @category.products
+    else
+      scope = Product
+    end
+    @product = scope.find(params[:id])||Product.find(params[:id])
     redirect_to '/404.html' unless @product
     @title = @product.title
     @meta_desc = shorten(@product.description, 11)
-    @products = @category.products.active(:limit=>4) - [@product]
+
     @stock = @product.amount
     if @stock == 0
       suply = Supply.where(:supplier_id=>@product.supplier_id, :state=>1)

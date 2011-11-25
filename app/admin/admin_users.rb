@@ -1,5 +1,6 @@
+# coding: utf-8
 ActiveAdmin.register AdminUser do
-  menu :parent => 'Users'
+  menu :parent => 'Uživatelé', :label => 'Zaměstnanci'
 
   filter :name
   filter :phone
@@ -15,12 +16,12 @@ ActiveAdmin.register AdminUser do
   end
 
   form do |f|
-    f.inputs "Details" do
+    f.inputs "Detaily" do
       f.input :name
       f.input :phone
       f.input :email
     end
-    f.inputs "Password" do
+    f.inputs "Heslo" do
       f.input :password
       f.input :password_confirmation
     end
@@ -28,14 +29,14 @@ ActiveAdmin.register AdminUser do
   end
 
   show do
-    panel "Details" do
+    panel "Detaily" do
       attributes_table_for admin_user do
         row('Name') { admin_user.name }
         row('Phone') { admin_user.phone }
         row('Email') { admin_user.email }
       end
     end
-    panel "Access informations" do
+    panel "Přístupové informace" do
       attributes_table_for admin_user do
         row('Count of sign in') { admin_user.sign_in_count }
         row('Last sign in at') { admin_user.last_sign_in_at }
