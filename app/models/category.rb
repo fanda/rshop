@@ -12,9 +12,9 @@ class Category < ActiveRecord::Base
   validates_presence_of :title
 
   # behavior of pagination
-  cattr_reader :per_page
-  @@per_page = 10
-  default_scope :order => 'position ASC'
-  default_scope :include => :children
+  #cattr_reader :per_page
+  paginates_per 20
+  default_scope order('position ASC')
+  default_scope includes(:children)
 
 end

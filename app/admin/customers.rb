@@ -1,6 +1,6 @@
 # coding: utf-8
 ActiveAdmin.register Customer do
-  menu :parent => 'Users'
+  menu :parent => 'Uživatelé', :label => 'Zákazníci'
 
   filter :name, :label => 'Jméno'
   filter :surname, :label => 'Příjmení'
@@ -22,13 +22,13 @@ ActiveAdmin.register Customer do
   end
 
   form do |f|
-    f.inputs "Details" do
+    f.inputs "Detaily" do
       f.input :name
       f.input :surname
       f.input :phone
       f.input :email
     end
-    f.inputs "Address" do
+    f.inputs "Adresa" do
       f.input :street
       f.input :place
       f.input :post_code
@@ -37,7 +37,7 @@ ActiveAdmin.register Customer do
   end
 
   show do
-    panel "Details" do
+    panel "Detaily" do
       attributes_table_for customer do
         row('Name') { customer.name }
         row('Surname') { customer.surname }
@@ -45,7 +45,7 @@ ActiveAdmin.register Customer do
         row('Email') { customer.email }
       end
     end
-    panel "Address" do
+    panel "Adresa" do
       attributes_table_for customer do
         row('Street') { customer.street }
         row('Place') { customer.place }

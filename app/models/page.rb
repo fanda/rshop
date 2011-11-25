@@ -6,8 +6,8 @@ class Page < ActiveRecord::Base
   validates_presence_of :title, :url
 
   # behavior of pagination
-  cattr_reader :page
-  @@per_page = 10
+  #cattr_reader :page
+  #@@per_page = 10
   default_scope :order => 'id DESC'
 
 protected

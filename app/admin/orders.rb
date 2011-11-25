@@ -1,6 +1,6 @@
 # coding: utf-8
 ActiveAdmin.register Order do
-  menu :priority => 4
+  menu :priority => 4, :label => 'Objednávky'
 
   scope :waiting, :default => true
   scope :finished
@@ -37,18 +37,18 @@ ActiveAdmin.register Order do
   end
 
   show do
-    panel "Customer" do
+    panel "Zákazník" do
       div { simple_format order.customer.fullname, :class=> 'title' }
       div { simple_format order.customer.phone }
       div { simple_format order.customer.email }
     end if order.customer
 
-    panel "Address" do
+    panel "Adresa" do
       div { simple_format order.customer.street }
       div { simple_format "#{order.customer.place} #{order.customer.post_code}" }
     end if order.customer
 
-    panel "Products" do
+    panel "Produkty" do
       table_for order.products do |i|
         i.column('Name') do |product|
           link_to product.title, admin_product_path(product)
@@ -61,7 +61,7 @@ ActiveAdmin.register Order do
       div order.message
     end
 
-    panel "Invoice address" do
+    panel "Fakturační adresa" do
       div { simple_format order.invoice_address.name }
       div { simple_format order.invoice_address.street }
       div { simple_format order.invoice_address.place + ' ' +

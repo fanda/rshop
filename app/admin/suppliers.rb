@@ -1,5 +1,5 @@
 ActiveAdmin.register Supplier do
-  menu menu :parent => "Products"
+  menu false #:parent => "Produkty", :label => 'Dodavatelé'
 
   filter :created_at
 

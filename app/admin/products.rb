@@ -1,11 +1,11 @@
 # coding: utf-8
 ActiveAdmin.register Product do
-  menu :priority => 2
+  menu :priority => 2, :label => 'Produkty'
   #belongs_to :category
   scope :active
 
-  filter :category
-  filter :supplier
+  #filter :category
+  #filter :supplier
   filter :title
   filter :amount
   filter :price
@@ -31,7 +31,7 @@ ActiveAdmin.register Product do
       f.input :title
       f.input :description
       f.input :category
-      f.input :supplier
+      #f.input :supplier
     end
 
     f.inputs "Sklad" do

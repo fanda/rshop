@@ -3,8 +3,6 @@ class CatalogController < ApplicationController
 
   respond_to :xml
 
-  before_filter :right_side_content
-
   def index
     @pparam = :page
     @page = params[@pparam]||1
