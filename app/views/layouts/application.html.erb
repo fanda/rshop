@@ -39,15 +39,22 @@ s.parentNode.insertBefore(ga, s);
 		<div id="right_header_menu" class="right rpad">
       <%= render :partial => '/layouts/right_header_menu' %>
 		</div>
-    <div id="logo">Entoshop Matahari</div>
+    <div id="logo"><%= link_to 'Matahari', root_url %></div>
     <menu>
-      <li><%= link_to 'Úvodní stránka', root_url %></li>
-      <% @categories.each do |category| %>
-        <li>
+      <% @categories.each_with_index do |category, index| %>
+        <li class="category">
           <%= link_to category.title, catalog_path(category.friendly_id) %>
+          <% if category.children.any? %>
+            <ul>
+            <% category.children.each do |child| %>
+              <li class="subcategory">
+                <%= link_to child.title, catalog_path(child.friendly_id) %>
+              </li>
+            <% end %>
+            </ul>
+          <% end %>
         </li>
       <% end %>
-      <li><%= link_to 'Kontakt', contact_form_path %></li>
     </menu>
     <div class="out"></div>
   </header>
@@ -62,13 +69,13 @@ s.parentNode.insertBefore(ga, s);
         <li><%= link_to 'Kontakt', contact_form_path %></li>
         <li><%= link_to 'Nákupní košík', cart_path %></li>
       </menu>
-      <menu>
-        <% @categories.each do |category| %>
-        <li>
-          <%= link_to category.title, catalog_path(category.friendly_id) %>
-        </li>
-        <% end %>
-      </menu>
+      <% @categories.each_with_index do |category, index| %>
+        <%= tag('menu') if index % 3 == 0 %>
+          <li class="category">
+            <%= link_to category.title, catalog_path(category.friendly_id) %>
+          </li>
+        <%= "</menu>".html_safe if index % 3 == 2 %>
+      <% end %>
       <div class="out"></div>
     </section>
     <% end %>

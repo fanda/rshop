@@ -133,6 +133,10 @@ class Order < ActiveRecord::Base
     self
   end
 
+  def invoice_address?
+    self.invoice_address ? true : false
+  end
+
 protected
 
   def set_defaults

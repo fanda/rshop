@@ -1,7 +1,9 @@
 <div id="product">
   <h2><%= @product.title %></h2>
-  <%= image_tag @product.picture.url, :class => 'left' %>
-  <div class="left lpad">
+  <div id="product_image" class="left centr">
+    <%= link_to image_tag(@product.picture.url), @product.picture.url(:original), :rel => 'facebox', :title => 'Kliknutím zvětšíte' %>
+  </div>
+  <div id="product_about" class="left lpad">
     <span id="product_price"><%= format_price(@product.price) %></span>
     (s DPH)<br/>
     <p id="product_description"><%= @product.full_description %></p>

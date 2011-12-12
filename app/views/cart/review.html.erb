@@ -27,15 +27,14 @@
   </tbody>
 </table>
 
-<div>
+<div class="mform oform">
   <%= semantic_form_for @order, :url => order_path do |of| %>
     <%= of.hidden_field :id, :value => @order.id %>
 
-    <%= of.error_messages %>
+    <%#= of.error_messages %>
 
     <%= of.semantic_fields_for :customer do |f| %>
      <%= f.inputs :name => 'Kontakt' do %>
-      <p>Prosíme, vyplňte aspoň jeden následující kontaktní údaj.</p>
       <%= f.input :email %>
       <%= f.input :phone %>
      <% end %>
@@ -48,12 +47,14 @@
       <%= f.input :post_code, :size => 6, :maxlength => 6 %>
      <% end %>
     <% end %>
-
+    <br/>
     <%= render :partial => 'invoice_address_form',
                :locals => { :of => of } %>
-
-    <%= of.text_area :message, :value => @order.message, :cols => 40, :rows => 3 %>
-
+    <br/>
+    <%= of.inputs :name => 'Zpráva pro nás' do %>
+      <%= of.text_area :message, :value => @order.message, :cols => 40, :rows => 3 %>
+    <% end %>
+    <br/>
     <%= of.commit_button "Vytvořit objednávku" %>
   <% end %>
 </div>

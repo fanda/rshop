@@ -146,13 +146,6 @@ class CartController < ApplicationController
 
 protected
 
-  def invoice_address_filled?
-    params[:invoice_address].values.each do |v|
-      return true unless v.blank?
-    end
-    false
-  end
-
   def set_order
     if current_user
       @order = current_user.order_in_cart
