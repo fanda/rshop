@@ -8,6 +8,8 @@ class Category < ActiveRecord::Base
 
   friendly_id :title, :use => :slugged #, :approximate_ascii => true
 
+  attr_accessible :title, :description, :parent_id
+
   # attributes validation
   validates_presence_of :title
 
@@ -15,6 +17,6 @@ class Category < ActiveRecord::Base
   #cattr_reader :per_page
   paginates_per 20
   default_scope order('position ASC')
-  default_scope includes(:children)
+  default_scope :include => [:products]
 
 end

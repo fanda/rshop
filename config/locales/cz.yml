@@ -1,8 +1,11 @@
 cz:
-  will_paginate:
-    previous_label: "&#8592; Předchozí"
-    next_label: "Další &#8594;"
-    page_gap: "&hellip;"
+  views:
+    pagination:
+      previous: "&#8592; Předchozí"
+      next: "Další &#8594;"
+      last: "Poslední"
+      first: "První"
+      truncate: "&hellip;"
   number:
     # Used in number_with_delimiter()
     # These are also the defaults for 'currency', 'percentage', 'precision', and 'human'
@@ -247,3 +250,8 @@ cz:
       supply:
         sum: Cena celkem
         state: Stav
+      invoice_address:
+        name: Jméno
+        street: Ulice
+        place: Město
+        post_code: PSČ

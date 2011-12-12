@@ -3,6 +3,7 @@ cz:
     pagination:
       empty: Žádná položka
       one_page: Jedna strana
+      multiple: Mnoho stran
       one: "1"
     any: Cokoliv
     dashboard: Nástěnka

@@ -4,9 +4,9 @@ ActiveAdmin.register Product do
   #belongs_to :category
   scope :active
 
-  #filter :category
+  filter :category, :label => 'Kategorie'
   #filter :supplier
-  filter :title
+  #filter :title
   filter :amount
   filter :price
   filter :created_at

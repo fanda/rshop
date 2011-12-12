@@ -29,8 +29,15 @@ ActiveAdmin::Dashboards.build do
 
   section "Kategorie" do
     ul do
-      Category.all.collect do |c|
+      Category.roots.collect do |c|
         li link_to(c.title, admin_category_path(c))
+        if c.children.any?
+          ul do
+            c.children.each do |cc|
+              li link_to(cc.title, admin_category_path(cc))
+            end
+          end
+        end
       end
     end
     div do

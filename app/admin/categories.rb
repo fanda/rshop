@@ -24,7 +24,7 @@ ActiveAdmin.register Category do
     end
 
     f.inputs "Taxonomie" do
-      f.input :parent
+      f.input :parent, :collection => Category.roots
     end
     f.buttons
   end

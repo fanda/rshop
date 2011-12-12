@@ -4,7 +4,7 @@ class ProductController < ApplicationController
   def show
     if params[:catalog_id]
       @category = Category.find(params[:catalog_id])
-      @products = @category.products.active(:limit=>4) - [@product]
+      @products = @category.products.related - [@product]
       scope = @category.products
     else
       scope = Product

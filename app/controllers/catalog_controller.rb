@@ -15,7 +15,7 @@ class CatalogController < ApplicationController
       @meta_desc = 'Kategorie ' + @title
       @pparam = :page
       @page = params[@pparam]||1
-      @products = @category.products.active.page(@page).per(12)
+      @products = Product.all_active_in(@category).page(@page).per(12)
     else
       redirect_to '/404.html'
     end

@@ -55,7 +55,18 @@ class Product < ActiveRecord::Base
     includes(:category).where(:active => 1)
 
   scope :newest,
-    includes(:category).where(:active => 1).order('id DESC')
+    active.order('id DESC')
+
+  scope :related,
+    active.order("RAND()").limit(4)
+
+
+  def self.all_active_in(category=nil)
+    return scoped unless category
+    select("distinct(products.id), products.*").
+    joins(:category).where(:active => 1).
+    where(["categories.lft BETWEEN ? AND ?", category.lft, category.rgt])
+  end
 
   def before_new; true; end
 

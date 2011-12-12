@@ -2,9 +2,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :right_side_content
+  before_filter :right_side_content, :set_locale
 
 protected
+
+  def set_locale
+    I18n.default_locale = :cz
+    I18n.locale = :cz
+  end
 
   def dbg item
     @debug ||=[]
