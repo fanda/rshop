@@ -35,3 +35,6 @@ cz:
       paid: Zaplacené
       sent: Odeslané
       cart: Košíky
+      active: V nabídce
+      inactive: Nezobrazené
+      without_category: Bez kategorie

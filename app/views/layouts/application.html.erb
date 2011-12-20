@@ -39,7 +39,10 @@ s.parentNode.insertBefore(ga, s);
 		<div id="right_header_menu" class="right rpad">
       <%= render :partial => '/layouts/right_header_menu' %>
 		</div>
-    <div id="logo"><%= link_to 'Matahari', root_url %></div>
+    <div id="logo">
+      <%= link_to image_tag('matahari-logo.png'), root_url
+      %><%= link_to "Matahari", root_url %>
+    </div>
     <menu>
       <% @categories.each_with_index do |category, index| %>
         <li class="category">
@@ -66,15 +69,16 @@ s.parentNode.insertBefore(ga, s);
     <section id="categories">
       <menu>
         <li><%= link_to 'Úvodní stránka', root_url %></li>
+        <li><%= link_to 'Obchodní podmínky', '/obchodni-podminky' %></li>
         <li><%= link_to 'Kontakt', contact_form_path %></li>
         <li><%= link_to 'Nákupní košík', cart_path %></li>
       </menu>
       <% @categories.each_with_index do |category, index| %>
-        <%= tag('menu') if index % 3 == 0 %>
+        <%= tag('menu') if index % 4 == 0 %>
           <li class="category">
             <%= link_to category.title, catalog_path(category.friendly_id) %>
           </li>
-        <%= "</menu>".html_safe if index % 3 == 2 %>
+        <%= "</menu>".html_safe if index % 4 == 3 %>
       <% end %>
       <div class="out"></div>
     </section>

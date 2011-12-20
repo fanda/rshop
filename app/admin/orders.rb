@@ -27,12 +27,18 @@ ActiveAdmin.register Order do
         number_to_currency order.sum
       end
     end
-    column :created_at
-    column :state
+    column :created_at do |order|
+      date_in order
+    end
+    column :state do |order|
+      state_in order
+    end
+
+
+
     column :message do |order|
        order.message
     end
-    column :note
     default_actions
   end
 
@@ -50,11 +56,11 @@ ActiveAdmin.register Order do
 
     panel "Produkty" do
       table_for order.products do |i|
-        i.column('Name') do |product|
+        i.column('Název') do |product|
           link_to product.title, admin_product_path(product)
         end
         i.column :count
-        i.column :cost do |product|
+        i.column('Cena za všechny') do |product|
           number_to_currency product.cost
         end
       end
