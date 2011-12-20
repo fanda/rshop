@@ -22,6 +22,8 @@ class Order < ActiveRecord::Base
   has_one  :invoice_address, :dependent => :destroy
   accepts_nested_attributes_for :invoice_address
 
+  attr_readonly :state
+
   # attributes validation
   validates_presence_of :sum, :state
 

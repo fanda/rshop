@@ -3,6 +3,8 @@ ActiveAdmin.register Product do
   menu :priority => 2, :label => 'Produkty'
   #belongs_to :category
   scope :active
+  scope :inactive
+  scope :without_category
 
   filter :category, :label => 'Kategorie'
   #filter :supplier

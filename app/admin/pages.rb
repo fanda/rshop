@@ -16,7 +16,7 @@ ActiveAdmin.register Page do
   form do |f|
     f.inputs do
       f.input :title
-      f.input :body
+      f.input :body #, :as => :ckeditor
     end
     f.buttons
   end
@@ -25,7 +25,7 @@ ActiveAdmin.register Page do
     panel 'Details' do
       attributes_table_for page do
         row('Titulek') { link_to page.title, "/#{page.url}" }
-        row('Tělo stránky') { page.body }
+        row('Tělo stránky') { page.body.html_safe }
       end
     end
     active_admin_comments

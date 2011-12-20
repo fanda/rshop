@@ -30,8 +30,9 @@ class Product < ActiveRecord::Base
   :default_url => "/pictures/:style_default.png",
   :default_style => :large,
   :web_root => '/pictures/', :storage => :filesystem,
-                           :styles => { :square  => "150x150#",
-                                        :large => "400x400>"}
+                           :styles => { :square   => "150x150#",
+                                        :large    => "400x400>",
+                                        :original => "840x840>"}
   attr_protected :picture_file_name,
                  :picture_content_type,
                  :picture_size,
@@ -54,11 +55,17 @@ class Product < ActiveRecord::Base
   scope :active,
     includes(:category).where(:active => 1)
 
+  scope :inactive,
+    includes(:category).where(:active => 0)
+
   scope :newest,
     active.order('id DESC')
 
   scope :related,
     active.order("RAND()").limit(4)
+
+  scope :without_category,
+    where(:category_id => nil)
 
 
   def self.all_active_in(category=nil)
@@ -84,6 +91,10 @@ class Product < ActiveRecord::Base
 
   def active?
     self.active == ACTIVE
+  end
+
+  def make_active!
+    self.update_attribute :active, true
   end
 
 end

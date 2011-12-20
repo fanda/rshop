@@ -15,8 +15,9 @@ gem 'cocaine'
 gem 'acts_as_list'
 gem 'kaminari'
 gem "meta_search", '~> 1.1.1'
-gem 'formtastic', '< 2.0.0'
+gem 'formtastic', '>= 2.0.0'
 gem 'sass-rails', "~> 3.1.0"
+#gem "ckeditor", :git => 'git://github.com/pshoukry/ckeditor.git'
 
 group :assets do
   gem 'execjs'
@@ -25,7 +26,7 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'activeadmin', '~> 0.3.2'
+gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
 
 gem 'jquery-rails'
 

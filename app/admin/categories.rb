@@ -1,13 +1,13 @@
 # coding: utf-8
 ActiveAdmin.register Category do
-  menu false #:parent => "Produkty", :label => 'Kategorie'
+  menu :parent => "Produkty", :label => 'Kategorie'
 
   filter :parent
   #filter :title
 
   controller do
     def index
-      @categories = Category.page(params[:page]||1)
+      @categories = @base = Category.roots.page(params[:page]||1)
     end
   end
 

@@ -6,7 +6,7 @@ class CatalogController < ApplicationController
   def index
     @pparam = :page
     @page = params[@pparam]||1
-    @products = Product.active.page(@page).per(8)
+    @products = Product.active.order("RAND()").page(@page).per(8)
   end
 
   def show

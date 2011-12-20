@@ -228,13 +228,19 @@ cz:
       entry:
         quantity: Množství
       item:
-        price: Cena
-        amount: Kusů
+        name: Jméno
+        count: Počet kusů
+        cost: Cena za všechny
       order:
         sum: Cena celkem
         state: Stav
         message: Poznámka
+        created_at: Vytvořeno
+        customer: Zákazník
       product:
+        name: Jméno
+        count: Počet kusů
+        cost: Cena za všechny
         title: Název
         price: Cena
         description: Popis
