@@ -12,6 +12,7 @@ class Order < ActiveRecord::Base
   STATES = ['Košík', 'Přijato', 'Nezaplaceno', 'Zaplaceno', 'Odesláno', 'Hotovo']
 
   # relations
+  belongs_to :payment_method
   belongs_to :customer
   accepts_nested_attributes_for :customer
 
@@ -22,12 +23,13 @@ class Order < ActiveRecord::Base
   has_one  :invoice_address, :dependent => :destroy
   accepts_nested_attributes_for :invoice_address
 
-  attr_readonly :state
-
   # attributes validation
   validates_presence_of :sum, :state
+  validates_presence_of :payment_method_id, :unless => :cart?
 
   before_validation :set_defaults
+
+  attr_accessible :message, :payment_method_id
 
   # behavior of pagination
   cattr_reader :order_page
@@ -86,6 +88,12 @@ class Order < ActiveRecord::Base
     STATES[self.state]
   end
 
+  def pm_name
+    self.payment_method.name
+  rescue
+    ''
+  end
+
   def remove_all_items
     self.items.delete_all
     self.update_attribute :sum, 0
@@ -120,23 +128,55 @@ class Order < ActiveRecord::Base
     self.update_attribute :sum, sum
   end
 
-  def submit(message=nil)
-    self.message = message||''
+  def submit(params)
+    self.message = params[:message]
+    self.payment_method_id = params[:payment_method_id]
     self.state = WAITING
-    self.save
-    self.products { |p|
-      begin
-        p.increment! :counter
-        p.decrement! :amount if p.amount > 0
-      rescue
-        next
-      end
-     }
-    self
+    if self.save
+      self.products { |p|
+        begin
+          p.increment! :counter
+          p.decrement! :amount if p.amount > 0
+        rescue
+          next
+        end
+      }
+      true
+    else
+      self.state = CART
+      false
+    end
   end
 
   def invoice_address?
-    self.invoice_address ? true : false
+    self.invoice_address.id ? true : false
+  rescue
+    false
+  end
+
+  def update_invoice_address(attributes)
+    is_empty = true
+    attributes.each do |a|
+      unless a.blank?
+        is_empty = false
+        return
+      end
+    end
+    if invoice_address?
+      if is_empty
+        self.invoice_address.delete
+        self.build_invoice_address
+      else
+        self.invoice_address.update_attributes attributes
+      end
+    else
+      if is_empty
+        self.build_invoice_address
+      else
+        self.create_invoice_address(attributes)
+      end
+    end
+    return is_empty
   end
 
 protected

@@ -13,7 +13,8 @@ module ApplicationHelper
 
   def format_price(price)
     currency = "Kč"
-    price.to_s.gsub(/(\d)(?=\d{3}+(?:\.|$))(\d{3}\..*)?/,'\1 \2')+ " "+currency
+    #price.to_s.gsub(/(\d)(?=\d{3}+(?:\.|$))(\d{3}\..*)?/,'\1 \2')+ " "+currency
+    "#{price} #{currency}"
   end
 
   def format_invoice_price(price)
@@ -27,12 +28,13 @@ module ApplicationHelper
   def into_cart_image(product_id)
     link_to(
       "#{image_tag('shop/cart_add.png', :alt => 'do košíku')}".html_safe,
-      into_cart_path(product_id), :class=>'nodecor'
+      into_cart_path(product_id), :class=>'nodecor', :rel => 'nofollow'
     )
   end
 
   def into_cart_link(product_id)
-    link_to('Koupit', into_cart_path(product_id), :class=>'nodecor')
+    link_to('Koupit', into_cart_path(product_id),
+            :class=>'nodecor', :rel => 'nofollow')
   end
 
   def product_linked_title(product)
@@ -65,6 +67,5 @@ module ApplicationHelper
       'Dostupné během několika dnů'
     ]
   end
-
 
 end

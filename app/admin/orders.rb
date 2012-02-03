@@ -19,6 +19,13 @@ ActiveAdmin.register Order do
     # This will render app/views/admin/posts/comments.html.erb
   end
 
+  controller do
+    def destroy
+      flash[:error] = 'Objednávku nelze smazat'
+      redirect_to :action => :index
+    end
+  end
+
 
   index do
     column :customer
@@ -34,11 +41,14 @@ ActiveAdmin.register Order do
       state_in order
     end
 
-
+    column :payment_method do |order|
+      order.pm_name
+    end
 
     column :message do |order|
-       order.message
+      'Přečti zprávu' unless order.message.blank?
     end
+
     default_actions
   end
 
@@ -65,6 +75,11 @@ ActiveAdmin.register Order do
         end
       end
       div order.message
+    end
+
+    panel 'Způsob odběru' do
+      div {simple_format order.payment_method.name }
+      div {number_to_currency order.payment_method.cost }
     end
 
     panel "Fakturační adresa" do

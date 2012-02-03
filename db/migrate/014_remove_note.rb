@@ -1,4 +1,4 @@
-class AdminComments < ActiveRecord::Migration
+class RemoveNote < ActiveRecord::Migration
   def self.up
     remove_column :orders, :note
   end

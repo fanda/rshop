@@ -26,6 +26,14 @@ class PagesController < ApplicationController
     end
   end
 
+  def sitemap
+    @index = root_url.chomp('/')
+    @pages = Page.all
+    @products = Product.active
+    @categories = Category.all
+    render :layout => false
+  end
+
 protected
 
   def contact_form_data_valid?

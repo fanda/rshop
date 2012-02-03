@@ -36,9 +36,8 @@ Eshop::Application.routes.draw do
     match 'customer/bill/:id', :to => :bill, :as => 'customer_bill'
   end
 
-  match 'heureka.xml' => 'catalog#export',
-        :as => 'catalog_export',
-        :defaults=>{:format=>'xml'}
+  match 'sitemap.xml' => 'pages#sitemap',
+        :as => 'sitemap', :defaults=>{:format=>'xml'}
 
   match 'kontakt' => 'pages#contact', :as => 'contact_form'
 

@@ -40,4 +40,11 @@ jQuery(document).ready(function($) {
   $('#show_ia_form').click(function () {
     $('#ia_form').toggle(this.checked);
   });
+  $('#order_payment_method_input label').click(function () {
+    var v1 = $(this).text().match(/\d+/);
+    var v2 = $('#sum').text().match(/\d+/);
+    var rs = parseInt(v1) + parseInt(v2);
+    $('#total span').text(rs);
+    $('#total').show('slow');
+  });
 });

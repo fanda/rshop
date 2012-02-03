@@ -1,9 +1,8 @@
 <div id="ia_checkbox">
       <%= check_box_tag :show_ia_form, '', @order.invoice_address? %>
       <%= label_tag :show_ia_form, 'Fakturační adresa je jiná než adresa doručení', :style => 'width:70%' %>
-    </div>
-    <div id="ia_form"<%= ' class="dis"' unless @order.invoice_address? %>>
-
+</div>
+<div id="ia_form" class="<%= 'dis' unless @order.invoice_address? %>">
 <%= of.semantic_fields_for :invoice_address do |f| %>
   <%= f.inputs :name => 'Fakturační adresa' do %>
       <%= f.input :name %>
@@ -14,5 +13,4 @@
       <%= f.input :vat_number, :label => 'DIČ' %>
   <% end %>
 <% end %>
-    </div>
-
+</div>

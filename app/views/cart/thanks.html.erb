@@ -1,9 +1,16 @@
 <h1>Děkujeme za nákup v internetovém obchodě Matahari</h1>
 <br/>
 <% if @new_record %>
-  <h2>Registrován nový zákazník</h2>
+  <h2 class="success">Registrován nový zákazník</h2>
   Při příštím nákupu se můžete identifikovat pomocí údajů, které jsme
   Vám právě odeslali na Vaši emailovou adresu.
   <br/>
 <% end %>
-<p><strong>Pokračujte <%= link_to 'zpět do obchodu', root_url %>.</strong></p>
+
+<% unless @order.payment_method.info.blank? %>
+  <h2>Platební instrukce a dodání zboží</h2>
+  Zvolený způsob platby: <strong><%= @order.payment_method.name %></strong><br/>
+  <p><%= @order.payment_method.info %></p>
+  <br/>
+<% end %>
+<br/><p><strong>Pokračujte <%= link_to 'zpět do obchodu', root_url %>.</strong></p>

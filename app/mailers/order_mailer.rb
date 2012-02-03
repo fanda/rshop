@@ -1,6 +1,6 @@
 # coding: utf-8
 class OrderMailer < ActionMailer::Base
-  default :from => "kontakt@odorik.cz"
+  default :from => AppConfig.email
   add_template_helper(ApplicationHelper)
 
   def new_customer(customer, password)
@@ -8,7 +8,7 @@ class OrderMailer < ActionMailer::Base
     @pass = password
 
     mail(
-      :to => customer.email, 
+      :to => customer.email,
       :subject => 'Vytvoření zákaznického účtu v obchodě') do |format|
         format.text
     end
@@ -19,8 +19,8 @@ class OrderMailer < ActionMailer::Base
     @order = order
 
     mail(
-      :to => 'brno@odorik.cz', 
-      :subject => 'Nová objednávka v obchod.odorik.cz') do |format|
+      :to => AppConfig.email,
+      :subject => "Nová objednávka - #{AppConfig.long_title}") do |format|
         format.text
     end
   end
@@ -31,7 +31,7 @@ class OrderMailer < ActionMailer::Base
 
     mail(
       :to => customer.email,
-      :subject => 'Nová objednávka v obchod.odorik.cz') do |format|
+      :subject => "Nová objednávka - #{AppConfig.long_title}") do |format|
         format.text
     end
   end

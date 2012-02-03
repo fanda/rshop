@@ -11,8 +11,8 @@
   </thead>
   <tfoot>
     <tr>
-      <td colspan="3"><b>Celkem</b></td>
-      <td><b><%= format_price @order.sum %></b></td>
+      <td colspan="3"><b>Celkem za zboží</b></td>
+      <td><b id="sum"><%= format_price @order.sum %></b></td>
     </tr>
   </tfoot>
   <tbody id="order_review">
@@ -26,12 +26,19 @@
     <% end %>
   </tbody>
 </table>
+<div id="total" class="dis">
+  <h1>Cena celkem včetně poštovného: <span><%= @order.sum %></span> <%= AppConfig.currency %></h1>
+</div>
 
 <div class="mform oform">
   <%= semantic_form_for @order, :url => order_path do |of| %>
     <%= of.hidden_field :id, :value => @order.id %>
 
     <%#= of.error_messages %>
+    <%= of.inputs :name => 'Způsob platby' do %>
+      <%= of.input :payment_method, :as => :radio, :label => false,
+                   :collection => PaymentMethod.options %>
+    <% end %>
 
     <%= of.semantic_fields_for :customer do |f| %>
      <%= f.inputs :name => 'Kontakt' do %>
@@ -48,7 +55,7 @@
      <% end %>
     <% end %>
     <br/>
-    <%= render :partial => 'invoice_address_form',
+    <%#= render :partial => 'invoice_address_form',
                :locals => { :of => of } %>
     <br/>
     <%= of.inputs :name => 'Zpráva pro nás' do %>
