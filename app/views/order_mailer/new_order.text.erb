@@ -15,8 +15,8 @@ Zpráva od zákazníka:
 <%= @order.message %>
 
 Zboží:
-<% @order.items.each do |item| %>
-  <%= item.product.title %>, <%= item.amount %> kusů, <%= format_price item.price %> (<%= format_price item.product.price %> za kus)
+<% @order.products.each do |product| %>
+  <%= product.title %>, <%= product.count %> kusů, <%= format_price product.cost %> (<%= format_price product.price %> za kus)
 <% end %>
 
 Celková suma: <%= format_price @order.sum %>

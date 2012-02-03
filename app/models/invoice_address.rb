@@ -6,4 +6,8 @@ class InvoiceAddress < ActiveRecord::Base
 
   validates_format_of :post_code, :with => /^(|(\d{3,3}\s?\d{2,2}))$/i
 
+
+  def is_blank?
+  end
+
 end

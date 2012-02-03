@@ -119,25 +119,27 @@ class CartController < ApplicationController
         customer = Customer.create customer_attributes
         sign_in customer
         if customer.id?
-          #OrderMailer.new_customer(customer, password).deliver
+          OrderMailer.new_customer(customer, password).deliver
           @new_record = true
         end
       end
     end
 
-    params[:order].delete :customer_attributes
-    @order.update_attributes params[:order]
     @order.customer = customer
+    #@order.update_invoice_address params[:order][:invoice_address_attributes]
+    params[:order].delete :customer_attributes
+    #params[:order].delete :invoice_address_attributes
 
-    if @order.customer.errors.blank? and @order.errors.blank?
+    if @order.submit(params[:order]) and @order.customer.errors.blank?
+
       cookies.delete :cart
-      @order.submit
 
-      #OrderMailer.new_order(@customer, @order).deliver
-      #OrderMailer.review_order(@customer, @order).deliver
+      OrderMailer.new_order(customer, @order).deliver
+      OrderMailer.review_order(customer, @order).deliver
 
       render :action => 'thanks'
     else
+      #@order.build_invoice_address unless @order.invoice_address?
       @again = true
       @products = @order.products
       render :action => :review
@@ -158,6 +160,14 @@ protected
       # 604800 == 1 tyden
       cookies[:cart] = { :value => @order.id, :expires => Time.now + 604800 }
     end
+  end
+
+  def create_invoice_address_if_not_empty
+    attributes = :invoice_address_attributes
+    params[:order][attributes].each do |a|
+      return InvoiceAddress.new(params[:order][attributes]) unless a==''
+    end
+
   end
 
 end

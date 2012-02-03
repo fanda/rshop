@@ -1,6 +1,6 @@
 <table id="product_list">
 <% @products.each_with_index do |product, index| %>
-  <%= tag('tr', :valign=>'bottom') if index % 4 == 0 %>
+  <%= tag('tr', :valign=>'top') if index % 4 == 0 %>
     <td>
       <%= product_linked_image product %>
       <%= product_linked_title product %>

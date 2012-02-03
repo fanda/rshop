@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 13) do
+ActiveRecord::Schema.define(:version => 16) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -49,13 +49,15 @@ ActiveRecord::Schema.define(:version => 13) do
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "categories", :force => true do |t|
-    t.string  "title"
-    t.text    "description"
-    t.string  "slug"
-    t.integer "position"
-    t.integer "parent_id"
-    t.integer "lft"
-    t.integer "rgt"
+    t.string   "title"
+    t.text     "description"
+    t.string   "slug"
+    t.integer  "position"
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.datetime "updated_at"
+    t.datetime "created_at"
   end
 
   add_index "categories", ["parent_id"], :name => "index_categories_on_parent_id"
@@ -125,14 +127,15 @@ ActiveRecord::Schema.define(:version => 13) do
   create_table "orders", :force => true do |t|
     t.integer  "sum"
     t.text     "message"
-    t.text     "note"
     t.integer  "state"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "customer_id"
+    t.integer  "payment_method_id"
   end
 
   add_index "orders", ["customer_id"], :name => "index_orders_on_customer_id"
+  add_index "orders", ["payment_method_id"], :name => "index_orders_on_payment_method_id"
 
   create_table "pages", :force => true do |t|
     t.string   "title"
@@ -143,6 +146,14 @@ ActiveRecord::Schema.define(:version => 13) do
   end
 
   add_index "pages", ["url"], :name => "index_pages_on_url"
+
+  create_table "payment_methods", :force => true do |t|
+    t.string   "name"
+    t.integer  "cost"
+    t.text     "info"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "products", :force => true do |t|
     t.string   "title",                                            :null => false

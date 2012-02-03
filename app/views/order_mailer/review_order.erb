@@ -1,10 +1,6 @@
 Milý zákazníku,
 
-zasíláme Vám shrnutí Vaší objednávky v internetovém obchodě http://obchod.odorik.cz
-
-Objednávka však ještě není zcela závazná, proto ji zatím neplaťte. V co
-nejbližší době Vás budeme kontaktovat na telefonním čísle <%= @customer.phone %>
-a společně objednávku dokončíme po telefonu.
+zasíláme Vám shrnutí Vaší objednávky v internetovém obchodě <%= AppConfig.short_title %>.
 
 _______
 Shrnutí
@@ -12,11 +8,23 @@ Shrnutí
 Objednávka číslo: #<%= @order.id %>
 
 Zboží:
-<% @order.items.each do |item| %>
-  <%= item.product.title %>, <%= item.amount %> kusů, <%= format_price item.price %> (<%= format_price item.product.price %> za kus)
+<% @order.products.each do |product| %>
+  <%= product.title %>, <%= product.count %> kusů, <%= format_price product.cost %> (<%= format_price product.price %> za kus)
 <% end %>
 
-Celková suma: <%= format_price @order.sum %>
+Celkem za zboží: <%= format_price @order.sum %>
+
+Celková suma včetně dopravy: <%= format_price(@order.sum + @order.payment_method.cost)%>
 
 Vaše zpráva pro nás:
  <%= @order.message %>
+
+<% unless @order.payment_method.info.blank? %>
+_____________
+Způsob dodání
+
+<%= @order.payment_method.info %>
+<% end %>
+
+
+Děkujeme Vám a přejeme hezký den

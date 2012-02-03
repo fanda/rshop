@@ -8,12 +8,17 @@ ActiveAdmin::Dashboards.build do
       t.column("Status") { |order| status_tag (order.state_in_words), :error }
       t.column("Datum") { |order|
         div :class => 'date' do
-          order.created_at.to_date
+          date_in order
         end
       }
       t.column("Zákazník") { |order|
         if order.customer
           link_to order.customer.fullname, admin_customer_path(order.customer)
+        end
+      }
+      t.column("Doprava") { |order|
+        div :class => "pm" do
+          order.pm_name
         end
       }
       t.column("Cena celkem") { |order|
