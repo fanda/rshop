@@ -13,16 +13,10 @@ ActiveAdmin.register Page do
     default_actions
   end
 
-  form do |f|
-    f.inputs do
-      f.input :title
-      f.input :body #, :as => :ckeditor
-    end
-    f.buttons
-  end
+  form :partial => 'form'
 
   show do
-    panel 'Details' do
+    panel 'Detaily' do
       attributes_table_for page do
         row('Titulek') { link_to page.title, "/#{page.url}" }
         row('Tělo stránky') { page.body.html_safe }

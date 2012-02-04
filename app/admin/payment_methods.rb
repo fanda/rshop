@@ -2,12 +2,11 @@
 ActiveAdmin.register PaymentMethod do
   menu :priority => 7, :label => 'Způsoby platby'
 
-  filter :name
   filter :cost
 
   index do
     column :name
-    column :cost, :sortable => :price do |payment_method|
+    column :cost do |payment_method|
       div :class => "price" do
         number_to_currency payment_method.cost
       end

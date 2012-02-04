@@ -1,4 +1,5 @@
 # coding: utf-8
+require 'csv'
 ActiveAdmin.register Product do
   menu :priority => 2, :label => 'Produkty'
   #belongs_to :category
@@ -13,12 +14,32 @@ ActiveAdmin.register Product do
   filter :price
   filter :created_at
 
+  collection_action :import_csv, :method => :post do
+=begin
+    unless params[:file]
+      redirect_to :action => :index
+      return
+    end
+    csv_text = File.read(params[:file].read)
+    csv = CSV.parse(csv_text, :headers => true)
+    csv.each do |row|
+      row = row.to_hash.with_indifferent_access
+      flash[:notice] = row.inspect!
+      Product.create!(row.to_hash.symbolize_keys)
+    end
+=end
+    flash[:error] = "Ještě není implementováno"
+    redirect_to :action => :index
+  end
+
+  sidebar :import, :only => :index, :partial => "import"
+
   index do
     column :name do |product|
       link_to product.name, admin_product_path(product)
     end
     column :category
-    column :supplier
+   # column :supplier
     column :amount
     column :price, :sortable => :price do |product|
       div :class => "price" do
@@ -54,7 +75,7 @@ ActiveAdmin.register Product do
         row :title
         row :description
         row :category
-        row :supplier
+        #row :supplier
       end
     end
 

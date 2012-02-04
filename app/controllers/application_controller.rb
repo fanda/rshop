@@ -59,4 +59,20 @@ protected
     render :template => '/pages/notfound', :layout => 'error', :status => 404
   end
 
+protected
+
+  def ckeditor_filebrowser_scope(options = {})
+    super(
+     {:assetable_id => current_manager.id,
+      :assetable_type => 'Manager' }.merge(options)
+    )
+  end
+
+  def ckeditor_pictures_scope(options = {})
+    ckeditor_filebrowser_scope(options)
+  end
+
+  def ckeditor_attachment_files_scope(options = {})
+    ckeditor_filebrowser_scope(options)
+  end
 end

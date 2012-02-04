@@ -18,6 +18,7 @@ class Product < ActiveRecord::Base
       item = find_by_order_id order.id
     end
   end
+  accepts_nested_attributes_for :items
 
   has_many :supplies, :through => :entries
 

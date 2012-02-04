@@ -1,0 +1,5 @@
+<%= form_tag import_csv_admin_products_path, :multipart => true do  %>
+    <%= label_tag 'file', 'CSV soubory' %>
+    <%= file_field_tag 'file' %><br/><br/>
+    <%= submit_tag 'Import!' %>
+  <% end %>

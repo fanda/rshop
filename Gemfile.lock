@@ -14,6 +14,14 @@ GIT
       rails (>= 3.0.0)
       sass (>= 3.1.0)
 
+GIT
+  remote: git://github.com/pshoukry/ckeditor.git
+  revision: 76a579fd389e8826a0b30b47530eeb7ff99cdb63
+  specs:
+    ckeditor (3.6.3)
+      mime-types (~> 1.16)
+      orm_adapter (~> 0.0.5)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -56,6 +64,7 @@ GEM
     bullet (2.0.1)
       uniform_notifier (~> 1.0.0)
     cocaine (0.2.0)
+    cocoon (1.0.15)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
       railties (~> 3.1.0)
@@ -173,7 +182,9 @@ DEPENDENCIES
   acts_as_list
   awesome_nested_set (~> 2.0.0)
   bullet
+  ckeditor!
   cocaine
+  cocoon
   coffee-rails (~> 3.1.0)
   execjs
   formtastic (>= 2.0.0)
