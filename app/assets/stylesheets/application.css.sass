@@ -5,58 +5,40 @@
 @import 'facebox'
 @import 'formtastic'
 
-$drub: #7c2422
-$lrub: #ae3232
-$dred: #c41a27
-$lred: #b2401c
-$ddora: #d58600
-$dora: #f9a61a
-$lora: #fbb91c
-$dyel: #ff6c00
-$lyel: #ffeea6
-
 $brad: 5px
 
-@font-face
-  font-family: 'samarn'
-  src: url('samarn.ttf') format('truetype')
+$bgd1: #eee
+$bgd2: #777
+$tec1: #000
+$tec2: #999
 
 *
   padding: 0
   margin: 0
 
 html, body
-  color: $ddora
-  background: white image-url("main_bg.gif")
+  color: $tec1
+  background: $bgd1
   font-family: Verdana, Tahoma, Arial, sans-serif
 p
-  margin: 5px 0
+  margin: 1ex 0
 a
-  text-decoration: none
-  color: $ddora
+  text-decoration: underline
+  color: $tec2
   &:hover
-    text-decoration: underline
-    border: 0
-    color: $lrub !important
+    text-decoration: none
 img
   border: 0
   vertical-align: middle
 h1, h2, h3, h4, h5, h6, ul, ol, dl, pre, blockquote, form, fieldset, address
-  margin: 20px 0 0 0
+  margin: 1em 0 0 0
 h1
-  font-size: 20px
-  text-align: center
-h2
-  color: $lora
   text-align: left
-  margin: 0
-  padding: 1ex 0 0 0
-h4
+h2
+  text-align: left
+h3
   margin: 0px
-  padding: 0px
   text-transform: uppercase
-  font-size: 15px
-  color: #000
 fieldset
   padding: 10px
 li, dd, blockquote
@@ -66,14 +48,16 @@ li, dd, blockquote
   float: right
 .left
   float: left
-.leftpad, .lpad
+.lpad
   padding-left: 2em
 .rpad
-  padding-right: 3em
-.centr
+  padding-right: 2em
+.tac
   text-align: center
 .tar
   text-align: right
+.taj
+  text-align: justify
 .out, .clearfix
   clear: both
 .dis, .toc
@@ -82,6 +66,7 @@ li, dd, blockquote
   padding: 1ex 0
 .nodecor
   text-decoration: none
+  border: none
 .nolist
   list-style: none
 .col140width
@@ -94,24 +79,25 @@ li, dd, blockquote
   width: 40px
 
 #wrap
-  background: white
   width: 900px
   min-height: 400px
   padding: 1em 0em
-  margin: 4em auto 1em auto
-  border: 1px solid $lyel
-  border-radius: 5px
+  margin: 1em auto
+  border: 1px solid $tec2
+  border-radius: $brad
 
 header
   width: 100%
   z-index: 1
+  #logo
+    font-size: 60px
+    padding: 10px 30px 20px
   > div
     display: inline-block
   a
-    color: $ddora
+    color: $tec2
   menu
     z-index: 2
-    background: $lyel
     padding: 0 1ex
     font-size: 95%
     position: relative
@@ -129,79 +115,55 @@ header
         position: absolute
         left: -5px
         top: 6px
-        background: $lyel
-        border-radius: 2px
-        -webkit-box-shadow: 3px 3px 3px $lora
-        -moz-box-shadow: 3px 3px 3px $lora
-        box-shadow: 3px 3px 3px $lora
+        background: $bgd2
         li
           display: block
       &:hover
         ul
           display: block
-  #logo
-    font-size: 60px
-    padding: 10px 30px 20px
-    width: 45%
-    font-family: 'samarn'
-    a
-      text-decoration: none
-      color: $dora!important
-      &:hover
-        color: $dora!important
 footer
   text-align: center
 article
   position: relative
-  padding: 0 2em
+  padding: 0 2ex
   section
     display: block
   #content
     p
       text-align: justify
-  #categories
-    padding: 1em 0 7ex 0
-    margin-top: 2em
-    a
-      color: $ddora
-    menu
-      padding: 0 25px
-      height: 50px
-      float: left
-      li
-        list-style: none
+#categories
+  padding: 1em 0 7ex 0
+  margin-top: 2em
+  menu
+    padding: 0 25px
+    height: 50px
+    float: left
+    li
+      list-style: none
 
 table#product_list
   text-align: center
+  border-collapse: separate
+  border-spacing: 20px 25px
+  td
+    width: 200px
+    padding: 1em
+    margin: 1ex
+    img
+      margin-bottom: 7px
   .product_image
     display: block
     margin: auto
   .product_title
     font-weight: bold
-  td
-    width: 200px
-    padding: 1em
-    margin: 1ex
-    background: $lyel
-    box-shadow: 3px 3px 3px $lora
-    color: $dyel
-    border-radius: 2px
-    a
-      color: $dyel
-    img
-      margin-bottom: 7px
   .product_info
     padding-top: 1ex
     strong
       padding-right: 1em
       font-size: 20px
-  border-collapse: separate
-  border-spacing: 20px 25px
 
 #product
-  color: black
   h2
-    color: black
     font-weight: 100
     font-size: 26px
     margin-bottom: 10px
@@ -211,6 +173,7 @@ table#product_list
     width: 400px
   #product_image
     cursor: pointer
+
 #related_products
   a
     text-decoration: underline
@@ -220,13 +183,12 @@ table#product_list
   font-weight: bold
   font-size: 18px
   a
-    border: 1px solid $dora
+    border: 1px solid $tec2
     margin: 3px
     padding: 3px
     border-radius: $brad
     &:hover
       text-decoration: none
-      border: 1px solid $lrub
 
 #contact_info
   width: 39%
@@ -241,17 +203,11 @@ table#product_list
     display: block
     width: 95%
     margin-bottom: 0.7em
-    border: solid 1px $dora
-    border-radius: $brad
   label
     font-size: 14px
     font-weight: bold
-    color: $lora
   input[type="submit"]
     width: auto
-    border: solid 1px $dyel
-    border-radius: $brad
-    color: $lora
     padding: 3px
   input[type="checkbox"], input[type="radio"]
     width: 18px
@@ -270,14 +226,10 @@ table#product_list
   label
     text-align: right
   fieldset
-    border: solid 1px $lyel !important
-    border-radius: $brad !important
     padding: 3px !important
   legend
-    color: $dora !important
     font-weight: bold
   .error
-    border-radius: $brad
     .inline-errors
       margin-top: 0
     label
@@ -290,12 +242,6 @@ table#product_list
       margin-left: 125px
     .choices
       border: none
-
-
-
-/*
- *       CHYBY
-
 #errorExplanation, #success
   padding: 0
 
@@ -356,18 +302,17 @@ td.amount
   margin: 0
 
 .help
-  color: $dyel
-  text-shadow: 1px 0 0 $lyel
+  color: $tec2
+  text-shadow: 1px 0 0 $bgd2
   font-weight: bold
 
 
 table.listing
   border-bottom: 1px solid #ABAE75
-  background: $lyel
   width: 100%
   padding: 0
   margin: 0
-  border: 1px solid $lyel
+  border: 1px solid $bgd2
   border-top-left-radius: $brad
   border-top-right-radius: $brad
   -moz-border-radius-topleft: $brad
@@ -383,17 +328,14 @@ table.listing
       text-transform: uppercase
     border: 1px solid #fff
     text-align: center
-    /*background:#9097A9;
-    color: $dyel
+    color: $bgd2
     padding: 5px
   td
     border: 1px solid #fff
     text-align: center
     background: #fff
-    color: $dyel
+    color: $tec2
     padding: 3px 5px
-    a
-      color: $dyel
   .white td
     background: #fff
   tr:nth-child(odd) td
@@ -431,7 +373,7 @@ table.listing
   .disabled
     color: #555
   .current, a:hover
-    color: $dyel
+    color: $tec2
     font-style: italic
   em
     text-decoration: none

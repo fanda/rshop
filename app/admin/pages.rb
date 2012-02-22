@@ -18,7 +18,13 @@ ActiveAdmin.register Page do
   show do
     panel 'Detaily' do
       attributes_table_for page do
-        row('Titulek') { link_to page.title, "/#{page.url}" }
+        row('Titulek') {
+          if page.url
+            link_to page.title, "/#{page.url}"
+          else
+            page.title
+          end
+        }
         row('Tělo stránky') { page.body.html_safe }
       end
     end

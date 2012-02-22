@@ -4,9 +4,12 @@ development:
   long_title: 'Eshop long title'
   short_title: Eshop short
   email: 'fandisek@gmail.com'
+  ga_id: xxx
 production:
   locales: ['cz']
   currency: 'Kč'
   long_title: 'Eshop long title'
   short_title: Eshop short
   email: 'fandisek@gmail.com'
+  ga_id: xxx
+

@@ -19,6 +19,7 @@ cz:
     edit: Úpravit
     delete: Odstranit
     new_model: Vytvořit
+    create_model: Vytvořit
     edit_model: Upravit
     update_model: Potvrdit
     delete_model: Odstranit
@@ -48,3 +49,7 @@ cz:
       without_category: Bez kategorie
     has_many_new: Přidat položku
     has_many_delete: Odstranit položku
+    comments:
+      title_content: Komentáře
+      no_comments_yet: Dosud zde nejsou žádné komentáře
+      add: Vložit komentář

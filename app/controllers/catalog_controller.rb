@@ -7,6 +7,7 @@ class CatalogController < ApplicationController
     @pparam = :page
     @page = params[@pparam]||1
     @products = Product.active.order("RAND()").page(@page).per(8)
+    @text = Page.find(Page::INDEX_PAGE_TEXT_ID)
   end
 
   def show

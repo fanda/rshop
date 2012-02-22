@@ -35,13 +35,11 @@ cz:
       confirmed: 'Účet byl aktivován. Nyní jste přihlášen(a).'
     registrations:
       signed_up: 'Vítejte. Registrace proběhla bez problémů.'
-      inactive_signed_up: 'Registrace proběhla bez problémů, ale nemůžete se ještě přihlásit. Důvod: %{reason}.'
       updated: 'Účet byl aktualizován.'
       destroyed: 'Na shledanou! Váš účet byl zrušen.'
-      reasons:
-        inactive: 'neaktivní účet'
-        unconfirmed: 'nepotrvzený účet'
-        locked: 'uzamčený účet'
+      signed_up_but_unconfirmed: 'A message with a confirmation link has been sent to your email address. Please open the link to activate your account.'
+      signed_up_but_inactive: 'You have signed up successfully. However, we could not sign you in because your account is not yet activated.'
+      signed_up_but_locked: 'You have signed up successfully. However, we could not sign you in because your account is locked.'
     unlocks:
       send_instructions: 'Během krátké chvíle Vám bude doručen email, kde se dozvíte, jak odemčít svůj účet.'
       unlocked: 'Váš účet byl odemčen. Nyní jste přihlášen(a).'

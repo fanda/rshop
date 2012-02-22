@@ -17,7 +17,7 @@ window._auth_token = "<%= form_authenticity_token %>";
 <meta name="description" content="<%= h(truncate(strip_tags(@meta_desc), :lenght=>300)) %>"/>
 <script type="text/javascript">
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-28036445-1']);
+  _gaq.push(['_setAccount', '<%= AppConfig.ga_id %>']);
   _gaq.push(['_setDomainName', 'none']);
   _gaq.push(['_setAllowLinker', true]);
   _gaq.push(['_trackPageview']);
@@ -40,8 +40,7 @@ window._auth_token = "<%= form_authenticity_token %>";
       <%= render :partial => '/layouts/right_header_menu' %>
 		</div>
     <div id="logo">
-      <%= link_to image_tag('matahari-logo.png'), root_url
-      %><%= link_to "Matahari", root_url %>
+      <%= link_to AppConfig.short_title, root_url %>
     </div>
     <menu>
       <% @categories.each_with_index do |category, index| %>
@@ -85,10 +84,9 @@ window._auth_token = "<%= form_authenticity_token %>";
     <% end %>
   </article>
 </div>
-
-	<footer>
-    &copy; <%= Time.now.year %> <%= link_to 'Etnoshop Matahari', root_url %>
-  </footer>
+<footer>
+  &copy; <%= Time.now.year %> <%= link_to AppConfig.long_title, root_url %>
+</footer>
 <% if Rails.env.development? %>
   <div class="out" style="text-align:left">
     <%= debug @debug %>

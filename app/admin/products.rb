@@ -2,37 +2,45 @@
 require 'csv'
 ActiveAdmin.register Product do
   menu :priority => 2, :label => 'Produkty'
-  #belongs_to :category
+
   scope :active
   scope :inactive
   scope :without_category
 
-  filter :category, :label => 'Kategorie'
+  filter :category
   #filter :supplier
-  #filter :title
+  filter :title, :label => 'Název'
   filter :amount
   filter :price
   filter :created_at
 
   collection_action :import_csv, :method => :post do
-=begin
     unless params[:file]
       redirect_to :action => :index
       return
     end
-    csv_text = File.read(params[:file].read)
-    csv = CSV.parse(csv_text, :headers => true)
-    csv.each do |row|
-      row = row.to_hash.with_indifferent_access
-      flash[:notice] = row.inspect!
-      Product.create!(row.to_hash.symbolize_keys)
+    counter = 1
+    begin
+      csv = CSV.parse(params[:file].read, :headers => true)
+      csv.each do |row|
+        row = row.to_hash.with_indifferent_access
+        unless Product.find_by_title(row['title'])
+          Product.create!(row.to_hash.symbolize_keys)
+        end
+        counter += 1
+      end
+      flash[:notice] = 'Produkty importovány'
+    rescue
+      flash[:error] = "Chyba při importu na #{counter}. řádku"
     end
-=end
-    flash[:error] = "Ještě není implementováno"
     redirect_to :action => :index
   end
 
   sidebar :import, :only => :index, :partial => "import"
+
+  action_item :only => :show do
+    link_to "Vytvořit", new_admin_product_path
+  end
 
   index do
     column :name do |product|
@@ -84,7 +92,7 @@ ActiveAdmin.register Product do
         row :amount
         row :price
         row :updated_at
-        row 'Počet objednávek' do
+        row 'Počet prodaných kusů' do
           product.counter
         end
         row 'V katalogu' do

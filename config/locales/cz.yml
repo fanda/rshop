@@ -122,9 +122,9 @@ cz:
 
   time:
     formats:
-      default: "%d. %B %Y %H:%M"
-      short: "%e. %B %H:%M"
-      long: "%A %d. %B %Y %H:%M %z"
+      default: "%d. %B %Y, %H:%M"
+      short: "%e. %B, %H:%M"
+      long: "%A %d. %B %Y, %H:%M"
     am: dopoledne
     pm: odpoledne
 
@@ -253,6 +253,7 @@ cz:
         description: Popis
         amount: Skladem
         created_at: Datum vytvoření
+        updated_at: Poslední úprava
         category: Kategorie
       supplier:
         name: Jméno
