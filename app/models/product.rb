@@ -18,6 +18,7 @@ class Product < ActiveRecord::Base
       item = find_by_order_id order.id
     end
   end
+  accepts_nested_attributes_for :items
 
   has_many :supplies, :through => :entries
 
@@ -44,8 +45,10 @@ class Product < ActiveRecord::Base
   validates_numericality_of :price,  :greater_than_or_equal_to => 0
   #validates_numericality_of :amount, :greater_than_or_equal_to => 0
 
-  validates_attachment_content_type :picture, :unless => :before_new,
+  validates_attachment_content_type :picture,
   :content_type => ['image/jpeg', 'image/pjpeg', 'image/jpg',  'image/png']
+
+  before_create :check_picture_url
 
   # behavior of pagination
   cattr_reader :per_page
@@ -96,5 +99,12 @@ class Product < ActiveRecord::Base
   def make_active!
     self.update_attribute :active, true
   end
+
+protected
+
+  def check_picture_url
+    picture_from_url @picture_url if @picture_url
+  end
+
 
 end

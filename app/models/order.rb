@@ -4,12 +4,13 @@ class Order < ActiveRecord::Base
 
   CART      = 0
   WAITING   = 1
-  NOT_PAID  = 3
-  PAID      = 4
-  SENT      = 5
-  FINISHED  = 6
+  NOT_PAID  = 2
+  PAID      = 3
+  SENT      = 4
+  FINISHED  = 5
 
   STATES = ['Košík', 'Přijato', 'Nezaplaceno', 'Zaplaceno', 'Odesláno', 'Hotovo']
+  SYM_STATES = [:cart, :waiting, :not_paid, :paid, :sent, :finished]
 
   # relations
   belongs_to :payment_method
@@ -17,8 +18,10 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :customer
 
   has_many :items, :include => :product
-  has_many :products, :through => :items,
+  accepts_nested_attributes_for :items, :allow_destroy => true
+  has_many :products, :through => :items, :uniq => true,
            :select => 'products.*, items.count, items.cost'
+  accepts_nested_attributes_for :products
   has_many :invoices
   has_one  :invoice_address, :dependent => :destroy
   accepts_nested_attributes_for :invoice_address
@@ -29,7 +32,7 @@ class Order < ActiveRecord::Base
 
   before_validation :set_defaults
 
-  attr_accessible :message, :payment_method_id
+  attr_accessible :message, :payment_method_id, :items_attributes
 
   # behavior of pagination
   cattr_reader :order_page
@@ -67,6 +70,10 @@ class Order < ActiveRecord::Base
     self.state == CART
   end
 
+  def finished?
+    self.state == FINISHED
+  end
+
   def self.state_options
     options = []
     STATES.each_with_index { |s,i| options << [s, i] if i >0 }
@@ -86,6 +93,18 @@ class Order < ActiveRecord::Base
 
   def state_in_words
     STATES[self.state]
+  end
+
+  def next_state
+    STATES[self.state < FINISHED ? self.state+1 : FINISHED]
+  end
+
+  def set_next_state
+    self.increment! :state if self.state < FINISHED
+  end
+
+  def state_as_symbol
+    SYM_STATES[self.state]
   end
 
   def pm_name

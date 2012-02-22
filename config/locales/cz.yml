@@ -122,9 +122,9 @@ cz:
 
   time:
     formats:
-      default: "%d. %B %Y %H:%M"
-      short: "%e. %B %H:%M"
-      long: "%A %d. %B %Y %H:%M %z"
+      default: "%d. %B %Y, %H:%M"
+      short: "%e. %B, %H:%M"
+      long: "%A %d. %B %Y, %H:%M"
     am: dopoledne
     pm: odpoledne
 
@@ -211,6 +211,11 @@ cz:
           one: "Při zpracování došlo k chybě"
           other: "Při zpracování došlo k chybám"
         body: "Akce se nezdařila"
+    models:
+      category: Kategorie
+      comment:
+        one: Poznámka
+        other: Poznámky
     attributes:
       category:
         title: Název
@@ -218,13 +223,14 @@ cz:
       customer:
         name: Jméno
         surname: Příjmení
+        fullname: Celé jméno
         password: Heslo
         password_confirmation: Potvrzení hesla
-        email: "E-mail"
         phone: Telefon
         street: Ulice
         place: Město
         post_code: PSČ
+        orders: Objednávky
       entry:
         quantity: Množství
       item:
@@ -235,8 +241,9 @@ cz:
         sum: Cena celkem
         state: Stav
         message: Poznámka
-        created_at: Vytvořeno
+        created_at: Datum vytvoření
         customer: Zákazník
+        payment_method: Způsob platby
       product:
         name: Jméno
         count: Počet kusů
@@ -245,6 +252,9 @@ cz:
         price: Cena
         description: Popis
         amount: Skladem
+        created_at: Datum vytvoření
+        updated_at: Poslední úprava
+        category: Kategorie
       supplier:
         name: Jméno
         email: "E-mail"
@@ -261,3 +271,12 @@ cz:
         street: Ulice
         place: Město
         post_code: PSČ
+      page:
+        title: Titulek
+        body: Tělo stránky
+      payment_method:
+        name: Název
+        cost: Cena
+      admin_user:
+        name: Jméno
+        phone: Telefon

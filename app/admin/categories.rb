@@ -2,18 +2,39 @@
 ActiveAdmin.register Category do
   menu :parent => "Produkty", :label => 'Kategorie'
 
-  filter :parent
-  #filter :title
+  filter :parent, :label => 'Nadkategorie'
+  #filter :title, :label => 'Název'
 
-  controller do
-    def index
-      @categories = @base = Category.roots.page(params[:page]||1)
-    end
+  collection_action :index, :method => :get do
+      scope = Category.scoped
+
+      @collection = scope.page() if params[:q].blank?
+      @search = scope.metasearch(clean_search_params(params[:q]))
+
+      respond_to do |format|
+        format.html {
+          render "active_admin/resource/index"
+        }
+      end
   end
 
-  index do
-    column :title
+  action_item do
+    link_to "View Site", "/"
+  end
 
+  #actions :all, :except => :new
+
+  index do
+    column :title do |c|
+      if c.root?
+        link_to(c.title, admin_category_path(c))
+      else
+        c.parent.title
+      end
+    end
+    column 'Podkategorie' do |c|
+      link_to(c.title, admin_category_path(c)) unless c.root?
+    end
     default_actions
   end
 

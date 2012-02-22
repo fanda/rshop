@@ -1,0 +1,20 @@
+<h1 id="product_import">Importování produktů z CSV souboru</h1>
+<p>
+  Import produktů lze provést přes soubory typu <abbr title="Comma Separated Values">CSV</abbr>, které musí mít následující formát:
+  <ul>
+    <li>
+      první řádek (hlavička): <b>title,description,price,amount,picture_url</b>
+    </li>
+    <li>každý další řádek ~ 1 produkt</li>
+    <li>parametry odděné čárkou: <b>název,popis,cena,množství na skladě,URL obrázku</b> (viz hlavička)</li>
+    <li>parametry <i>cena,množství na skladě</i> musí být čísla větší než nula</li>
+    <li>parametr <i>URL obrázku</i> je obrázek v Internetu; obrázky z disku hromadně importovat nelze</li>
+    <li>parametr <i>URL obrázku</i> není povinný, ale pokud je vynechán tak, řádek musí končit čárkou
+  </ul>
+  <h2>Příklad souboru</h2>
+  <pre>
+    title,description,price,amount,picture_url
+    tričko,modré balvněné tričko,90,10,http://www.clker.com/cliparts/b/z/3/v/T/W/blue-shirt-md.png
+    kus oblečení,tmavý,123,12,
+  </pre>
+</p>

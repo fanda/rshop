@@ -5,7 +5,12 @@ ActiveAdmin::Dashboards.build do
 
   section "Nevyřízené objednávky" do
     table_for Order.waiting do |t|
-      t.column("Status") { |order| status_tag (order.state_in_words), :error }
+      t.column("Status") { |order|
+        status_tag order.state_in_words, order.state_as_symbol
+        span :class => 'cos' do
+          link_to "&rarr; #{order.next_state}".html_safe, nextstate_admin_order_path(order), :remote => true
+        end
+      }
       t.column("Datum") { |order|
         div :class => 'date' do
           date_in order
@@ -26,29 +31,12 @@ ActiveAdmin::Dashboards.build do
           number_to_currency order.sum
         end
       }
-      t.column("Detail") { |order|
-        link_to 'View', admin_order_path(order)
+      t.column("") { |order|
+        link_to 'Podrobnosti', admin_order_path(order)
       }
     end
   end
 
-  section "Kategorie" do
-    ul do
-      Category.roots.collect do |c|
-        li link_to(c.title, admin_category_path(c))
-        if c.children.any?
-          ul do
-            c.children.each do |cc|
-              li link_to(cc.title, admin_category_path(cc))
-            end
-          end
-        end
-      end
-    end
-    div do
-      link_to('Nová kategorie', new_admin_category_path)
-    end
-  end
 
   #section "Recent Posts" do
   #     ul do

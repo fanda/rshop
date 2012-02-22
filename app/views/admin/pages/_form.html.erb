@@ -1,0 +1,13 @@
+<%= semantic_form_for @page, :url => admin_page_path(@page)  do |f| %>
+
+  <%= f.inputs do %>
+    <%= f.input :title  %>
+    <%= f.input :body#, :as => :ckeditor
+    %>
+  <% end %>
+
+  <%= f.buttons do %>
+    <%= f.commit_button :button_html => {:class => "btn"} %>
+  <% end %>
+
+<% end %>

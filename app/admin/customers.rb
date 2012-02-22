@@ -7,7 +7,7 @@ ActiveAdmin.register Customer do
   filter :email, :label => 'Email'
   filter :phone, :label => 'Telefon'
   filter :created_at, :label => 'Datum registrace'
-  filter :street, :label => 'Ulice'
+  filter :street
   filter :place, :label => 'Obec'
   filter :post_code, :label => 'PSČ'
 
@@ -15,8 +15,8 @@ ActiveAdmin.register Customer do
     column :name
     column :phone
     column :email
-    column "Orders" do |customer|
-      customer.orders.count
+    column :orders do |customer|
+      customer.orders.size.to_s
     end
     default_actions
   end
@@ -39,17 +39,16 @@ ActiveAdmin.register Customer do
   show do
     panel "Detaily" do
       attributes_table_for customer do
-        row('Name') { customer.name }
-        row('Surname') { customer.surname }
-        row('Phone') { customer.phone }
-        row('Email') { customer.email }
+        row(:fullname) { customer.fullname }
+        row(:phone) { customer.phone }
+        row(:email) { customer.email }
       end
     end
     panel "Adresa" do
       attributes_table_for customer do
-        row('Street') { customer.street }
-        row('Place') { customer.place }
-        row('Post code') { customer.post_code }
+        row(:street) { customer.street }
+        row(:place) { customer.place }
+        row(:post_code) { customer.post_code }
       end
     end
     active_admin_comments

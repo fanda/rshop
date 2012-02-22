@@ -1,18 +1,27 @@
 cz:
   active_admin:
+    sidebars:
+      filters: Filtry
     pagination:
       empty: Žádná položka
-      one_page: Jedna strana
-      multiple: Mnoho stran
-      one: "1"
+      one_page: Zobrazeno vše
+      multiple: Zobrazeno <b>%{from}&nbsp;-&nbsp;%{to}</b> z <b>%{total}</b> celkem
+      one: "1 položka"
+      entry:
+        one: položka
+        other: položky
     any: Cokoliv
     dashboard: Nástěnka
+    products: Produkty
+    comments: Komentáře
     logout: Odhlásit
     view: Podrobnosti
-    edit: Úpravy
-    delete: Odstranění
+    edit: Úpravit
+    delete: Odstranit
     new_model: Vytvořit
+    create_model: Vytvořit
     edit_model: Upravit
+    update_model: Potvrdit
     delete_model: Odstranit
     empty: Prázdné
     details: Podrobnosti
@@ -38,3 +47,9 @@ cz:
       active: V nabídce
       inactive: Nezobrazené
       without_category: Bez kategorie
+    has_many_new: Přidat položku
+    has_many_delete: Odstranit položku
+    comments:
+      title_content: Komentáře
+      no_comments_yet: Dosud zde nejsou žádné komentáře
+      add: Vložit komentář

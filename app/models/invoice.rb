@@ -4,11 +4,11 @@ class Invoice < ActiveRecord::Base
   # relations
   belongs_to :order
 
-  NORMAL   = 0  
+  NORMAL   = 0
   STORNO   = 1
   PROFORMA = 2
 
-  FORMAS = [ 'Daňový doklad', 'Storno doklad', 'Proforma' ]
+  FORMAS = [ 'Daňový doklad', 'Storno', 'Proforma' ]
 
   attr :sum
 
@@ -19,9 +19,9 @@ class Invoice < ActiveRecord::Base
   def template_name
     case self.forma
       when NORMAL
-        '/invoice/odd_zbozi'
+        '/invoice/normal'
       when STORNO
-        '/invoice/odd_storno'
+        '/invoice/storno'
       when PROFORMA
         '/invoice/proforma'
       else
@@ -60,5 +60,5 @@ class Invoice < ActiveRecord::Base
   def self.count_storno
     Invoice.count(:conditions => ['forma = ?', STORNO])
   end
-  
+
 end

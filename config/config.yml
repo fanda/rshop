@@ -1,12 +1,15 @@
 development:
   locales: ['cz']
   currency: 'Kč'
-  long_title: 'Ethnoshop Matahari'
-  short_title: Matahari
+  long_title: 'Eshop long title'
+  short_title: Eshop short
   email: 'fandisek@gmail.com'
+  ga_id: xxx
 production:
   locales: ['cz']
   currency: 'Kč'
-  long_title: 'Ethnoshop Matahari'
-  short_title: Matahari
-  email: 'matahari.decoration@gmail.com'
+  long_title: 'Eshop long title'
+  short_title: Eshop short
+  email: 'fandisek@gmail.com'
+  ga_id: xxx
+

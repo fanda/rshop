@@ -1,0 +1,4 @@
+$('#order_<%= @order.id %> .status').replaceWith('<%= content_tag :span, @order.state_in_words, :class => "status" %>');
+$('#order_<%= @order.id %> .status').addClass('<%= @order.state_as_symbol %>');
+$('#order_<%= @order.id %> .cos a').replaceWith('<%= link_to("&rarr; #{@order.next_state}".html_safe, nextstate_admin_order_path(@order)) unless @order.finished? %>');
+clickableCosA();
