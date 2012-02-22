@@ -1,0 +1,437 @@
+// require "facebox"
+// require_self
+// require "formtastic"
+// require "formtastic_changes"
+@import 'facebox'
+@import 'formtastic'
+
+$drub: #7c2422
+$lrub: #ae3232
+$dred: #c41a27
+$lred: #b2401c
+$ddora: #d58600
+$dora: #f9a61a
+$lora: #fbb91c
+$dyel: #ff6c00
+$lyel: #ffeea6
+
+$brad: 5px
+
+@font-face
+  font-family: 'samarn'
+  src: url('samarn.ttf') format('truetype')
+
+*
+  padding: 0
+  margin: 0
+
+html, body
+  color: $ddora
+  background: white image-url("main_bg.gif")
+  font-family: Verdana, Tahoma, Arial, sans-serif
+p
+  margin: 5px 0
+a
+  text-decoration: none
+  color: $ddora
+  &:hover
+    text-decoration: underline
+    border: 0
+    color: $lrub !important
+img
+  border: 0
+  vertical-align: middle
+h1, h2, h3, h4, h5, h6, ul, ol, dl, pre, blockquote, form, fieldset, address
+  margin: 20px 0 0 0
+h1
+  font-size: 20px
+  text-align: center
+h2
+  color: $lora
+  text-align: left
+  margin: 0
+  padding: 1ex 0 0 0
+h4
+  margin: 0px
+  padding: 0px
+  text-transform: uppercase
+  font-size: 15px
+  color: #000
+fieldset
+  padding: 10px
+li, dd, blockquote
+  margin-left: 10px
+
+.right
+  float: right
+.left
+  float: left
+.leftpad, .lpad
+  padding-left: 2em
+.rpad
+  padding-right: 3em
+.centr
+  text-align: center
+.tar
+  text-align: right
+.out, .clearfix
+  clear: both
+.dis, .toc
+  display: none
+.fdiv
+  padding: 1ex 0
+.nodecor
+  text-decoration: none
+.nolist
+  list-style: none
+.col140width
+  width: 140px
+.col100width
+  width: 100px
+.col70width
+  width: 70px
+.col40width
+  width: 40px
+
+#wrap
+  background: white
+  width: 900px
+  min-height: 400px
+  padding: 1em 0em
+  margin: 4em auto 1em auto
+  border: 1px solid $lyel
+  border-radius: 5px
+
+header
+  width: 100%
+  z-index: 1
+  > div
+    display: inline-block
+  a
+    color: $ddora
+  menu
+    z-index: 2
+    background: $lyel
+    padding: 0 1ex
+    font-size: 95%
+    position: relative
+    li
+      position: relative
+      list-style: none
+      font-weight: bold
+      text-transform: uppercase
+      padding: 1ex 0
+      display: inline-block
+      margin-left: 5px
+      ul
+        display: none
+        width: 140px
+        position: absolute
+        left: -5px
+        top: 6px
+        background: $lyel
+        border-radius: 2px
+        -webkit-box-shadow: 3px 3px 3px $lora
+        -moz-box-shadow: 3px 3px 3px $lora
+        box-shadow: 3px 3px 3px $lora
+        li
+          display: block
+      &:hover
+        ul
+          display: block
+  #logo
+    font-size: 60px
+    padding: 10px 30px 20px
+    width: 45%
+    font-family: 'samarn'
+    a
+      text-decoration: none
+      color: $dora!important
+      &:hover
+        color: $dora!important
+footer
+  text-align: center
+article
+  position: relative
+  padding: 0 2em
+  section
+    display: block
+  #content
+    p
+      text-align: justify
+  #categories
+    padding: 1em 0 7ex 0
+    margin-top: 2em
+    a
+      color: $ddora
+    menu
+      padding: 0 25px
+      height: 50px
+      float: left
+      li
+        list-style: none
+
+table#product_list
+  text-align: center
+  .product_image
+    display: block
+    margin: auto
+  .product_title
+    font-weight: bold
+  td
+    width: 200px
+    padding: 1em
+    margin: 1ex
+    background: $lyel
+    box-shadow: 3px 3px 3px $lora
+    color: $dyel
+    border-radius: 2px
+    a
+      color: $dyel
+    img
+      margin-bottom: 7px
+  .product_info
+    padding-top: 1ex
+    strong
+      padding-right: 1em
+      font-size: 20px
+  border-collapse: separate
+  border-spacing: 20px 25px
+
+#product
+  color: black
+  h2
+    color: black
+    font-weight: 100
+    font-size: 26px
+    margin-bottom: 10px
+  #product_price
+    font-size: 30px
+  #product_image, #product_about
+    width: 400px
+  #product_image
+    cursor: pointer
+#related_products
+  a
+    text-decoration: underline
+
+#cart_actions
+  float: right
+  font-weight: bold
+  font-size: 18px
+  a
+    border: 1px solid $dora
+    margin: 3px
+    padding: 3px
+    border-radius: $brad
+    &:hover
+      text-decoration: none
+      border: 1px solid $lrub
+
+#contact_info
+  width: 39%
+#contact_question
+  width: 55%
+
+/* facebox forms
+.mform
+  *
+    padding: 3px !important
+  input, textarea, select
+    display: block
+    width: 95%
+    margin-bottom: 0.7em
+    border: solid 1px $dora
+    border-radius: $brad
+  label
+    font-size: 14px
+    font-weight: bold
+    color: $lora
+  input[type="submit"]
+    width: auto
+    border: solid 1px $dyel
+    border-radius: $brad
+    color: $lora
+    padding: 3px
+  input[type="checkbox"], input[type="radio"]
+    width: 18px
+    height: 18px
+    display: inline
+  input[type="radio"]
+    width: auto
+
+.cform
+  input[type="submit"]
+    width: 150px
+    padding: 10px
+    margin: auto
+
+.oform
+  label
+    text-align: right
+  fieldset
+    border: solid 1px $lyel !important
+    border-radius: $brad !important
+    padding: 3px !important
+  legend
+    color: $dora !important
+    font-weight: bold
+  .error
+    border-radius: $brad
+    .inline-errors
+      margin-top: 0
+    label
+      color: #cc0000
+    input
+      border: solid 1px #cc0000
+  .radio
+    label
+      text-align: left
+      margin-left: 125px
+    .choices
+      border: none
+
+
+
+/*
+ *       CHYBY
+
+#errorExplanation, #success
+  padding: 0
+
+#errorExplanation p, #success p, .error, .success, .notice
+  border: 1px solid !important
+  font-size: 18px
+  margin: 10px 0px
+  padding: 15px 10px 15px 50px
+  background-repeat: no-repeat
+  background-position: 10px center
+  color: #D8000C
+  background-color: #FFBABA
+  background-image: image-url("admin/knob/error.png")
+
+#errorExplanation ul
+  list-style-type: none
+  li
+    color: red
+    font-size: 14px
+
+.field_with_errors
+  width: 100%
+  display: inline
+  input
+    border: red solid 1px !important
+
+#success p, .success
+  color: #43a71b
+  background-color: #c7ffba
+  background-image: image-url("admin/knob/valid.png")
+
+/*
+ * Product page style
+
+.prod_price, .prod_amount, .prod_cart
+  text-align: right
+  font-size: 18px
+  padding: 5px 0 0
+
+.prod_amount
+  font-size: 14px
+
+/*
+ *  /cart/review, /cart/submit style
+
+td.amount
+  padding: 0
+  background: #fff
+  &:hover
+    cursor: text
+
+.amountInput
+  font-size: 12px
+  border: none
+  background: #fff
+  color: #000
+  padding: 0
+  margin: 0
+
+.help
+  color: $dyel
+  text-shadow: 1px 0 0 $lyel
+  font-weight: bold
+
+
+table.listing
+  border-bottom: 1px solid #ABAE75
+  background: $lyel
+  width: 100%
+  padding: 0
+  margin: 0
+  border: 1px solid $lyel
+  border-top-left-radius: $brad
+  border-top-right-radius: $brad
+  -moz-border-radius-topleft: $brad
+  -moz-border-radius-topright: $brad
+  -webkit-border-top-left-radius: $brad
+  -webkit-border-top-right-radius: $brad
+  th
+    border-top: 0 !important
+    &.full
+      border-left: 0
+      border-right: 0 !important
+      text-align: left
+      text-transform: uppercase
+    border: 1px solid #fff
+    text-align: center
+    /*background:#9097A9;
+    color: $dyel
+    padding: 5px
+  td
+    border: 1px solid #fff
+    text-align: center
+    background: #fff
+    color: $dyel
+    padding: 3px 5px
+    a
+      color: $dyel
+  .white td
+    background: #fff
+  tr:nth-child(odd) td
+    background: #fff
+  th:first-child, td:first-child
+    border-left: 0px solid #9097A9
+    text-align: left
+  th:last-child, td:last-child
+    border-right: 0px solid #9097A9
+  th:first-child
+    border-left: 0
+  tfoot
+    padding: 2px
+    font-size: 13px
+    td
+      border: none
+      background: transparent !important
+  tbody th a
+    display: block
+  .style1
+    font-weight: bold
+    color: #FF7A00
+  .style2
+    font-weight: bold
+    padding-left: 16px
+  .style3
+    padding-left: 25px
+  .style4
+    padding-left: 35px
+
+.pagination
+  text-align: center
+  *
+    padding: 4px
+  .disabled
+    color: #555
+  .current, a:hover
+    color: $dyel
+    font-style: italic
+  em
+    text-decoration: none
