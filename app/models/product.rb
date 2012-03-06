@@ -31,9 +31,9 @@ class Product < ActiveRecord::Base
   :default_url => "/pictures/:style_default.png",
   :default_style => :large,
   :web_root => '/pictures/', :storage => :filesystem,
-                           :styles => { :square   => "150x150#",
-                                        :large    => "400x400>",
-                                        :original => "840x840>"}
+  :styles => { :square   => AppConfig.picture_style.square,
+               :large    => AppConfig.picture_style.large,
+               :original => AppConfig.picture_style.original}
   attr_protected :picture_file_name,
                  :picture_content_type,
                  :picture_size,
