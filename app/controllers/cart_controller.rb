@@ -114,7 +114,7 @@ class CartController < ApplicationController
       if customer = Customer.find_by_email(email)
         customer.update_attributes customer_attributes
       else
-        password = ActiveSupport::SecureRandom.base64(6)
+        password = SecureRandom.base64(6)
         customer_attributes[:password] = password
         customer = Customer.create customer_attributes
         sign_in customer
