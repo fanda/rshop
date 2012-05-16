@@ -5,6 +5,11 @@ development:
   short_title: Eshop short
   email: 'fandisek@gmail.com'
   ga_id: xxx
+  picture_style:
+    square: '150x150#'
+    large: '280x280>'
+    original: '840x840>'
+
 production:
   locales: ['cz']
   currency: 'Kč'
@@ -12,4 +17,8 @@ production:
   short_title: Eshop short
   email: 'fandisek@gmail.com'
   ga_id: xxx
+  picture_style:
+    square: '150x150#'
+    large: '280x280>'
+    original: '840x840>'
 

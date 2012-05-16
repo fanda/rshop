@@ -22,6 +22,7 @@ gem 'sass-rails', "~> 3.2.3"
 gem "ckeditor", :git => 'git://github.com/pshoukry/ckeditor.git'
 gem 'cocoon'
 gem 'devise', '~> 2.0.0'
+gem 'kaminari'
 
 group :assets do
   gem 'execjs'
