@@ -6,7 +6,7 @@ Eshop::Application.configure do
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = true #false
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
   # Specifies the header that your server uses for sending files
@@ -40,7 +40,7 @@ Eshop::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  config.assets.precompile += %w[active_admin.css active_admin.js]
+  config.assets.precompile += %w[active_admin.css active_admin.js ie7fix.css ie8fix.css]
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"

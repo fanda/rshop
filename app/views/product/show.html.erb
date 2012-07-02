@@ -1,29 +1,29 @@
+<h2><%= @product.title %></h2>
 <div id="product">
-  <h2><%= @product.title %></h2>
-  <div id="product_image" class="left centr">
+
+  <div id="product_image" class="right tac">
     <%= link_to image_tag(@product.picture.url), @product.picture.url(:original), :rel => 'facebox', :title => 'Kliknutím zvětšíte' %>
   </div>
-  <div id="product_about" class="left lpad">
-    <span id="product_price"><%= format_price(@product.price) %></span>
-    (s DPH)<br/>
-    <p id="product_description"><%= @product.full_description %></p>
 
-    <p class="tar">
-      <% if @product.amount != 0 %>
-        <%= into_cart_image(@product.friendly_id) %>
-        <strong><%= into_cart_link @product.friendly_id %></strong>
-      <% end %>
-    </p>
+  <div id="product_about" class="left lpad">
+    <p id="product_description"><%= @product.full_description %></p>
   </div>
+
+  <div id="product_meta" class="left">
+    <strong class="price"><%= format_price(@product.price) %></strong>
+    <%= into_cart_link @product.friendly_id if @product.amount != 0 %>
+  </div>
+
+  <div class="out"></div>
 </div>
 
 <br class="out"/>
 <% if @category and @products.any? %>
+<h2>
+  Další výrobky v kategorii
+  <%= link_to @category.title, catalog_path(@category.id) %>
+</h2>
 <div id="related_products">
-  <h3>
-    Další výrobky v kategorii
-    <%= link_to @category.title, catalog_path(@category.id) %>
-  </h3>
-  <%= render :partial => 'in_category_list' %>
+  <%= render :partial => 'table' %>
 </div>
 <% end %>

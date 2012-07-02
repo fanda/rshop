@@ -65,7 +65,7 @@ class Product < ActiveRecord::Base
     active.order('id DESC')
 
   scope :related,
-    active.order("RAND()").limit(4)
+    active.order("RAND()").limit(3)
 
   scope :without_category,
     where(:category_id => nil)

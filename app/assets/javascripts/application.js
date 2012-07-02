@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.tooltip
+//= require jquery.textfill
 //= require facebox
 //= require_self
 jQuery(document).ready(function($) {
@@ -8,6 +9,9 @@ jQuery(document).ready(function($) {
     loading_image : 'loading.gif',
     close_image   : 'closelabel.gif'
   });
+
+	$('.product-title').textfill({ maxFontPixels: 16 });
+	$('.tfil').textfill({ maxFontPixels: 24 });
 
   $("td.amount").click(function() {
     if ($("td.amount input").length > 0) return;

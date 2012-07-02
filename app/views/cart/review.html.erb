@@ -1,36 +1,36 @@
-<h1>Vytvoření objednávky</h1>
-<h2>Výrobky, které objednáváte</h2>
-<table class="listing">
+<h2>Vytvoření objednávky</h2>
+<table id="cart" class="listing">
   <thead>
     <tr>
     <th>Výrobek</th>
-    <th>KS</th>
-    <th>Cena za KS</th>
-    <th>Cena<br/>s DPH</th>
+    <th class="tar">Cena za kus</th>
+    <th class="tar">Počet kusů</th>
+    <th class="tar">Cena s DPH</th>
     </tr>
   </thead>
   <tfoot>
     <tr>
-      <td colspan="3"><b>Celkem za zboží</b></td>
-      <td><b id="sum"><%= format_price @order.sum %></b></td>
+      <td class="tar" colspan="3"><b>Celkem za zboží</b></td>
+      <td class="tar"><b id="sum"><%= format_price @order.sum %></b></td>
     </tr>
   </tfoot>
   <tbody id="order_review">
     <% @products.each do |product| %>
-      <tr>
-        <td><%= product.title %></td>
-        <td class="col70width"><%= product.count %></td>
-        <td class="col100width"><%= format_price product.price %></td>
-        <td class="col100width"><%= format_price product.cost %></td>
+      <tr class="<%= cycle('even', 'odd') %>">
+        <td class=""><%= product.title %></td>
+        <td class="col100width tar"><%= format_price product.price %></td>
+        <td class="col100width tar"><%= product.count %></td>
+        <td class="col140width tar"><%= format_price product.cost %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<div id="total" class="dis">
-  <h1>Cena celkem včetně poštovného: <span><%= @order.sum %></span> <%= AppConfig.currency %></h1>
+<div id="total" class="<%= 'dis' if @order.payment_method.nil? %>">
+  <h1>Cena celkem včetně poštovného:
+  <span><%= @order.payment_method.nil? ? @order.sum : @order.sum + @order.payment_method.cost %></span> <%= AppConfig.currency %></h1>
 </div>
 
-<div class="mform oform">
+<div class="oform">
   <%= semantic_form_for @order, :url => order_path do |of| %>
     <%= of.hidden_field :id, :value => @order.id %>
 
@@ -54,10 +54,7 @@
       <%= f.input :post_code, :size => 6, :maxlength => 6 %>
      <% end %>
     <% end %>
-    <br/>
-    <%#= render :partial => 'invoice_address_form',
-               :locals => { :of => of } %>
-    <br/>
+
     <%= of.inputs :name => 'Zpráva pro nás' do %>
       <%= of.text_area :message, :value => @order.message, :cols => 40, :rows => 3 %>
     <% end %>

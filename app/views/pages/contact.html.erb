@@ -1,9 +1,11 @@
+<h2>Kontakty na etnoshop Matahari</h2>
+<div class="box">
 <%= @text.body.html_safe %>
 <br/>
-<h2>Online formulář pro dotazy</h2>
+<h3>Online formulář pro dotazy</h3>
 <span>Zeptejte se nás na vše, co Vám není jasné a my Vám v krátké době
 odpovíme.</span>
-<div id="contact_form" class="mform cform">
+<div id="contact_form" class="cform">
 <%= form_tag contact_form_path, :method => 'post' do %>
 
   <div id="contact_info" class="left">
@@ -32,4 +34,5 @@ odpovíme.</span>
 
   <div class="out tar"><%= submit_tag 'Odeslat' %></div>
 <% end %>
+</div>
 </div>

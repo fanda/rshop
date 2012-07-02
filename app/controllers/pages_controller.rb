@@ -1,10 +1,11 @@
 # coding: utf-8
 class PagesController < ApplicationController
 
+  before_filter :set_order, :except => [:sitemap]
+
   def show
     @page = Page.find_by_url params[:page_url]
     if @page
-      right_side_content
       @title = @page.title
       @meta_desc = shorten @page.body, 11
     else

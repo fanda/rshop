@@ -1,4 +1,4 @@
-<h1><%= @title %></h1>
+<h2><%= @title %></h2>
 
 <p>
   <a href="<%= edit_customer_path %>" title="Úprava údajů">Zobrazit nebo upravit osobní údaje</a>
@@ -6,7 +6,7 @@
 <br/>
 <h2>Uskutečněné objednávky</h2>
 <% if @orders.any? and !(@orders.count == 1 and @orders.first.state == 0) %>
-<table class="listing" style='width:95%'>
+<table class="box" style='width:95%'>
   <thead>
     <tr>
       <th>Stav</th>
@@ -17,18 +17,18 @@
   <tfoot>
     <tr>
       <td colspan="4">
-        <%= will_paginate @orders, {:class => 'pagination'} %>
+        <%= paginate @orders %>
       </td>
     </tr>
   </tfoot>
   <tbody id="products">
   <% @orders.each do |o| %>
     <% next if o.state == 0 %>
-    <tr>
+    <tr class="tac">
       <td>
         <%= o.state_in_words %>
       </td>
-      <td class="col100width">
+      <td class="col100width tar">
         <%= format_price(o.sum) %>
       </td>
       <td>
@@ -36,15 +36,9 @@
       </td>
       <th>
         <a href="<%= customer_order_path o.id %>" rel="facebox" title="Zobrazit objednávku">
-          <%= image_tag('admin/zoom.png', :alt => 'detail') %>
+          <%= image_tag('zoom.png', :alt => 'detail') %>
         </a>
       </th>
-      <% if o.state == 1  %>
-      <th>
-          <%= link_to image_tag('admin/printer.png', :alt => 'faktura' ),
-              customer_bill_path(o.id), :title=>"Vytisknout fakturu" %>
-      </th>
-      <% end %>
     </tr>
   <% end %>
   </tbody>

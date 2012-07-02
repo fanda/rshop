@@ -2,7 +2,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :right_side_content, :set_locale
+  before_filter :load_data, :set_locale
 
 protected
 
@@ -27,12 +27,25 @@ protected
   end
 
   # get last product, list of categories and suppliers for layout
-  def right_side_content
+  def load_data
     @categories = Category.roots
     @title = "Internetový obchod"
     @meta_desc=''
   end
 
+  def set_order
+    if current_user
+      @order = current_user.order_in_cart
+
+    elsif cookies[:cart]
+      @order = Order.find cookies[:cart]
+
+    else
+      @order = Order.create!
+      # 604800 == 1 tyden
+      cookies[:cart] = { :value => @order.id, :expires => Time.now + 604800 }
+    end
+  end
 
   def no_layout_if_xhr_request
     if request.xhr?

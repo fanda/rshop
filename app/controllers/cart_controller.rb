@@ -148,20 +148,6 @@ class CartController < ApplicationController
 
 protected
 
-  def set_order
-    if current_user
-      @order = current_user.order_in_cart
-
-    elsif cookies[:cart]
-      @order = Order.find cookies[:cart]
-
-    else
-      @order = Order.create!
-      # 604800 == 1 tyden
-      cookies[:cart] = { :value => @order.id, :expires => Time.now + 604800 }
-    end
-  end
-
   def create_invoice_address_if_not_empty
     attributes = :invoice_address_attributes
     params[:order][attributes].each do |a|

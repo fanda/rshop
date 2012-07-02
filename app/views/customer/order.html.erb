@@ -1,33 +1,29 @@
 <h1><%= @title %></h1>
-<table class="listing">
+<table id="cart" style='width:95%'>
   <thead>
     <tr>
-      <th>Název</th>
-      <th>Kusů</th>
-      <th>Cena za kus</th>
-      <th>Cena</th>
+      <th class="tal">Název</th>
+      <th class="tac">Kusů</th>
+      <th class="tar">Cena</th>
     </tr>
   </thead>
   <tfoot>
     <tr>
-      <td colspan="3"><b>Celkem</b></td>
-      <td><b><%= format_price(@order.sum) %></b></td>
+      <td colspan="2"><b>Celkem</b></td>
+      <td class="tar"><b><%= format_price(@order.sum) %></b></td>
     </tr>
   </tfoot>
   <tbody id="objednavka">
     <% @products.each do |product| %>
     <tr>
-      <td class="col140width">
+      <td class="tal">
         <%= product.title %>
       </td>
-      <td>
+      <td class="tac">
         <%= product.count %>
       </td>
-      <td>
-        <%= format_price(product.price) %>
-      </td>
-      <td>
-        <b><%= format_price(product.cost) %></b>
+      <td class="tar">
+        <%= format_price(product.cost) %>
       </td>
     </tr>
     <% end %>

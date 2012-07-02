@@ -1,6 +1,8 @@
 # coding: utf-8
 class ProductController < ApplicationController
 
+  before_filter :set_order
+
   def show
     if params[:catalog_id]
       @category = Category.find(params[:catalog_id])

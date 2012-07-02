@@ -1,19 +1,17 @@
-// require "facebox"
 // require_self
-// require "formtastic"
-// require "formtastic_changes"
 @import 'facebox'
 @import 'formtastic'
 
-$drub: #7c2422
-$lrub: #ae3232
-$dred: #c41a27
-$lred: #b2401c
-$ddora: #d58600
-$dora: #f9a61a
-$lora: #fbb91c
-$dyel: #ff6c00
-$lyel: #ffeea6
+$brau: #381f0f
+
+$page_width: 980px
+$side_width: 250px
+$yellow: #ffc400
+$lellow: #fff6e3
+$braun: #392010
+$border-color: #e9ded1
+
+$h2color: #fff
 
 $brad: 5px
 
@@ -26,43 +24,37 @@ $brad: 5px
   margin: 0
 
 html
-  color: $ddora
-  background: #fdf7e8 image-url("o-1.png") no-repeat top right
   font-family: Verdana, Tahoma, Arial, sans-serif
-  max-width: 920px
   margin: auto
 body
-  /*max-width: 1000px
-  background: transparent image-url("o22.png") no-repeat 5em bottom
+  background: $brau
   padding-bottom: 2em
 p
   margin: 5px 0
 a
   text-decoration: none
-  color: $ddora
-  &:hover
-    text-decoration: underline
-    border: 0
-    color: $lrub !important
+  color: #392010
 img
   border: 0
   vertical-align: middle
-h1, h2, h3, h4, h5, h6, ul, ol, dl, pre, blockquote, form, fieldset, address
+h1, h3, h4, h5, h6, ul, ol, dl, pre, blockquote, form, fieldset, address
   margin: 20px 0 0 0
 h1
-  font-size: 20px
+  font-size: 17px
   text-align: center
 h2
-  color: $lora
   text-align: left
-  margin: 0
-  padding: 1ex 0 0 0
-h4
-  margin: 0px
-  padding: 0px
+  background: image-url('headbg.png') repeat
+  color: $h2color
   text-transform: uppercase
   font-size: 15px
-  color: #000
+  padding: 8px 16px
+  margin-bottom: 5px
+  a
+    color: $h2color
+    text-decoration: underline
+h4
+  margin: 0px
 fieldset
   padding: 10px
 li, dd, blockquote
@@ -72,15 +64,17 @@ li, dd, blockquote
   float: right
 .left
   float: left
-.leftpad, .lpad
-  padding-left: 2em
+.lpad
+  padding-left: 15px
 .rpad
-  padding-right: 3em
-.centr
-  text-align: center
+  padding-right: 15px
+.centr, .tac
+  text-align: center !important
 .tar
-  text-align: right
-.out, .clearfix
+  text-align: right !important
+.tal
+  text-align: left !important
+.out
   clear: both
 .dis, .toc
   display: none
@@ -90,6 +84,8 @@ li, dd, blockquote
   text-decoration: none
 .nolist
   list-style: none
+.col340width
+  width: 340px
 .col140width
   width: 140px
 .col100width
@@ -99,27 +95,43 @@ li, dd, blockquote
 .col40width
   width: 40px
 
-#wrap
-  background: white image-url('q2.jpg') no-repeat right bottom
-  width: 900px
-  min-height: 400px
-  padding: 1em 0em 2em 0em
-  margin: 97px auto 4ex auto
-  border: 1px solid $lyel
-  border-radius: 5px
+.inn
+  width: $page_width
+  margin: auto
+
+.sun
+  display: block
+  padding: 6px 45px
+  background: image-url('sun.png') 4px 0 no-repeat
+
+.mobil
+  display: block
+  padding-left: 25px
+  background: image-url('mobil.png') 0 19px no-repeat
+
+.envelope
+  display: block
+  padding-left: 28px
+  background: image-url('envelope.png') 0 23px no-repeat
+
+.box
+  background: $lellow
+  border: 1px solid #e9ded1
+  padding: 4px
+
 
 header
-  width: 100%
+  background: image-url('woodbg.png') repeat
+  height: 164px
   z-index: 1
+  margin-top: 5px
+  position: relative
   > div
     display: inline-block
-  a
-    color: $ddora
   menu
     z-index: 2
-    background: $lyel
     padding: 0 1ex
-    font-size: 90%
+    font-size: 85%
     position: relative
     li
       position: relative
@@ -135,46 +147,122 @@ header
         position: absolute
         left: -5px
         top: 6px
-        background: $lyel
         border-radius: 2px
-        -webkit-box-shadow: 3px 3px 3px $lora
-        -moz-box-shadow: 3px 3px 3px $lora
-        box-shadow: 3px 3px 3px $lora
         li
           display: block
       &:hover
         ul
           display: block
-  a#fb
-    float: left
-    color: #3b5998
-    display: block
-    padding-left: 22px
-    margin-top: 30px
-    font-size: 20px
-    background: transparent image-url('facebook-icon.png') no-repeat left 2px
-    height: 24px
-    &:hover
-      color: #3b5998 !important
-
   #logo
+    background: image-url('logobg.png') no-repeat
     float: left
     font-size: 60px
-    padding: 10px 30px 20px
-    width: 45%
-    font-family: 'samarn'
-    a
-      text-decoration: none
-      color: $dora!important
-      &:hover
-        color: $dora!important
-footer
-  text-align: left
-  padding-left: 4em
-  font-weight: bold
+    padding: 0px 30px 10px 110px
+    width: 560px
+    height: 135px
+    margin-left: 11px
+  #icart, #ilogin
+    max-width: 300px
+    height: 20px
+    display: block
+    padding: 8px 14px 5px 40px
+    background: $yellow image-url('intocart.png') 11px 6px no-repeat
+    color: $braun
+    font-weight: bold
+    box-shadow: 3px -3px 4px $braun
+    text-align: center
+    position: absolute
+    bottom: 0
+    left: 750px
+  #ilogin
+    left: 600px
+    width: 84px
+    background: $braun image-url('head.png') 11px 6px no-repeat
+    color: $yellow
+    &:hover
+      background: $yellow image-url('head.png') 11px 6px no-repeat
+      color: $braun
+
+
+nav
+  background: #725b4b
+  height: 44px
+  background: image-url('menubg.png') repeat
+  menu
+    padding: 2px 30px
+    li
+      list-style: none
+      display: block
+      padding: 10px 20px
+      margin: 0
+      float: left
+      font-weight: bold
+      border-left: 1px #8f7764 dashed
+      a
+        color: #fff6e3
+        &:hover
+          color: #ffc400
+
+#awrap
+  padding: 15px 0
+  z-index: 20
+  background: #feecc6 image-url('bodybg.png') repeat
+  min-height: 600px
+
+aside
+  width: $side_width
+  padding-right: 10px
+  margin: 0
+  float: left
+  .abox, menu
+    background: $lellow
+    border: 1px solid #e9ded1
+    padding: 4px
+    p
+      background: #fff
+      margin-top: -4px
+      padding: 5px
+  menu
+    li
+      background: #fff
+      list-style: none
+      display: block
+      padding: 0px
+      margin: 0 0 1px
+      border-left: 10px solid #957964
+      text-transform: uppercase
+      &.active, &:hover
+        border-left: 10px solid $yellow
+      &.active
+        ul
+          display: block
+      a
+        display: block
+        padding: 8px 16px
+        color: #392010
+        &:hover
+          font-weight: bold
+      ul
+        display: none
+        margin: 0
+        background: #fff6e3
+        li, li:hover
+          background: #fff6e3
+          border: none
+          list-style: circle
+          a
+            text-transform: capitalize
+            padding-left: 32px
+            background: image-url('circles.png') 15px 11px no-repeat
+            &:hover
+              background-position: 15px -29px
+
+
 article
+  float: left
+  width: $page_width - $side_width - 15px
   position: relative
-  padding: 0 2em
+  padding: 0
   section
     display: block
   #content
@@ -183,122 +271,219 @@ article
   #categories
     padding: 1em 0 7ex 0
     margin-top: 2em
-    a
-      color: $ddora
     menu
       padding: 0 25px
       height: 50px
       float: left
       li
         list-style: none
+  #indextext
+    line-height: 17px
+    font-size: 13px
+
+footer
+  z-index: 10
+  color: #fff
+  height: 164px
+  text-align: left
+  padding-left: 4em
+  background: image-url('woodbg.png') repeat
+  box-shadow: 0px 3px 11px #000 inset
+  line-height: 20px
+  font-size: 16px
+  .fooinn
+    width: 252px
+    height: 164px
+    padding: 0
+    margin: 0
+    background: image-url('fooinn.png') right top no-repeat
+
+#copy
+  padding: 12px 24px
+  color: #fff6e3
+  a
+    color: #fff6e3
+
+.intocart
+  width: 142px
+  display: block
+  padding: 8px 15px 8px 30px
+  background: $yellow image-url('intocart.png') 11px 6px no-repeat
+  color: $braun
+  font-size: 16px
+  font-weight: bold
+  border-radius: 2px
+  text-align: center
+  &:hover
+    background: $braun image-url('intocart.png') 11px -34px no-repeat
+    color: $yellow
 
 table#product_list
-  text-align: center
-  .product_image
-    display: block
-    margin: auto
-  .product_title
-    font-weight: bold
+  border-collapse: collapse
+  background: $lellow
   td
-    width: 200px
-    padding: 1em
-    margin: 1ex
-    background: $lyel
-    box-shadow: 3px 3px 3px $lora
-    color: $dyel
-    border-radius: 2px
-    a
-      color: $dyel
-    img
-      margin-bottom: 7px
-  .product_info
-    padding-top: 1ex
-    strong
-      padding-right: 1em
-      font-size: 20px
-  border-collapse: separate
-  border-spacing: 20px 25px
+    width: 190px
+    height: 260px
+    padding: 20px 25px
+    margin: 0
+    border: 1px solid $border-color
+    position: relative
+  .product-image
+    display: block
+    margin: 10px auto
+    background: #fff
+    padding: 3px
+    border: 1px solid $border-color
+    text-align: center
+    box-shadow: 1px 2px 3px $border-color
+  .product-title
+    font-weight: bold
+    color: $braun
+    display: block
+    height: 20px
+    span
+      margin-bottom: 3px
+  .inlist-price
+    position: absolute
+    top: 50px
+    right: 25px
+  .intocart
+    position: absolute
+    bottom: 10px
+  .price
+    background: #392010
+    color: #fff
+    display: inline-block
+    padding: 8px
+    font-weight: bold
+
 
 #product
   color: black
-  h2
-    color: black
-    font-weight: 100
-    font-size: 26px
-    margin-bottom: 10px
-  #product_price
-    font-size: 30px
-  #product_image, #product_about
-    width: 400px
+  background: $lellow image-url('ornament.png') 80px 12px no-repeat
+  position: relative
+  padding: 10px
+  border: 1px solid $border-color
   #product_image
+    width: 400px
     cursor: pointer
-#related_products
-  a
-    text-decoration: underline
+    background: #fff
+    padding: 3px
+    border: 1px solid $border-color
+    box-shadow: 1px 2px 3px $border-color
+  #product_about
+    width: $page_width - $side_width - 460px
+    padding: 5px 5px 50px
+  #product_meta
+    position: absolute
+    bottom: 20px
+    *
+      display: inline
+      float: left
+      margin-left: 10px
+    .price
+      background: #392010
+      color: #fff
+      display: inline-block
+      padding: 8px
+      font-weight: bold
+
+table#cart
+  border-collapse: collapse
+  background: $lellow
+  width: 100%
+  tr
+    border: 5px solid $lellow
+    &.even
+      td, .price
+        background: #d9cdc4
+    &.odd
+      td, .price
+        background: #ede1d7
+  td
+    padding: 5px
+    a
+      color: $braun
+      text-decoration: underline
+      font-weight: bold
+  th
+    background: #fff
+    padding: 5px
+    text-align: left
+  .product-name
+    width: 440px
+  .amount
+    width: 60px
+    &:hover
+      cursor: text
+  .amountInput
+    border: none
+    padding: 5px
+    margin: 0
+    width: 2em !important
+    font-size: 14px
+  .remove
+    width: 36px
 
 #cart_actions
   float: right
-  font-weight: bold
-  font-size: 18px
   a
-    border: 1px solid $dora
-    margin: 3px
-    padding: 3px
-    border-radius: $brad
-    &:hover
-      text-decoration: none
-      border: 1px solid $lrub
+    display: block
+    padding: 9px
+    background: $yellow
+    color: $braun
+    font-weight: bold
+    border-radius: 2px
+    text-align: center
+    float: left
+    margin: 5px
+    &.submit
+      background: $yellow image-url('sun.png') 8px 3px no-repeat
+      padding-left: 42px
+
 
 #contact_info
   width: 39%
 #contact_question
   width: 55%
 
-/* facebox forms
-.mform
-  *
-    padding: 3px !important
-  input, textarea, select
-    display: block
-    width: 95%
-    margin-bottom: 0.7em
-    border: solid 1px $dora
-    border-radius: $brad
-  label
-    font-size: 14px
-    font-weight: bold
-    color: $lora
-  input[type="submit"]
-    width: auto
-    border: solid 1px $dyel
-    border-radius: $brad
-    color: $lora
-    padding: 3px
-  input[type="checkbox"], input[type="radio"]
-    width: 18px
-    height: 18px
-    display: inline
-  input[type="radio"]
-    width: auto
-
 .cform
+  input
+    display: block
+    width: 220px
+  textarea
+    display: block
+    width: 320px
   input[type="submit"]
     width: 150px
     padding: 10px
     margin: auto
 
-.oform
+.oform .formtastic, #customer_new
   label
+    font-size: 13px
     text-align: right
-  fieldset
-    border: solid 1px $lyel !important
-    border-radius: $brad !important
-    padding: 3px !important
+  label, input, select
+    display: block
+    padding: 3px
+  input[type="text"], input[type="tel"], input[type="email"], input[type="password"]
+    width: 200px !important
+  input[type="checkbox"], input[type="radio"]
+    width: 18px !important
+    height: 18px
+    display: inline
+  fieldset.inputs
+    border: 1px solid $border-color
+    padding: 12px 9px
+    background: $lellow
+    margin-top: 5px
   legend
-    color: $dora !important
     font-weight: bold
+    background: image-url('headbg.png') repeat
+    color: $h2color
+    font-size: 14px
+    padding: 5px
   .error
-    border-radius: $brad
     .inline-errors
       margin-top: 0
     label
@@ -306,14 +491,21 @@ table#product_list
     input
       border: solid 1px #cc0000
   .radio
+    width: auto
     label
       text-align: left
       margin-left: 125px
     .choices
       border: none
+    .choices-group
+      padding: 0
+  .commit
+    list-style-image: none
 
-
-
+#customer_new
+  .commit, #customer_remember_me_input
+    float: left
+    padding-left: 100px
 /*
  *       CHYBY
 
@@ -322,7 +514,7 @@ table#product_list
 
 #errorExplanation p, #success p, .error, .success, .notice
   border: 1px solid !important
-  font-size: 18px
+  font-size: 16px
   margin: 10px 0px
   padding: 15px 10px 15px 50px
   background-repeat: no-repeat
@@ -343,116 +535,31 @@ table#product_list
   input
     border: red solid 1px !important
 
-#success p, .success
+#success p, .success, .notice
   color: #43a71b
   background-color: #c7ffba
   background-image: image-url("admin/knob/valid.png")
 
-/*
- * Product page style
-
-.prod_price, .prod_amount, .prod_cart
-  text-align: right
-  font-size: 18px
-  padding: 5px 0 0
-
-.prod_amount
-  font-size: 14px
-
-/*
- *  /cart/review, /cart/submit style
-
-td.amount
-  padding: 0
-  background: #fff
-  &:hover
-    cursor: text
-
-.amountInput
-  font-size: 12px
-  border: none
-  background: #fff
-  color: #000
-  padding: 0
-  margin: 0
 
 .help
-  color: $dyel
-  text-shadow: 1px 0 0 $lyel
   font-weight: bold
 
-
-table.listing
-  border-bottom: 1px solid #ABAE75
-  background: $lyel
-  width: 100%
-  padding: 0
-  margin: 0
-  border: 1px solid $lyel
-  border-top-left-radius: $brad
-  border-top-right-radius: $brad
-  -moz-border-radius-topleft: $brad
-  -moz-border-radius-topright: $brad
-  -webkit-border-top-left-radius: $brad
-  -webkit-border-top-right-radius: $brad
-  th
-    border-top: 0 !important
-    &.full
-      border-left: 0
-      border-right: 0 !important
-      text-align: left
-      text-transform: uppercase
-    border: 1px solid #fff
-    text-align: center
-    /*background:#9097A9;
-    color: $dyel
-    padding: 5px
-  td
-    border: 1px solid #fff
-    text-align: center
-    background: #fff
-    color: $dyel
-    padding: 3px 5px
-    a
-      color: $dyel
-  .white td
-    background: #fff
-  tr:nth-child(odd) td
-    background: #fff
-  th:first-child, td:first-child
-    border-left: 0px solid #9097A9
-    text-align: left
-  th:last-child, td:last-child
-    border-right: 0px solid #9097A9
-  th:first-child
-    border-left: 0
-  tfoot
-    padding: 2px
-    font-size: 13px
-    td
-      border: none
-      background: transparent !important
-  tbody th a
-    display: block
-  .style1
-    font-weight: bold
-    color: #FF7A00
-  .style2
-    font-weight: bold
-    padding-left: 16px
-  .style3
-    padding-left: 25px
-  .style4
-    padding-left: 35px
-
 .pagination
+  padding: 10px
+  margin-top: 8px
   text-align: center
+  height: auto
   *
+    line-height: 15px
+    font-size: 14px
+    color: #fff
     padding: 4px
   .disabled
-    color: #555
-  .current, a:hover
-    color: $dyel
-    font-style: italic
+    color: #ddd
+  .current
+    font-weight: bold
+  a
+    &:hover
+      text-decoration: underline
   em
     text-decoration: none

@@ -12,13 +12,12 @@ module ApplicationHelper
   end
 
   def format_price(price)
-    currency = "Kč"
     #price.to_s.gsub(/(\d)(?=\d{3}+(?:\.|$))(\d{3}\..*)?/,'\1 \2')+ " "+currency
-    "#{price} #{currency}"
+    "#{price} #{AppConfig.currency}"
   end
 
   def format_invoice_price(price)
-    "#{'%.2f' % price} Kč"
+    "#{'%.2f' % price} #{AppConfig.currency}"
   end
 
   def dph(price_with_dph)
@@ -33,18 +32,18 @@ module ApplicationHelper
   end
 
   def into_cart_link(product_id)
-    link_to('Koupit', into_cart_path(product_id),
-            :class=>'nodecor', :rel => 'nofollow')
+    link_to('Vložit do košíku', into_cart_path(product_id),
+            :class=>'nodecor intocart', :rel => 'nofollow')
   end
 
   def product_linked_title(product)
     begin
-      link_to product.title,
+      link_to content_tag(:span, product.title),
            catalog_product_path(product.category.friendly_id,product.friendly_id),
-              :class => 'product_title'
+              :class => 'product-title'
     rescue
-      link_to product.title, product_path(product.friendly_id),
-              :class => 'product_title'
+      link_to content_tag(:span, product.title), product_path(product.friendly_id),
+              :class => 'product-title'
     end
   end
 
@@ -52,10 +51,10 @@ module ApplicationHelper
     begin
       link_to image_tag(product.picture.url(:square),:alt => product.title),
            catalog_product_path(product.category.friendly_id,product.friendly_id),
-              :class => 'product_image'
+              :class => 'product-image'
     rescue
       link_to image_tag(product.picture.url(:square),:alt => product.title),
-              product_path(product.friendly_id), :class => 'product_image'
+              product_path(product.friendly_id), :class => 'product-image'
     end
   end
 
@@ -68,4 +67,32 @@ module ApplicationHelper
     ]
   end
 
+  def active_category?(category)
+    category == @category or category.children.include?(@category)
+  end
+
+end
+
+module ActionView
+  module Helpers
+    module TextHelper
+      def pluralize(count, singular, plural = nil, even_more = nil)
+          "#{count || 0} " + if count == 1 || count == '1'
+           singular
+         elsif plural
+           if [2, 3, 4].include?(count.to_i)
+             plural
+           elsif even_more
+             even_more
+           else
+             plural
+           end
+         elsif Object.const_defined?("Inflector")
+           Inflector.pluralize(singular)
+         else
+           singular + "s"
+         end
+       end
+    end
+  end
 end

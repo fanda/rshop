@@ -231,6 +231,7 @@ cz:
         place: Město
         post_code: PSČ
         orders: Objednávky
+        remember_me: Zapamatovat si mě
       entry:
         quantity: Množství
       item:
