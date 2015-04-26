@@ -17,7 +17,7 @@ GIT
       formtastic (~> 3.1)
       formtastic_i18n
       inherited_resources (~> 1.6)
-      jquery-rails
+      jquery-rails (~> 4.0)
       jquery-ui-rails (~> 5.0)
       kaminari (~> 0.15)
       rails (>= 3.2, < 5.0)
@@ -124,7 +124,7 @@ GEM
       responders
     jmespath (1.0.2)
       multi_json (~> 1.0)
-    jquery-rails (2.0.3)
+    jquery-rails (4.0.3)
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
     jquery-ui-rails (5.0.3)
@@ -239,7 +239,7 @@ DEPENDENCIES
   execjs
   formtastic
   friendly_id (~> 5.1)
-  jquery-rails (~> 2.0.1)
+  jquery-rails (~> 4.0.3)
   kaminari
   nokogiri
   paperclip
