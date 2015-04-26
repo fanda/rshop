@@ -27,8 +27,6 @@ end
 
 gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
 
-gem 'jquery-rails' , "~> 4.0.0"
-
 group :development do
   gem "bullet"
 end
