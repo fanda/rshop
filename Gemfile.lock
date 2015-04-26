@@ -239,7 +239,7 @@ DEPENDENCIES
   execjs
   formtastic
   friendly_id (~> 5.1)
-  jquery-rails
+  jquery-rails (~> 4.0.0)
   kaminari
   nokogiri
   paperclip
