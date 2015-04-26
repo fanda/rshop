@@ -1,9 +1,9 @@
 # coding: utf-8
-ActiveAdmin::Dashboards.build do
-  #menu :label => 'Nástěnka'
+ActiveAdmin.register_page "Dashboard" do
+  menu :label => 'Nástěnka', :priority => 1
 
 
-  section "Nevyřízené objednávky" do
+  content :title => proc{ "Nevyřízené objednávky" } do
     table_for Order.waiting do |t|
       t.column("Status") { |order|
         status_tag order.state_in_words, order.state_as_symbol

@@ -1,0 +1,1142 @@
+/* line 1, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox .b {
+  background: url(/images/facebox/b.png);
+}
+
+/* line 5, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox .tl {
+  background: url(/images/facebox/tl.png);
+}
+
+/* line 9, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox .tr {
+  background: url(/images/facebox/tr.png);
+}
+
+/* line 13, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox .bl {
+  background: url(/images/facebox/bl.png);
+}
+
+/* line 17, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox .br {
+  background: url(/images/facebox/br.png);
+}
+
+/* line 21, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  text-align: left;
+}
+
+/* line 29, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox .popup {
+  position: relative;
+}
+
+/* line 33, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox table {
+  border-collapse: collapse;
+}
+
+/* line 37, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox td {
+  border-bottom: 0;
+  padding: 0;
+}
+
+/* line 42, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox .body {
+  padding: 10px;
+  background: #fff;
+  width: 370px;
+}
+
+/* line 48, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox .loading {
+  text-align: center;
+}
+
+/* line 52, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox .image {
+  text-align: center;
+}
+
+/* line 56, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox img {
+  border: 0;
+  margin: 0;
+}
+
+/* line 60, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox .content h1 {
+  margin: 0 0 .5em 0;
+  color: #878787;
+  width: 100%;
+}
+
+/* line 65, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox .footer {
+  border-top: 1px solid #DDDDDD;
+  padding-top: 5px;
+  margin-top: 10px;
+  text-align: right;
+}
+
+/* line 72, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox .tl, #facebox .tr, #facebox .bl, #facebox .br {
+  height: 10px;
+  width: 10px;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* line 79, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+#facebox_overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+/* line 87, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+.facebox_hide {
+  z-index: -100;
+}
+
+/* line 91, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+.facebox_overlayBG {
+  background-color: #000;
+  z-index: 99;
+}
+
+/* line 95, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/facebox.css */
+* html #facebox_overlay {
+  /* ie6 hack */
+  position: absolute;
+  height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}
+
+/* -------------------------------------------------------------------------------------------------
+
+It's *strongly* suggested that you don't modify this file.  Instead, load a new stylesheet after
+this one in your layouts (eg formtastic_changes.css) and override the styles to suit your needs.
+This will allow you to update formtastic.css with new releases without clobbering your own changes.
+
+This stylesheet forms part of the Formtastic Rails Plugin
+(c) 2008 Justin French
+
+--------------------------------------------------------------------------------------------------*/
+/* NORMALIZE AND RESET - obviously inspired by Yahoo's reset.css, but scoped to just form.formtastic
+--------------------------------------------------------------------------------------------------*/
+/* line 15, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic, form.formtastic ul, form.formtastic ol, form.formtastic li, form.formtastic fieldset, form.formtastic legend, form.formtastic input, form.formtastic textarea, form.formtastic select, form.formtastic p {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 16, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset {
+  border: 0;
+}
+
+/* line 17, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic em, form.formtastic strong {
+  font-style: normal;
+  font-weight: normal;
+}
+
+/* line 18, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic ol, form.formtastic ul {
+  list-style: none;
+}
+
+/* line 19, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic abbr, form.formtastic acronym {
+  border: 0;
+  font-variant: normal;
+}
+
+/* line 20, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic input, form.formtastic textarea, form.formtastic select {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* line 21, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic input, form.formtastic textarea, form.formtastic select {
+  font-size: 100%;
+}
+
+/* line 22, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic legend {
+  white-space: normal;
+  color: #000;
+}
+
+/* SEMANTIC ERRORS
+--------------------------------------------------------------------------------------------------*/
+/* line 27, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic ul.errors {
+  color: #cc0000;
+  margin: 0.5em 0 1.5em 25%;
+  list-style: square;
+}
+
+/* line 28, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic ul.errors li {
+  padding: 0;
+  border: none;
+  display: list-item;
+}
+
+/* FIELDSETS & LISTS
+--------------------------------------------------------------------------------------------------*/
+/* line 33, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset {
+  overflow: hidden;
+}
+
+/* clearing contained floats */
+/* line 35, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset.buttons {
+  padding-left: 25%;
+}
+
+/* line 37, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset.buttons li {
+  float: left;
+  padding-right: 0.5em;
+}
+
+/* INPUT LIs
+--------------------------------------------------------------------------------------------------*/
+/* line 41, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li {
+  padding: 0.5em 0;
+  margin-top: -0.5em;
+  margin-bottom: 1em;
+}
+
+/* padding and negative margin juggling is for Firefox */
+/* line 42, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li {
+  overflow: hidden;
+}
+
+/* clearing contained floats */
+/* LABELS
+--------------------------------------------------------------------------------------------------*/
+/* line 51, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li label {
+  display: block;
+  width: 25%;
+  float: left;
+  padding-top: .2em;
+}
+
+/* line 52, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li > li label {
+  line-height: 100%;
+  padding-top: 0;
+}
+
+/* line 53, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li > li label input {
+  line-height: 100%;
+  vertical-align: middle;
+  margin-top: -0.1em;
+}
+
+/* NESTED FIELDSETS AND LEGENDS (radio, check boxes and date/time inputs use nested fieldsets)
+--------------------------------------------------------------------------------------------------*/
+/* line 58, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li fieldset {
+  position: relative;
+}
+
+/* line 59, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li fieldset legend {
+  position: absolute;
+  width: 95%;
+  left: 0px;
+}
+
+/* line 60, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li fieldset legend span {
+  position: absolute;
+}
+
+/* line 61, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li fieldset legend.label label {
+  position: absolute;
+}
+
+/* line 62, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li fieldset ol {
+  float: left;
+  width: 74%;
+  margin: 0;
+  padding: 0 0 0 25%;
+}
+
+/* line 63, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li fieldset ol li {
+  padding: 0;
+  border: 0;
+}
+
+/* INLINE HINTS
+--------------------------------------------------------------------------------------------------*/
+/* line 68, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li p.inline-hints {
+  color: #666;
+  margin: 0.5em 0 0 25%;
+}
+
+/* INLINE ERRORS
+--------------------------------------------------------------------------------------------------*/
+/* line 73, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li p.inline-errors {
+  color: #cc0000;
+  margin: 0.5em 0 0 25%;
+}
+
+/* line 74, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li ul.errors {
+  color: #cc0000;
+  margin: 0.5em 0 0 25%;
+  list-style: square;
+}
+
+/* line 75, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li ul.errors li {
+  padding: 0;
+  border: none;
+  display: list-item;
+}
+
+/* STRING, NUMERIC, PASSWORD, EMAIL, URL, PHONE & SEARCH OVERRIDES
+--------------------------------------------------------------------------------------------------*/
+/* line 80, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.string input,
+form.formtastic fieldset > ol > li.password input,
+form.formtastic fieldset > ol > li.numeric input,
+form.formtastic fieldset > ol > li.email input,
+form.formtastic fieldset > ol > li.url input,
+form.formtastic fieldset > ol > li.phone input,
+form.formtastic fieldset > ol > li.search input {
+  width: 72%;
+}
+
+/* line 88, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.string input[size],
+form.formtastic fieldset > ol > li.password input[size],
+form.formtastic fieldset > ol > li.numeric input[size],
+form.formtastic fieldset > ol > li.email input[size],
+form.formtastic fieldset > ol > li.url input[size],
+form.formtastic fieldset > ol > li.phone input[size],
+form.formtastic fieldset > ol > li.search input[size] {
+  width: auto;
+  max-width: 72%;
+}
+
+/* TEXTAREA OVERRIDES
+--------------------------------------------------------------------------------------------------*/
+/* line 99, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.text textarea {
+  width: 72%;
+}
+
+/* line 100, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.text textarea[cols] {
+  width: auto;
+  max-width: 72%;
+}
+
+/* HIDDEN OVERRIDES
+--------------------------------------------------------------------------------------------------*/
+/* line 105, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset ol li.hidden {
+  display: none;
+}
+
+/* BOOLEAN OVERRIDES
+--------------------------------------------------------------------------------------------------*/
+/* line 109, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.boolean label {
+  padding-left: 25%;
+  width: auto;
+}
+
+/* line 110, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.boolean label input {
+  margin: 0 0.5em 0 0.2em;
+}
+
+/* RADIO OVERRIDES
+--------------------------------------------------------------------------------------------------*/
+/* line 116, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.radio fieldset {
+  overflow: visible;
+}
+
+/* line 117, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.radio fieldset ol {
+  margin-bottom: -0.5em;
+}
+
+/* line 118, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.radio fieldset ol li {
+  margin: 0.1em 0 0.5em 0;
+  overflow: visible;
+}
+
+/* line 119, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.radio fieldset ol li label {
+  float: none;
+  width: 100%;
+}
+
+/* line 120, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.radio fieldset ol li label input {
+  margin-right: 0.2em;
+}
+
+/* CHECK BOXES (COLLECTION) OVERRIDES
+--------------------------------------------------------------------------------------------------*/
+/* line 126, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.check_boxes fieldset {
+  overflow: visible;
+}
+
+/* line 127, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.check_boxes fieldset ol {
+  margin-bottom: -0.5em;
+}
+
+/* line 128, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.check_boxes fieldset ol li {
+  margin: 0.1em 0 0.5em 0;
+  overflow: visible;
+}
+
+/* line 129, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.check_boxes fieldset ol li label {
+  float: none;
+  width: 100%;
+}
+
+/* line 130, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.check_boxes fieldset ol li label input {
+  margin-right: 0.2em;
+}
+
+/* DATE & TIME OVERRIDES
+--------------------------------------------------------------------------------------------------*/
+/* line 135, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.date fieldset ol li,
+form.formtastic fieldset > ol > li.time fieldset ol li,
+form.formtastic fieldset > ol > li.datetime fieldset ol li {
+  float: left;
+  width: auto;
+  margin: 0 .3em 0 0;
+}
+
+/* line 139, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.date fieldset ol li label,
+form.formtastic fieldset > ol > li.time fieldset ol li label,
+form.formtastic fieldset > ol > li.datetime fieldset ol li label {
+  display: none;
+}
+
+/* line 143, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/formtastic.css */
+form.formtastic fieldset > ol > li.date fieldset ol li label input,
+form.formtastic fieldset > ol > li.time fieldset ol li label input,
+form.formtastic fieldset > ol > li.datetime fieldset ol li label input {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 19, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+/* line 23, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+html, body {
+  color: #003366;
+  background: white;
+  font-family: Arial, Verdana, Tahoma;
+}
+
+/* line 27, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+p {
+  margin: 5px 0;
+}
+
+/* line 29, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+a {
+  text-decoration: none;
+  color: #003366;
+}
+/* line 32, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+a:hover {
+  text-decoration: underline;
+  border: 0;
+  color: #003366 !important;
+}
+
+/* line 36, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+img {
+  border: 0;
+  vertical-align: middle;
+}
+
+/* line 39, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+h1, h2, h3, h4, h5, h6, ul, ol, dl, pre, blockquote, form, fieldset, address {
+  margin: 20px 0 0 0;
+}
+
+/* line 41, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+h1 {
+  font-size: 20px;
+  text-align: center;
+}
+
+/* line 44, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+h2 {
+  color: #003366;
+  text-align: left;
+  margin: 0;
+  padding: 1ex 0 0 0;
+}
+
+/* line 49, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+h4 {
+  margin: 0px;
+  padding: 0px;
+  text-transform: uppercase;
+  font-size: 15px;
+  color: #000;
+}
+
+/* line 55, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+fieldset {
+  padding: 10px;
+}
+
+/* line 57, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+li, dd, blockquote {
+  margin-left: 10px;
+}
+
+/* line 60, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.right {
+  float: right;
+}
+
+/* line 62, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.left {
+  float: left;
+}
+
+/* line 64, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.leftpad, .lpad {
+  padding-left: 2em;
+}
+
+/* line 66, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.rpad {
+  padding-right: 3em;
+}
+
+/* line 68, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.centr {
+  text-align: center;
+}
+
+/* line 70, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.tar {
+  text-align: right;
+}
+
+/* line 72, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.out, .clearfix {
+  clear: both;
+}
+
+/* line 74, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.dis, .toc {
+  display: none;
+}
+
+/* line 76, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.fdiv {
+  padding: 1ex 0;
+}
+
+/* line 78, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.nodecor {
+  text-decoration: none;
+}
+
+/* line 80, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.nolist {
+  list-style: none;
+}
+
+/* line 82, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.col140width {
+  width: 140px;
+}
+
+/* line 84, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.col100width {
+  width: 100px;
+}
+
+/* line 86, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.col70width {
+  width: 70px;
+}
+
+/* line 88, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.col40width {
+  width: 40px;
+}
+
+/* line 91, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#wrap {
+  background: white;
+  width: 1080px;
+  min-height: 400px;
+  padding: 1em 0em;
+  margin: 1em auto 1em auto;
+}
+
+/* line 98, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+header {
+  width: 100%;
+  z-index: 1;
+}
+/* line 101, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+header > div {
+  display: inline-block;
+}
+/* line 103, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+header a {
+  color: #fff;
+}
+/* line 105, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+header menu {
+  z-index: 2;
+  background: #6699CC;
+  padding: 0 1ex;
+  font-size: 95%;
+  position: relative;
+}
+/* line 111, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+header menu li {
+  position: relative;
+  list-style: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 1ex 0;
+  display: inline-block;
+  margin-left: 5px;
+}
+/* line 119, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+header menu li ul {
+  display: none;
+  width: 140px;
+  position: absolute;
+  left: -5px;
+  top: 6px;
+  background: #6699CC;
+  border-radius: 2px;
+  -webkit-box-shadow: 3px 3px 3px #aaa;
+  -moz-box-shadow: 3px 3px 3px #aaa;
+  box-shadow: 3px 3px 3px #aaa;
+}
+/* line 130, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+header menu li ul li {
+  display: block;
+}
+/* line 133, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+header menu li:hover ul {
+  display: block;
+}
+/* line 135, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+header #logo {
+  font-size: 1.5em;
+  padding: 10px 30px 20px;
+  width: 45%;
+  font-family: Helvetica, sans-serif;
+}
+/* line 140, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+header #logo a {
+  text-decoration: none;
+  color: #003366;
+}
+/* line 143, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+header #logo span {
+  color: red;
+}
+/* line 145, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+header #right_header_menu {
+  font-size: 0.8em;
+  color: red;
+}
+/* line 148, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+header #right_header_menu a {
+  color: #003366;
+}
+
+/* line 150, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+footer {
+  text-align: center;
+}
+/* line 152, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+footer span {
+  padding: 1ex;
+  border-radius: 5px;
+  background: #fff;
+}
+
+/* line 157, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#awrap {
+  position: relative;
+  padding: 0 2em;
+}
+/* line 160, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#awrap section {
+  display: block;
+}
+/* line 162, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#awrap #content {
+  float: left;
+  max-width: 880px;
+}
+/* line 165, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#awrap #content p {
+  text-align: justify;
+}
+/* line 167, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#awrap #categories, #awrap aside {
+  padding: 1em 0 7ex 0;
+  margin-top: 2em;
+  max-width: 240px;
+  float: left;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  border-right: 1px solid #bebebe;
+}
+/* line 175, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#awrap #categories a, #awrap aside a {
+  color: #003366;
+}
+/* line 177, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#awrap #categories menu, #awrap aside menu {
+  padding: 0 25px;
+  height: 50px;
+  float: left;
+}
+/* line 181, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#awrap #categories menu li, #awrap aside menu li {
+  list-style: none;
+}
+
+/* line 184, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table#product_list {
+  text-align: left;
+  border-collapse: separate;
+  border-spacing: 20px 25px;
+}
+/* line 186, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table#product_list .product_image {
+  display: block;
+  margin: auto;
+}
+/* line 190, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table#product_list td {
+  width: 280px;
+  margin: 1ex;
+  color: #003366;
+  border-top: solid 1px #bebebe;
+  padding-top: 1ex;
+}
+/* line 196, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table#product_list td a {
+  color: #003366;
+  display: block;
+}
+/* line 199, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table#product_list td img {
+  margin-bottom: 7px;
+  box-shadow: 2px 2px 4px #aaa;
+  width: 280px;
+}
+/* line 203, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table#product_list .product_info {
+  padding-top: 1ex;
+}
+/* line 205, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table#product_list .product_info strong {
+  padding-right: 1em;
+  font-size: 20px;
+}
+
+/* line 211, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#product, #cwrap {
+  padding-left: 20px;
+  padding-top: 9px;
+  color: black;
+}
+/* line 215, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#product h2, #cwrap h2 {
+  color: black;
+  font-weight: 100;
+}
+
+/* line 219, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#product #product_image, #product #product_about, #product #product_meta {
+  width: 420px;
+}
+/* line 221, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#product #product_image {
+  cursor: pointer;
+  box-shadow: 2px 2px 4px #aaa;
+}
+
+/* line 224, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#cwrap {
+  min-width: 480px;
+}
+
+/* line 226, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#cart_actions {
+  float: right;
+  font-weight: bold;
+  font-size: 18px;
+}
+/* line 230, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#cart_actions a {
+  border: 1px solid #3399FF;
+  margin: 3px;
+  padding: 3px;
+  border-radius: 5px;
+}
+/* line 235, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#cart_actions a:hover {
+  text-decoration: none;
+  border: 1px solid #003366;
+}
+
+/* facebox forms */
+/* line 241, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.mform * {
+  padding: 3px !important;
+}
+/* line 243, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.mform input, .mform textarea, .mform select {
+  display: block;
+  width: 95%;
+  margin-bottom: 0.7em;
+  border: solid 1px #3399FF;
+  border-radius: 5px;
+}
+/* line 249, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.mform label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #aaa;
+}
+/* line 253, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.mform input[type="submit"] {
+  width: auto;
+  border: solid 1px #003366;
+  border-radius: 5px;
+  color: #aaa;
+  padding: 3px;
+}
+/* line 259, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.mform input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  display: inline;
+}
+
+/* line 265, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.cform input {
+  width: 35% !important;
+}
+/* line 267, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.cform label {
+  width: 100% !important;
+}
+/* line 269, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.cform textarea {
+  width: 70% !important;
+}
+
+/* line 273, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.oform label {
+  text-align: right;
+}
+/* line 275, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.oform fieldset {
+  border: solid 1px #bebebe !important;
+  border-radius: 5px !important;
+  padding: 3px !important;
+  margin: 3px !important;
+}
+/* line 280, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.oform legend {
+  color: #003366 !important;
+  font-weight: bold;
+}
+/* line 283, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.oform .error {
+  border-radius: 5px;
+}
+/* line 285, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.oform .error .inline-errors {
+  margin-top: 0;
+}
+/* line 287, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.oform .error label {
+  color: #cc0000;
+}
+/* line 289, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.oform .error input {
+  border: solid 1px #cc0000;
+}
+/* line 291, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.oform .button {
+  padding: 1ex;
+  color: #333;
+  font-weight: bold;
+  border: solid 1px #333;
+}
+
+/*       CHYBY */
+/* line 300, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#errorExplanation, #success {
+  padding: 0;
+}
+
+/* line 303, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#errorExplanation p, #success p, .error, .success, .notice {
+  border: 1px solid !important;
+  font-size: 18px;
+  margin: 10px 0px;
+  padding: 15px 10px 15px 50px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  color: #D8000C;
+  background-color: #FFBABA;
+  background-image: url("/images/admin/knob/error.png");
+}
+
+/* line 314, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#errorExplanation ul {
+  list-style-type: none;
+}
+/* line 316, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#errorExplanation ul li {
+  color: red;
+  font-size: 14px;
+}
+
+/* line 320, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.field_with_errors {
+  width: 100%;
+  display: inline;
+}
+/* line 323, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.field_with_errors input {
+  border: red solid 1px !important;
+}
+
+/* line 326, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+#success p, .success {
+  color: #43a71b;
+  background-color: #c7ffba;
+  background-image: url("/images/admin/knob/valid.png");
+}
+
+/* line 331, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.notice {
+  color: #9658aa;
+  background-color: #7ec0e2;
+  background-image: url("/images/admin/knob/help.png");
+  border-color: #9658aa;
+}
+
+/* Product page style */
+/* line 340, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.prod_price, .prod_amount, .prod_cart {
+  text-align: right;
+  font-size: 18px;
+  padding: 5px 0 0;
+}
+
+/* line 345, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.prod_amount {
+  font-size: 14px;
+}
+
+/*  /cart/review, /cart/submit style */
+/* line 351, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+td.amount {
+  padding: 0;
+  background: #fff;
+}
+/* line 354, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+td.amount:hover {
+  cursor: text;
+}
+
+/* line 357, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.amountInput {
+  font-size: 12px;
+  border: none;
+  background: #fff;
+  color: #000;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 365, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.help {
+  color: #003366;
+  text-shadow: 1px 0 0 #6699CC;
+  font-weight: bold;
+}
+
+/* line 371, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing {
+  border-bottom: 1px solid #ABAE75;
+  background: #6699CC;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #6699CC;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+}
+/* line 384, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing th {
+  border-top: 0 !important;
+  border: 1px solid #fff;
+  text-align: center;
+  /*background:#9097A9; */
+  color: #003366;
+  padding: 5px;
+}
+/* line 386, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing th.full {
+  border-left: 0;
+  border-right: 0 !important;
+  text-align: left;
+  text-transform: uppercase;
+}
+/* line 396, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing td {
+  border: 1px solid #fff;
+  text-align: center;
+  background: #fff;
+  color: #003366;
+  padding: 3px 5px;
+}
+/* line 402, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing td a {
+  color: #003366;
+}
+/* line 404, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing .white td {
+  background: #fff;
+}
+/* line 406, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing tr:nth-child(odd) td {
+  background: #fff;
+}
+/* line 408, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing th:first-child, table.listing td:first-child {
+  border-left: 0px solid #9097A9;
+  text-align: left;
+}
+/* line 411, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing th:last-child, table.listing td:last-child {
+  border-right: 0px solid #9097A9;
+}
+/* line 413, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing th:first-child {
+  border-left: 0;
+}
+/* line 415, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing tfoot {
+  padding: 2px;
+  font-size: 13px;
+}
+/* line 418, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing tfoot td {
+  border: none;
+  background: transparent !important;
+}
+/* line 421, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing tbody th a {
+  display: block;
+}
+/* line 423, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing .style1 {
+  font-weight: bold;
+  color: #FF7A00;
+}
+/* line 426, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing .style2 {
+  font-weight: bold;
+  padding-left: 16px;
+}
+/* line 429, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing .style3 {
+  padding-left: 25px;
+}
+/* line 431, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+table.listing .style4 {
+  padding-left: 35px;
+}
+
+/* line 434, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.pagination {
+  text-align: center;
+}
+/* line 436, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.pagination * {
+  padding: 4px;
+}
+/* line 438, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.pagination .disabled {
+  color: #555;
+}
+/* line 440, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.pagination .current, .pagination a:hover {
+  color: #003366;
+  font-style: italic;
+}
+/* line 443, /home/fanda/www/ruby/eshop/artre/app/assets/stylesheets/application.css.sass */
+.pagination em {
+  text-decoration: none;
+}

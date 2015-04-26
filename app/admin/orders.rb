@@ -62,7 +62,7 @@ ActiveAdmin.register Order do
       order.message.blank? ? 'NE' : 'ANO'
     end
 
-    default_actions
+    actions
   end
 
   show do
@@ -134,7 +134,7 @@ ActiveAdmin.register Order do
         j.input :_destroy, :as => :boolean, :label => 'Odstranit'
       end
     end
-    f.buttons
+    f.actions
   end
 
 end

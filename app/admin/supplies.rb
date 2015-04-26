@@ -10,7 +10,7 @@ ActiveAdmin.register Supply do
     f.input :supplier do |supplier|
       f.input :products, :as => :check_boxes, :collection => supplier.products
     end
-    f.buttons
+    f.actions
   end
 
 end

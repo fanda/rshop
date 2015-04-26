@@ -1,0 +1,9 @@
+development:
+  access_key_id: AKIAIYO6NH3DRUE5A3QA
+  secret_access_key: 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
+  bucket: artre
+
+production:
+  access_key_id: AKIAIYO6NH3DRUE5A3QA
+  secret_access_key: 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
+  bucket: artre

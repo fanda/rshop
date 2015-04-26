@@ -13,6 +13,8 @@ class Item < ActiveRecord::Base
   after_save 'self.order.actualize_sum'
   before_destroy 'self.order.items.delete self', 'self.order.actualize_sum'
 
+  attr_accessible :count, :cost, :product
+
   def count=(amount)
     write_attribute(:count, amount.to_i)
   end

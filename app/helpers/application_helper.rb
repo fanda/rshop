@@ -31,18 +31,29 @@ module ApplicationHelper
     )
   end
 
-  def into_cart_link(product_id)
-    link_to('Vložit do košíku', into_cart_path(product_id),
+  def into_cart_link(product)
+    link_to("Koupit za #{format_price(product.price)}", into_cart_path(product),
             :class=>'nodecor intocart', :rel => 'nofollow')
   end
 
   def product_linked_title(product)
     begin
-      link_to content_tag(:span, product.title),
+      link_to content_tag(:strong, product.title),
            catalog_product_path(product.category.friendly_id,product.friendly_id),
               :class => 'product-title'
     rescue
-      link_to content_tag(:span, product.title), product_path(product.friendly_id),
+      link_to content_tag(:strong, product.title), product_path(product.friendly_id),
+              :class => 'product-title'
+    end
+  end
+
+  def product_linked_title2(product)
+    begin
+      link_to product.title,
+           catalog_product_path(product.category.friendly_id,product.friendly_id),
+              :class => 'product-title'
+    rescue
+      link_to product.title, product_path(product.friendly_id),
               :class => 'product-title'
     end
   end

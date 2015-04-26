@@ -1,28 +1,23 @@
 source 'http://rubygems.org'
 
-gem 'rails', '>= 3.1'
+gem 'rails', '~> 4.2'
 
-#gem 'railties', '>= 3.2.0'
+gem 'protected_attributes'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem "mysql2", '~> 0.3'
-gem 'json'
+gem "pg"
 gem 'paperclip'
-gem 'awesome_nested_set', '~> 2.1.0'
-gem 'friendly_id', "~> 4.0.0.beta14"
+gem 'awesome_nested_set', "~> 3.0"
+gem 'friendly_id', "~> 5.1"
 gem 'nokogiri'
 gem 'cocaine'
 gem 'acts_as_list'
-gem 'kaminari'
-gem "meta_search", '~> 1.1.1'
-gem 'formtastic', '>= 2.0.0'
-gem 'sass-rails', "~> 3.2.3"
-gem "ckeditor", :git => 'git://github.com/pshoukry/ckeditor.git'
+gem 'formtastic'
+gem "ckeditor", :git => 'git://github.com/galetahub/ckeditor.git'
 gem 'cocoon'
-gem 'devise', '~> 2.0.0'
+gem 'devise'
 gem 'kaminari'
+gem 'aws-sdk'
+gem 'yaml_db'
 
 group :assets do
   gem 'execjs'

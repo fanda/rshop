@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 <title><%= @title %></title>
@@ -15,19 +15,7 @@ window._auth_token = "<%= form_authenticity_token %>";
 <%= csrf_meta_tag %>
 <meta name="keywords" content="<%= h(truncate(@meta_keywords, :lenght=>200)) %>"/>
 <meta name="description" content="<%= h(truncate(strip_tags(@meta_desc), :lenght=>300)) %>"/>
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-28036445-1']);
-  _gaq.push(['_setDomainName', 'none']);
-  _gaq.push(['_setAllowLinker', true]);
-  _gaq.push(['_trackPageview']);
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
 <!--[if lt IE 9]>
 <script src="/html5shiv.js"></script>
 <%= stylesheet_link_tag "ie8fix" %>
@@ -41,44 +29,35 @@ window._auth_token = "<%= form_authenticity_token %>";
   Máte vypnutý JavaScript nebo jej Váš prohlížeč nepodporuje. Funkčnost stránek
   i Vaše pohodlí jsou tím omezeny.
 </div></noscript>
+<div id="wrap">
   <header>
-    <div class="inn">
-      <div id="logo">
-        <%= link_to image_tag('matahari-logo.png'), root_url %>
-      </div>
-      <% unless current_customer %>
-      <a href="<%= login_path %>" id="ilogin" class="right">
-        Přihlášení
-      </a>
+		<div id="right_header_menu" class="right rpad">
+      <% if current_customer %>
+        <a href="/customer">Můj účet</a>
+      | <%= link_to 'Odhlásit', logout_path %> |
       <% end %>
-      <% if @order %>
-      <div id="icart" class="right tfil">
-        <span>Nákupní košík: <%= pluralize(@order.items.size, 'položka', 'položky', 'položek') %>, <%= format_price(@order.sum) %></span>
-      </div>
+      <%= link_to 'Úvodní stránka', root_url %> |
+      <%= link_to 'Obchodní podmínky', '/obchodni-podminky' %> |
+      <%= link_to 'Kontakt', contact_form_path %> |
+      <%= link_to cart_path do %>
+        <span>Košík: <%= pluralize(@order.items.size, 'položka', 'položky', 'položek') %>, <%= format_price(@order.sum) %></span>
       <% end %>
+		</div>
 
-      <div class="out"></div>
+
+    <div id="logo">
+      <%= link_to root_path do %>
+        Artre<span>/Starožitnosti</span>
+      <% end %>
     </div>
+
+    <div class="out"></div>
   </header>
 
-  <nav id="mainmenu">
-    <menu id="eshopages" class="inn">
-      <li><%= link_to 'Úvodní stránka', root_url %></li>
-      <li><%= link_to 'Obchodní podmínky', '/obchodni-podminky' %></li>
-      <li><%= link_to 'Kontakt', contact_form_path %></li>
-      <li><%= link_to 'Nákupní košík', cart_path %></li>
-      <% if current_customer %>
-        <li><a href="/customer">Můj účet</a></li>
-      <% end %>
-      <li>&nbsp;</li>
-    </menu>
-      <div class="out"></div>
-
-  </nav>
+  <div id="messages"><%= display_flashes %></div>
 
   <div id="awrap">
-    <div class="inn">
-    <aside>
+    <aside id="categories">
       <menu>
         <% @categories.each_with_index do |category, index| %>
           <li class="category<%= ' active' if active_category?(category) %>">
@@ -95,62 +74,20 @@ window._auth_token = "<%= form_authenticity_token %>";
           </li>
         <% end %>
       </menu>
-      <br/>
-      <div class="abox">
-        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FMATAHARI-%C5%A1perky-a-dekorace-z-Indon%C3%A9sie%2F230111597049212&amp;width=239&amp;height=291&amp;colorscheme=light&amp;show_faces=true&amp;border_color=e9ded1&amp;stream=false&amp;header=true&amp;appId=391644907539133" scrolling="no" frameborder="0" style="background:#fff; border:none; overflow:hidden; width:239px; height:291px;" allowTransparency="false"></iframe>
-      </div>
-      <br/>
-      <div class="abox">
-        <h2>Co je Matahari?</h2>
-        <p>
-          Matahari je internetový obchod se šperky a dekoracemi z Indonésie.
-        </p>
-      </div>
     </aside>
 
-    <article>
-      <h1 class="dis">Exotické šperky a dekorace z Indonésie</h1>
-      <section id="messages"><%= display_flashes %></section>
-      <section id="content"><%= yield %></section>
-      <% unless true #@categories.blank? %>
-        <section id="categories">
-          <menu>
-            <li><%= link_to 'Úvodní stránka', root_url %></li>
-            <li><%= link_to 'Obchodní podmínky', '/obchodni-podminky' %></li>
-            <li><%= link_to 'Kontakt', contact_form_path %></li>
-            <li><%= link_to 'Nákupní košík', cart_path %></li>
-          </menu>
-          <% @categories.each_with_index do |category, index| %>
-            <%= tag('menu') if index % 3 == 0 %>
-              <li class="category">
-                <%= link_to category.title, catalog_path(category.friendly_id) %>
-              </li>
-            <%= "</menu>".html_safe if index % 3 == 2 %>
-          <% end %>
-          <div class="out"></div>
-        </section>
-      <% end %>
+    <article id="content">
+      <section><%= yield %></section>
     </article>
     <div class="out"></div>
-    </div>
   </div>
+</div>
 
 	<footer>
-    <div class="inn">
-      <div class="mobil left">
-        <h3>Nevíte si rady? Kontaktujte nás!</h3><br/>
-        <h4>Nataliya Kalenska</h4>
-        tel.: +420 739 092 124<br/>
-        e-mail: matahari.decoration@gmail.com
-      </div>
-      <div class="fooinn right"></div>
-      <div class="out"></div>
-    </div>
+    <span id="copy" class="inn">
+      &copy; <%= Time.now.year %> <%= link_to 'Artre', root_url %>
+    </span>
   </footer>
-
-  <div id="copy" class="inn">
-    Copyright &copy; <%= Time.now.year %> <%= link_to 'Etnoshop Matahari', root_url %>
-  </div>
 
 <% if Rails.env.development? %>
   <div class="out" style="text-align:left">

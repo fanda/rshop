@@ -2,10 +2,9 @@
 <% @products.each_with_index do |product, index| %>
   <%= tag('tr', :valign=>'top') if index % 3 == 0 %>
     <td>
-      <%= product_linked_title product %>
       <%= product_linked_image product %>
-      <strong class="price inlist-price"><%= format_price(product.price) %></strong>
-      <%= into_cart_link(product.friendly_id) if product.amount != 0 %>
+      <%= product_linked_title product %>
+      <%= into_cart_link(product) if product.amount != 0 %>
     </td>
 <% end %>
 </table>

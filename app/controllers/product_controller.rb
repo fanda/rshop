@@ -6,12 +6,12 @@ class ProductController < ApplicationController
   def show
     if params[:catalog_id]
       @category = Category.find(params[:catalog_id])
-      @products = @category.products.related - [@product]
+      @products = Product.newest - [@product]
       scope = @category.products
     else
       scope = Product
     end
-    @product = scope.find(params[:id])||Product.find(params[:id])
+    @product = scope.get(params[:id])||Product.find(params[:id])
     redirect_to '/404.html' unless @product
     @title = @product.title
     @meta_desc = shorten(@product.description, 11)

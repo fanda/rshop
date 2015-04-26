@@ -14,12 +14,13 @@ class Customer < ActiveRecord::Base
   # attributes validation
   validates_presence_of :email, :name, :surname, :street, :place, :post_code
   validates_uniqueness_of :email, :case_sensitive => false
-  validates_format_of :email, :with => /^(|([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,}))$/i
-  validates_format_of :post_code, :with => /^(|(\d{3,3}\s?\d{2,2}))$/i
-  validates_format_of :phone, :with => /^[+0-9 ]{5,20}$/i, :if => :phone_filled?
+  validates_format_of :email, :with => /\A(|([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,}))\Z/i
+  validates_format_of :post_code, :with => /\A(|(\d{3,3}\s?\d{2,2}))\Z/i
+  validates_format_of :phone, :with => /\A[+0-9 ]{5,20}\Z/i, :if => :phone_filled?
 
-  scope :weekly_new,
+  def self.weekly_new
     where('created_at > ?', 1.week.ago)
+  end
 
   def fullname
     "#{self.name} #{self.surname}"

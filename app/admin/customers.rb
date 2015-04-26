@@ -18,7 +18,7 @@ ActiveAdmin.register Customer do
     column :orders do |customer|
       customer.orders.size.to_s
     end
-    default_actions
+    actions
   end
 
   form do |f|
@@ -33,7 +33,7 @@ ActiveAdmin.register Customer do
       f.input :place
       f.input :post_code
     end
-    f.buttons
+    f.actions
   end
 
   show do

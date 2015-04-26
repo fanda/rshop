@@ -47,50 +47,39 @@ ActiveAdmin.register Product do
       link_to product.name, admin_product_path(product)
     end
     column :category
-   # column :supplier
     column :amount
     column :price, :sortable => :price do |product|
       div :class => "price" do
         number_to_currency product.price
       end
     end
-    default_actions
+    actions
   end
 
   form do |f|
-    f.inputs "Podrobnosti" do
+    f.inputs "Předmět" do
       f.input :title
-      f.input :description
       f.input :category
-      #f.input :supplier
-    end
-
-    f.inputs "Sklad" do
-      f.input :amount
       f.input :price
-      f.input :active, :as => :boolean, :label => 'V katalogu'
+      f.input :amount
+      f.input :active, :as => :boolean, :label => 'V nabídce'
+      f.input :description
     end
 
     f.inputs 'Obrázek' do
       f.input :picture, :as => :file
     end
-    f.buttons
+    f.actions
   end
 
   show do
     panel "Podrobnosti" do
       attributes_table_for product do
         row :title
-        row :description
         row :category
-        #row :supplier
-      end
-    end
-
-    panel "Sklad" do
-      attributes_table_for product do
-        row :amount
         row :price
+        row :amount
+        row :description
         row :updated_at
         row 'Počet prodaných kusů' do
           product.counter

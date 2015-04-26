@@ -8,7 +8,7 @@ ActiveAdmin.register Supplier do
     column :email
     column :phone
     column :url
-    default_actions
+    actions
   end
 
   form do |f|
@@ -26,7 +26,7 @@ ActiveAdmin.register Supplier do
       f.input :email
       f.input :url
     end
-    f.buttons
+    f.actions
   end
 
   show do

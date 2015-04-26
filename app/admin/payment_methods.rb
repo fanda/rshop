@@ -11,7 +11,7 @@ ActiveAdmin.register PaymentMethod do
         number_to_currency payment_method.cost
       end
     end
-    default_actions
+    actions
   end
 
   form do |f|
@@ -20,7 +20,7 @@ ActiveAdmin.register PaymentMethod do
       f.input :cost
       f.input :info #, :as => :ckeditor
     end
-    f.buttons
+    f.actions
   end
 
   show do

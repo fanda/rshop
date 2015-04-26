@@ -16,7 +16,10 @@ class Category < ActiveRecord::Base
   # behavior of pagination
   #cattr_reader :per_page
   paginates_per 20
-  default_scope order('position ASC')
-  default_scope :include => [:products]
+  default_scope { includes(:products).order('position ASC') }
+
+  def self.find(id)
+    friendly.find(id)
+  end
 
 end

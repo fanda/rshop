@@ -1,5 +1,9 @@
-<h2><%= @product.title %></h2>
 <div id="product">
+  <h2><%= @product.title %></h2>
+
+  <div id="product_meta" class="left">
+    <%= into_cart_link @product if @product.amount != 0 %>
+  </div>
 
   <div id="product_image" class="right tac">
     <%= link_to image_tag(@product.picture.url), @product.picture.url(:original), :rel => 'facebox', :title => 'Kliknutím zvětšíte' %>
@@ -9,16 +13,11 @@
     <p id="product_description"><%= @product.full_description %></p>
   </div>
 
-  <div id="product_meta" class="left">
-    <strong class="price"><%= format_price(@product.price) %></strong>
-    <%= into_cart_link @product.friendly_id if @product.amount != 0 %>
-  </div>
-
   <div class="out"></div>
 </div>
 
 <br class="out"/>
-<% if @category and @products.any? %>
+<% if false and @category and @products.any? %>
 <h2>
   Další výrobky v kategorii
   <%= link_to @category.title, catalog_path(@category.id) %>

@@ -2,8 +2,10 @@
 //= require jquery_ujs
 //= require jquery.tooltip
 //= require jquery.textfill
+//= require jquery.tools.scrollable
 //= require facebox
 //= require_self
+
 jQuery(document).ready(function($) {
   $('a[rel*=facebox]').facebox({
     loading_image : 'loading.gif',
@@ -13,6 +15,11 @@ jQuery(document).ready(function($) {
 	$('.product-title').textfill({ maxFontPixels: 16 });
 	$('.tfil').textfill({ maxFontPixels: 24 });
 
+  $("#promo")
+    .scrollable({circular: true, speed: 300})
+    .navigator(".navi")
+    .autoscroll({interval: 5000});
+
   $("td.amount").click(function() {
     if ($("td.amount input").length > 0) return;
     var former = $(this).text().replace(/\D/g, '');
@@ -21,8 +28,8 @@ jQuery(document).ready(function($) {
     input.attr('value', former);
     input.addClass('amountInput');
     input.css('width', $(this).css('width'));
-    input.blur(function() {
-      var val = $(this).attr('value').replace(/\D/g, '');
+    input.blur(function(e) {
+      var val = $(this).val().replace(/\D/g, '');
       if (val.length > 0)
       {
         cell.html(val +'ks');

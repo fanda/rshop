@@ -1,8 +1,9 @@
 //= require active_admin/base
+//= require ckeditor/init
 
+CKEDITOR.config.entities = false;
+CKEDITOR.config.entities_latin = false;
 
-/*** //= require ckeditor/ckeditor
-/*** //= require prettyprint*/
 
 jQuery(document).ready(function($) {
   clickableCosA();

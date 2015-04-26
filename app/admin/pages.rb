@@ -10,7 +10,7 @@ ActiveAdmin.register Page do
       link_to page.title, "/#{page.url}"
     end
 
-    default_actions
+    actions
   end
 
   form :partial => 'form'

@@ -1,3 +1,4 @@
+<div id="cwrap">
 <h2>Vytvoření objednávky</h2>
 <table id="cart" class="listing">
   <thead>
@@ -19,8 +20,8 @@
       <tr class="<%= cycle('even', 'odd') %>">
         <td class=""><%= product.title %></td>
         <td class="col100width tar"><%= format_price product.price %></td>
-        <td class="col100width tar"><%= product.count %></td>
-        <td class="col140width tar"><%= format_price product.cost %></td>
+        <td class="col100width tar"><%= product.count(@order) %></td>
+        <td class="col140width tar"><%= format_price product.cost(@order) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -59,6 +60,7 @@
       <%= of.text_area :message, :value => @order.message, :cols => 40, :rows => 3 %>
     <% end %>
     <br/>
-    <%= of.commit_button "Vytvořit objednávku" %>
+    <%= of.button "Vytvořit objednávku", class: 'button' %>
   <% end %>
+</div>
 </div>

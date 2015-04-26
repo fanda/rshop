@@ -14,7 +14,7 @@ class PagesController < ApplicationController
   end
 
   def contact
-    @text = Page.find(Page::CONTACT_PAGE_TEXT_ID)
+    @contact_text = Page.contact_text
     flash[:params]||={}
     if request.post?
       if contact_form_data_valid?

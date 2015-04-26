@@ -5,9 +5,9 @@ class AdminUser < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name
 
-  validates_format_of :phone, :with => /^[+0-9 ]{5,20}$/i, :if => :phone_filled?
+  validates_format_of :phone, :with => /\A[+0-9 ]{5,20}\Z/i, :if => :phone_filled?
 
   has_many :supplies
 

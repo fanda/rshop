@@ -6,8 +6,8 @@ development:
   email: 'fandisek@gmail.com'
   ga_id: xxx
   picture_style:
-    square: '150x150#'
-    large: '280x280>'
+    square: '280x280#'
+    large: '420x420>'
     original: '840x840>'
 
 production:
@@ -18,7 +18,6 @@ production:
   email: 'fandisek@gmail.com'
   ga_id: xxx
   picture_style:
-    square: '150x150#'
-    large: '280x280>'
+    square: '280x280#'
+    large: '420x420>'
     original: '840x840>'
-

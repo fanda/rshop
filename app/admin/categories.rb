@@ -1,15 +1,15 @@
 # coding: utf-8
 ActiveAdmin.register Category do
-  menu :parent => "Produkty", :label => 'Kategorie'
+  menu :label => 'Kategorie', :priority => 2
 
   filter :parent, :label => 'Nadkategorie'
   #filter :title, :label => 'Název'
 
   collection_action :index, :method => :get do
-      scope = Category.scoped
+      scope = Category.roots
 
       @collection = scope.page() if params[:q].blank?
-      @search = scope.metasearch(clean_search_params(params[:q]))
+      @search = scope.ransack(clean_search_params(params[:q]))
 
       respond_to do |format|
         format.html {
@@ -35,7 +35,7 @@ ActiveAdmin.register Category do
     column 'Podkategorie' do |c|
       link_to(c.title, admin_category_path(c)) unless c.root?
     end
-    default_actions
+    actions
   end
 
   form do |f|
@@ -47,7 +47,7 @@ ActiveAdmin.register Category do
     f.inputs "Taxonomie" do
       f.input :parent, :collection => Category.roots
     end
-    f.buttons
+    f.actions
   end
 
   show do

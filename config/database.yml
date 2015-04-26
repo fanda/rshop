@@ -1,20 +1,17 @@
 
 login: &login
-  adapter: mysql2
-  #socket: /var/run/mysqld/mysqld.sock
-  host: localhost
-  #port: 3306
-  username: root
-  password: maker
+  adapter: postgresql
   timeout: 5000
   encoding: utf8
 
 development:
-  database: eshop
+  username: root
+  password: fanda
+  database: artre
   <<: *login
 
 test:
-  database: eshop
+  database: artre_test
   <<: *login
 
 production:

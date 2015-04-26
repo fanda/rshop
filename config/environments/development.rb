@@ -1,6 +1,6 @@
 Eshop::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
-
+  config.eager_load = false
   # In the development environment your application's code is reloaded on
   # every request.  This slows down response time but is perfect for development
   # since you don't have to restart the webserver when you make code changes.
@@ -34,7 +34,6 @@ Eshop::Application.configure do
     Bullet.alert = true
     Bullet.rails_logger = true
     Bullet.console = true
-    Bullet.disable_browser_cache = true
   end
   #active admin
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }

@@ -17,10 +17,9 @@ class Order < ActiveRecord::Base
   belongs_to :customer
   accepts_nested_attributes_for :customer
 
-  has_many :items, :include => :product
+  has_many :items,  -> { includes :product }
   accepts_nested_attributes_for :items, :allow_destroy => true
-  has_many :products, :through => :items, :uniq => true,
-           :select => 'products.*, items.count, items.cost'
+  has_many :products, :through => :items #, -> { uniq }
   accepts_nested_attributes_for :products
   has_many :invoices
   has_one  :invoice_address, :dependent => :destroy
@@ -37,34 +36,29 @@ class Order < ActiveRecord::Base
   # behavior of pagination
   cattr_reader :order_page
   @@per_page = 5
-  default_scope :order => 'id DESC'
+  default_scope { order('id DESC') }
 
   scope :finished_by, lambda {|cid|
     includes(:employee).where(:state => FINISHED, :customer_id => cid) }
 
-  scope :waiting,
-    includes(:customer).where("state != #{FINISHED} AND state != #{CART}")
+  scope :waiting,    -> { includes(:customer).where("state != #{FINISHED} AND state != #{CART}") }
 
-  scope :finished,
-    includes(:customer).where(:state => FINISHED)
+  scope :finished,   -> { includes(:customer).where(:state => FINISHED) }
 
-  scope :not_paid,
-    includes(:customer).where(:state => NOT_PAID)
+  scope :not_paid,   -> { includes(:customer).where(:state => NOT_PAID) }
 
-  scope :cart,
-    includes(:customer).where(:state => CART)
+  scope :cart,  -> {  includes(:customer).where(:state => CART) }
 
-  scope :paid,
-    includes(:customer).where(:state => PAID)
+  scope :paid,  -> { includes(:customer).where(:state => PAID) }
 
-  scope :sent,
-    includes(:customer).where(:state => SENT)
+  scope :sent,  -> { includes(:customer).where(:state => SENT) }
 
   scope :by_state, lambda {|state|
-    includes(:customer).where(:state => state) }
+     includes(:customer).where(:state => state) }
 
   scope :finished_in_month, lambda {|month|
     where("state = #{Order::FINISHED} AND created_at >= :begin AND created_at <= :end", { :begin => month, :end => month.end_of_month })}
+
 
   def cart?
     self.state == CART
@@ -122,7 +116,6 @@ class Order < ActiveRecord::Base
     item = product.items.in self
     item.count = amount
     item.cost = product.price * amount
-    item.save
     actualize_sum
     return item.cost
   end

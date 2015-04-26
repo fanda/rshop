@@ -1,4 +1,6 @@
+
 <div id="success"></div>
+<div id="cwrap">
 <h2>Nákupní košík</h2>
 <% if @products.any? %>
 <table id="cart" class="listing">
@@ -22,8 +24,8 @@
   <% @products.each do |product| %>
     <tr id="p_<%= product.id %>" class="<%= cycle('even', 'odd') %>">
       <td class="product-name"><%= product_linked_title(product) %></td>
-      <td class="price tac"><%= format_price(product.cost) %></td>
-      <td class="amount tac" title="Klikněte pro změnu počtu kusů"><%= product.count %>ks</td>
+      <td class="price tac"><%= format_price(product.cost(@order)) %></td>
+      <td class="amount tac" title="Klikněte pro změnu počtu kusů"><%= product.count(@order) %>ks</td>
 
       <td class="remove">
         <%= link_to image_tag('admin/knob/remove.png', :alt => 'remove'),
@@ -45,3 +47,4 @@
 <% else %>
   <p><strong>Nákupní košík je prázdný</strong></p>
 <% end %>
+</div>

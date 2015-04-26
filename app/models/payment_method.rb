@@ -2,6 +2,8 @@ class PaymentMethod < ActiveRecord::Base
 
   has_many :orders
 
+  attr_accessible :name, :cost, :info
+
   def self.options
     options = []
     PaymentMethod.all.each do |p|

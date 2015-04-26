@@ -29,8 +29,9 @@ protected
   # get last product, list of categories and suppliers for layout
   def load_data
     @categories = Category.roots
-    @title = "Internetový obchod"
-    @meta_desc=''
+    @title = t('title')
+    @text = Page.index_text
+    @meta_desc = t('meta_desc')
   end
 
   def set_order

@@ -1,0 +1,203 @@
+
+---
+admin_users:
+  columns:
+  - id
+  - name
+  - phone
+  - email
+  - encrypted_password
+  - reset_password_token
+  - reset_password_sent_at
+  - remember_created_at
+  - sign_in_count
+  - current_sign_in_at
+  - last_sign_in_at
+  - current_sign_in_ip
+  - last_sign_in_ip
+  - created_at
+  - updated_at
+  records: 
+  - - '1'
+    - 
+    - 
+    - fandisek@gmail.com
+    - $2a$10$W1Rccx5DSmPGXVq.2m5yu.YV29slxRK/.g2oYFj68iGO7GAYsI5Zi
+    - 
+    - 
+    - '2015-04-25 13:53:03.113011'
+    - '1'
+    - '2015-04-25 13:53:03.153571'
+    - '2015-04-25 13:53:03.153571'
+    - '::1'
+    - '::1'
+    - '2015-04-25 13:20:58.230193'
+    - '2015-04-25 13:53:03.15574'
+  - - '2'
+    - 
+    - 
+    - ales@artre.cz
+    - $2a$10$aqhqiAxIgY2HSJPpR61fA.Py3kmpfDSWvQdqzBMOjvxycJtR4.ZjS
+    - 
+    - 
+    - 
+    - '0'
+    - 
+    - 
+    - 
+    - 
+    - '2015-04-25 14:19:11.788057'
+    - '2015-04-25 14:19:11.788057'
+
+---
+items:
+  columns:
+  - id
+  - cost
+  - count
+  - order_id
+  - product_id
+  records: 
+  - - '1'
+    - '20'
+    - '1'
+    - '1'
+    - '1'
+  - - '2'
+    - '60'
+    - '3'
+    - '2'
+    - '1'
+
+---
+products:
+  columns:
+  - id
+  - title
+  - description
+  - price
+  - amount
+  - counter
+  - position
+  - active
+  - created_at
+  - updated_at
+  - slug
+  - picture_file_name
+  - picture_content_type
+  - picture_file_size
+  - picture_updated_at
+  - category_id
+  - supplier_id
+  records: 
+  - - '1'
+    - LARP
+    - ''
+    - '20'
+    - '5'
+    - '0'
+    - '1'
+    - '1'
+    - '2015-04-25 13:54:48.546134'
+    - '2015-04-25 14:15:52.3269'
+    - larp
+    - 536708_321218491289039_196776663733223_752586_1318097230_n.jpeg
+    - image/jpeg
+    - '91177'
+    - '2015-04-25 13:54:47.256628'
+    - '1'
+    - 
+
+---
+orders:
+  columns:
+  - id
+  - sum
+  - message
+  - state
+  - created_at
+  - updated_at
+  - customer_id
+  - payment_method_id
+  records: 
+  - - '1'
+    - '20'
+    - 
+    - '0'
+    - '2015-04-25 14:07:53.263004'
+    - '2015-04-26 05:31:42.592095'
+    - 
+    - 
+  - - '2'
+    - '60'
+    - 
+    - '0'
+    - '2015-04-26 05:39:53.424562'
+    - '2015-04-26 20:42:11.199768'
+    - 
+    - 
+
+---
+pages:
+  columns:
+  - id
+  - title
+  - url
+  - body
+  - created_at
+  - updated_at
+  records: 
+  - - '2'
+    - Text na úvodní stránce
+    - text-na-uvodni-strance
+    - ''
+    - '2015-04-25 13:51:45.284919'
+    - '2015-04-25 14:16:26.593451'
+  - - '3'
+    - Kontaktní stránka
+    - kontaktni-stranka
+    - ''
+    - '2015-04-25 13:52:22.028989'
+    - '2015-04-25 13:52:22.028989'
+
+---
+categories:
+  columns:
+  - id
+  - title
+  - description
+  - slug
+  - position
+  - parent_id
+  - lft
+  - rgt
+  - updated_at
+  - created_at
+  records: 
+  - - '1'
+    - Nábytek
+    - ''
+    - nabytek
+    - 
+    - 
+    - '1'
+    - '2'
+    - '2015-04-25 14:14:25.459908'
+    - '2015-04-25 14:14:25.459908'
+
+---
+payment_methods:
+  columns:
+  - id
+  - name
+  - cost
+  - info
+  - created_at
+  - updated_at
+  records: 
+  - - '1'
+    - Platba předem
+    - '0'
+    - ''
+    - '2015-04-25 14:17:11.599557'
+    - '2015-04-25 14:18:12.605606'

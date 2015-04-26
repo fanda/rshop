@@ -2,12 +2,12 @@
 
   <%= f.inputs do %>
     <%= f.input :title  %>
-    <%= f.input :body#, :as => :ckeditor
+    <%= f.input :body, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full',:language => 'cs'} }
     %>
   <% end %>
 
-  <%= f.buttons do %>
-    <%= f.commit_button :button_html => {:class => "btn"} %>
+  <%= f.actions do %>
+    <%= f.button :button_html => {:class => "btn"} %>
   <% end %>
 
 <% end %>
