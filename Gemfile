@@ -17,7 +17,7 @@ gem "ckeditor", :git => 'git://github.com/galetahub/ckeditor.git'
 gem 'cocoon'
 gem 'devise'
 gem 'kaminari'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 gem 'yaml_db'
 
 group :assets do
