@@ -21,6 +21,8 @@ Eshop::Application.configure do
   # See everything in the log (default is :info)
   config.log_level = :warn
 
+  config.assets.initialize_on_precompile = false
+
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
 
@@ -29,7 +31,7 @@ Eshop::Application.configure do
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
-  config.serve_static_assets = false
+  config.serve_static_files = false
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -48,7 +50,7 @@ Eshop::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.default_url_options = { :host => 'ethnoshop.eu' }
+  config.action_mailer.default_url_options = { :host => 'artre.bizapp.cz' }
 
   # Enable threaded mode
   # config.threadsafe!
