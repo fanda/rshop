@@ -30,6 +30,9 @@ class Product < ActiveRecord::Base
   :path => ":rails_root/public/pictures/:id/:style_:basename.:extension",
   :default_url => "/pictures/:style_default.png",
   :default_style => :large,
+  :s3_credentials => {
+                      :endpoint => 's3-eu-west-1'
+                    },
   :web_root => '/pictures/', :storage => :s3,
   :styles => { :square   => AppConfig.picture_style.square,
                :large    => AppConfig.picture_style.large,
