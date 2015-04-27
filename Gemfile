@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
-
+ruby '2.0.0'
 gem 'rails', '~> 4.2'
+gem 'puma'
 
 gem 'protected_attributes'
 
@@ -29,4 +30,8 @@ gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
 
 group :development do
   gem "bullet"
+end
+
+group :production do
+  gem 'rails_12factor'
 end
